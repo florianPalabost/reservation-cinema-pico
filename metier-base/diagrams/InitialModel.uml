@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="-31.0" y="-9.0">fr.univlyon1.m2tiw.tiw1.metier.Seance</node>
+    <node x="-13.0" y="285.0">fr.univlyon1.m2tiw.tiw1.metier.Reservation</node>
+    <node x="389.0" y="-35.0">fr.univlyon1.m2tiw.tiw1.metier.Cinema</node>
+    <node x="-1.5" y="513.0">fr.univlyon1.m2tiw.tiw1.metier.Salle</node>
+    <node x="269.0" y="259.0">fr.univlyon1.m2tiw.tiw1.metier.Film</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic Group" zoom="0.9161290322580645" x="675.0" y="380.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
