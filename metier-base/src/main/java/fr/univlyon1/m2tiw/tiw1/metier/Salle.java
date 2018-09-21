@@ -14,13 +14,21 @@ public class Salle {
         this.nom = nom;
         this.capacite = capacite;
     }
-
+    public Salle(){
+    this.nom="";
+    this.capacite=0;
+    }
     public String getNom() {
         return nom;
     }
 
     public int getCapacite() {
         return capacite;
+    }
+
+    @Override
+    public String toString() {
+        return "{" + "nom:" + nom + ", capacite:" + capacite + '}';
     }
     
 }

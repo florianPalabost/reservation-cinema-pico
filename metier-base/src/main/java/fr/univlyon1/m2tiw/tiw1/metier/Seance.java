@@ -31,15 +31,24 @@ public class Seance {
         this.prix = prix;
         this.reservations = new ArrayList<Reservation>();
     }
-    @JsonAnyGetter
+
+    
+    public Seance(){
+         this.film = null;
+        this.salle = null;
+        this.date = null;
+        this.prix = 0;
+        this.reservations = null;
+    }
+    @JsonGetter
     public Film getFilm() {
         return film;
     }
-    @JsonAnyGetter
+    @JsonGetter
     public Salle getSalle() {
         return salle;
     }
-    @JsonAnyGetter
+    @JsonGetter
     public Date getDate() {
         return date;
     }
@@ -63,4 +72,10 @@ public class Seance {
     public void setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
     }
+
+    @Override
+    public String toString() {
+        return "{" + "film:" + film + ", salle:" + salle + ", date:" + date + ", prix:" + prix + ", reservations:" + reservations + '}';
+    }
+    
 }

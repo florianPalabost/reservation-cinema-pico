@@ -20,6 +20,12 @@ public class Film {
         this.version = version;
         this.fiche = fiche;
     }
+    
+    public Film(){
+        this.titre = "";
+        this.version = "";
+        this.fiche = "";
+    }
     @JsonGetter
     public String getTitre() {
         return titre;

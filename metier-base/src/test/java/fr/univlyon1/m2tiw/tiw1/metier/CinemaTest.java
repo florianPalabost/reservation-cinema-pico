@@ -1,5 +1,7 @@
 package fr.univlyon1.m2tiw.tiw1.metier;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import java.io.File;
@@ -20,13 +22,25 @@ public class CinemaTest {
     private static final Logger LOGGER = Logger.getLogger( MonCinema.class.getName() );
     
     @Test
-    public void testImportJson() throws Exception {
+    public void testImportJson(){
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
-        Cinema monCinema = mapper.readValue(new File("F:/Florian/Documents/M2TIW/TIW1 - IS/tiw1-is-2018/metier-base/src/main/resources/sample-data/mon-cinema.json"), Cinema.class);
-        mapper.generateJsonSchema(Cinema.class);
-        LOGGER.info("MON CINEMA");
-        LOGGER.info(mapper.toString());
-        LOGGER.info(monCinema.toString());
+        try{
+            MonCinema monCinema = mapper.readValue(new File("src/main/resources/sample-data/mon-cinema.json"), MonCinema.class);
+            LOGGER.info("MON CINEMA");
+           // LOGGER.info(mapper.toString());
+            LOGGER.info(monCinema.toString());
+            LOGGER.info("DONE");
+        }
+        catch(JsonGenerationException e){
+       e.printStackTrace();
+     } catch (JsonMappingException e) {
+	e.printStackTrace();
+     } catch (IOException e) {
+	e.printStackTrace();
+     }
+      catch (Exception e) {
+	e.printStackTrace();
+     }
       //  LOGGER.log( Level.FINE, "Start test json", monCinema);
     
     }
