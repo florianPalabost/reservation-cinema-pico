@@ -1,8 +1,10 @@
 package fr.univlyon1.m2tiw.tiw1.metier;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import fr.univlyon1.m2tiw.tiw1.utils.SeanceCompleteException;
@@ -12,12 +14,14 @@ import java.util.Date;
 import java.util.List;
 @JsonRootName(value = "seance")
 @JsonIgnoreProperties(ignoreUnknown=true)
+@JsonInclude(JsonInclude.Include.NON_NULL) 
 public class Seance {
-    @JsonProperty(value="film")
+   // @JsonProperty(value="film")
     private final Film film;
-    @JsonProperty(value="salle")
+    //@JsonProperty(value="salle")
     private final Salle salle;
-    @JsonProperty(value="date")
+   @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ssX", timezone="UTC") 
+      @JsonProperty(value="date")
     private final java.util.Date date;
     @JsonProperty(value="prix")
     private final float prix;
@@ -32,7 +36,6 @@ public class Seance {
         this.reservations = new ArrayList<Reservation>();
     }
 
-    
     public Seance(){
          this.film = null;
         this.salle = null;
@@ -40,19 +43,19 @@ public class Seance {
         this.prix = 0;
         this.reservations = null;
     }
-    @JsonGetter
+    @JsonProperty(value="film")
     public Film getFilm() {
         return film;
     }
-    @JsonGetter
+    @JsonProperty(value="salle")
     public Salle getSalle() {
         return salle;
     }
-    @JsonGetter
+    @JsonProperty(value="date")
     public Date getDate() {
         return date;
     }
-    @JsonGetter
+    @JsonProperty(value="prix")
     public float getPrix() {
         return prix;
     }

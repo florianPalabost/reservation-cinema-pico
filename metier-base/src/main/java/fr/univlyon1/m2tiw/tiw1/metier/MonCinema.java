@@ -34,13 +34,13 @@ public class MonCinema extends Cinema {
 
     @Override
     public String toString() {
-        return "cinema{" + "cinema:" + cinema + '}';
+        return  "{" + cinema + '}';
     }
-    @JsonGetter
+     @JsonProperty(value="cinema")
     public Cinema getCinema() {
         return cinema;
     }
-    @JsonSetter
+     @JsonProperty(value="cinema")
     public void setCinema(Cinema cinema) {
         this.cinema = cinema;
     }

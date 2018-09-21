@@ -32,11 +32,11 @@ public class Cinema {
     public Cinema(){
     //this.nom="";
     }
-    @JsonGetter
+    @JsonProperty(value="salles")
     public List<Salle> getSalles() {
         return salles;
     }
-    @JsonSetter
+    @JsonProperty(value="salles")
     public void setSalles(List<Salle> salles) {
         this.salles = salles;
     }
@@ -52,21 +52,24 @@ public class Cinema {
         this.films = films;
     }
     */
-    @JsonGetter
+    @JsonProperty(value="films")
     public List<Film> getFilms() {
         return films;
     }
-    @JsonSetter
+    @JsonProperty(value="films")
     public void setFilms(List<Film> films) {
         this.films = films;
     }
-    
-    @JsonSetter
+    @JsonProperty(value="seances")
+    public List<Seance> getSeances() {
+        return seances;
+    }
+    @JsonProperty(value="seances")
     public void setSeances(List<Seance> seances) {
         this.seances = seances;
     }
     
-    @JsonProperty(value="cinema")
+    @JsonProperty(value="nom")
     @JsonGetter
     public String getNom() {
         return nom;

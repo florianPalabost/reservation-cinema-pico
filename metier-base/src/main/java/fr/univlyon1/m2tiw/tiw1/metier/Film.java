@@ -1,10 +1,14 @@
 package fr.univlyon1.m2tiw.tiw1.metier;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 @JsonRootName(value = "film")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Film {
     @JsonProperty(value="titre")
     private final String titre;
@@ -26,16 +30,29 @@ public class Film {
         this.version = "";
         this.fiche = "";
     }
-    @JsonGetter
+    public Film(String titre){
+        this.titre = titre;
+        this.version = null;
+        this.fiche = null;
+    }
+    @JsonProperty(value="titre")
     public String getTitre() {
         return titre;
     }
-    @JsonGetter
+    @JsonProperty(value="version")
+    @JsonInclude(Include.NON_NULL)
     public String getVersion() {
         return version;
     }
-    @JsonGetter
+    @JsonProperty(value="fiche")
+    @JsonInclude(Include.NON_NULL)
     public String getFiche() {
         return fiche;
     }
+
+    @Override
+    public String toString() {
+        return "{" + "titre : " + titre + ", version : " + version + ", fiche : " + fiche + '}';
+    }
+    
 }
