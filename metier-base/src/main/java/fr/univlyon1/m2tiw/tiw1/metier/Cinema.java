@@ -104,6 +104,39 @@ public class Cinema {
     }
 
     @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cinema other = (Cinema) obj;
+        if (!Objects.equals(this.nom, other.nom)) {
+            return false;
+        }
+        if (!Objects.equals(this.salles, other.salles)) {
+            return false;
+        }
+        if (!Objects.equals(this.films, other.films)) {
+            return false;
+        }
+        if (!Objects.equals(this.seances, other.seances)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
     public String toString() {
         return "cinema : {" + "nom : " + nom + ", salles : " + salles + ", films : " + films + ", seances : " + seances + "}";
     }
