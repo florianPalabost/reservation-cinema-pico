@@ -11,7 +11,7 @@ import fr.univlyon1.m2tiw.tiw1.metier.Cinema;
  *
  * @author florian
  */
-public interface CinemaDAO {
+public interface CinemaDAO extends GenericDAO<Integer,Cinema>{
 
     /**
      *
@@ -24,7 +24,9 @@ public interface CinemaDAO {
      * @param cinema
      * @return 
      */
+    @Override
     public boolean update(Cinema cinema);
     
+    @Override
     public boolean delete(Cinema cinema);
 }
