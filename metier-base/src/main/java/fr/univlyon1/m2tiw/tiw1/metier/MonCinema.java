@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package fr.univlyon1.m2tiw.tiw1.metier;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
@@ -12,11 +13,12 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 
 /**
  *
- * @author flori
+ * @author florian.
  */
 //@JsonIgnoreProperties(ignoreUnknown=true)
 public class MonCinema extends Cinema {
-    @JsonProperty(value="cinema")
+
+    @JsonProperty(value = "cinema")
     public Cinema cinema;
 
     public MonCinema(Cinema cinema, String nom) {
@@ -36,11 +38,13 @@ public class MonCinema extends Cinema {
     public String toString() {
         return  "{" + cinema + '}';
     }
-     @JsonProperty(value="cinema")
+
+    @JsonProperty(value = "cinema")
     public Cinema getCinema() {
         return cinema;
     }
-     @JsonProperty(value="cinema")
+
+    @JsonProperty(value = "cinema")
     public void setCinema(Cinema cinema) {
         this.cinema = cinema;
     }

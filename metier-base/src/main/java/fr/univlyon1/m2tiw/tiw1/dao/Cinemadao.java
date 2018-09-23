@@ -3,27 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package fr.univlyon1.m2tiw.tiw1.dao;
 
 import fr.univlyon1.m2tiw.tiw1.metier.Cinema;
 
 /**
  *
- * @author florian
+ * @author florian.
  */
-public interface CinemaDAO {
+public interface Cinemadao {
 
     /**
      *
-     * @param name
-     * @return
+     * @param name .
+     *
      */
-    public Cinema findByName(String name);  
+    public Cinema findByName(String name);
+
     /**
      *
-     * @param cinema
-     * @return 
+     * @param cinema .
+     *
      */
+
     public boolean update(Cinema cinema);
     
     public boolean delete(Cinema cinema);

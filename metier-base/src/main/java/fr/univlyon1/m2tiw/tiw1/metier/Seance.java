@@ -12,22 +12,33 @@ import fr.univlyon1.m2tiw.tiw1.utils.SeanceCompleteException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 @JsonRootName(value = "seance")
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL) 
 public class Seance {
-   // @JsonProperty(value="film")
+
+    // @JsonProperty(value="film")
     private final Film film;
+
     //@JsonProperty(value="salle")
     private final Salle salle;
-   @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ssX", timezone="UTC") 
-      @JsonProperty(value="date")
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ssX", timezone = "UTC")
+    @JsonProperty(value = "date")
     private final java.util.Date date;
-    @JsonProperty(value="prix")
+
+    @JsonProperty(value = "prix")
     private final float prix;
-    @JsonProperty(value="reservations")
+
+    @JsonProperty(value = "reservations")
     private List<Reservation> reservations;
 
+    /**
+     *
+     * Constructeur de Seance avec film, salle, date et prix.
+     *
+     */
     public Seance(Film film, Salle salle, Date date, float prix) {
         this.film = film;
         this.salle = salle;
@@ -36,33 +47,49 @@ public class Seance {
         this.reservations = new ArrayList<Reservation>();
     }
 
-    public Seance(){
-         this.film = null;
+    /**
+     *
+     * Constructeur de Seance.
+     *
+     */
+    public Seance() {
+        this.film = null;
         this.salle = null;
         this.date = null;
         this.prix = 0;
         this.reservations = null;
     }
-    @JsonProperty(value="film")
+
+    @JsonProperty(value = "film")
     public Film getFilm() {
         return film;
     }
-    @JsonProperty(value="salle")
+
+    @JsonProperty(value = "salle")
     public Salle getSalle() {
         return salle;
     }
-    @JsonProperty(value="date")
+
+    @JsonProperty(value = "date")
     public Date getDate() {
         return date;
     }
-    @JsonProperty(value="prix")
+
+    @JsonProperty(value = "prix")
     public float getPrix() {
         return prix;
     }
 
-    public void createReservation(String prenom, String nom, String email) throws SeanceCompleteException{
-        if(this.salle.getCapacite() >= this.reservations.size())
+    /**
+     *
+     * Pour creer la reservation.
+     *
+     */
+    public void createReservation(String prenom, String nom,
+                                  String email) throws SeanceCompleteException {
+        if (this.salle.getCapacite() >= this.reservations.size()) {
             throw new SeanceCompleteException();
+        }
         Reservation resa = new Reservation(prenom, nom, email);
         this.reservations.add(resa);
         resa.setPaye(true);
@@ -78,7 +105,11 @@ public class Seance {
 
     @Override
     public String toString() {
-        return "{" + "film:" + film + ", salle:" + salle + ", date:" + date + ", prix:" + prix + ", reservations:" + reservations + '}';
+        return "{" + "film:" + film
+                   + ", salle:" + salle
+                   + ", date:" + date
+                   + ", prix:" + prix
+                   + ", reservations:" + reservations + '}';
     }
     
 }

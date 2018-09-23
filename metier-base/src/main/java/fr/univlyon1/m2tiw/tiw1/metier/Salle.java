@@ -8,28 +8,34 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 @JsonRootName(value = "salle")
 @JsonInclude(Include.NON_NULL)
 public class Salle {
-    @JsonProperty(value="nom")
+
+    @JsonProperty(value = "nom")
     private final String nom;
-    @JsonProperty(value="capacite")
+
+    @JsonProperty(value = "capacite")
     private final int capacite;
 
     public Salle(String nom, int capacite) {
         this.nom = nom;
         this.capacite = capacite;
     }
-    public Salle(){
-        this.nom="";
-        this.capacite=0;
+
+    public Salle() {
+        this.nom = "";
+        this.capacite = 0;
     }
-     public Salle(String nom){
-        this.nom=nom;
-        this.capacite=0;
+
+    public Salle(String nom) {
+        this.nom = nom;
+        this.capacite = 0;
     }
-    @JsonProperty(value="nom")
+
+    @JsonProperty(value = "nom")
     public String getNom() {
         return nom;
     }
-    @JsonProperty(value="capacite")
+
+    @JsonProperty(value = "capacite")
     public int getCapacite() {
         return capacite;
     }

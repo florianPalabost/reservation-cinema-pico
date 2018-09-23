@@ -10,41 +10,63 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 @JsonRootName(value = "film")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Film {
-    @JsonProperty(value="titre")
+
+    @JsonProperty(value = "titre")
     private final String titre;
+
     //Langue du film (VO, VF...)
-    @JsonProperty(value="version")
+    @JsonProperty(value = "version")
     private final String version;
+
     //La fiche du film sur Linked Movie Database
-    @JsonProperty(value="fiche")
+    @JsonProperty(value = "fiche")
     private final String fiche;
 
+    /**
+     *
+     * Constructeur de Film avec titre, version et fiche.
+     *
+     */
     public Film(String titre, String version, String fiche) {
         this.titre = titre;
         this.version = version;
         this.fiche = fiche;
     }
-    
-    public Film(){
+
+    /**
+     *
+     * Constructeur de Film.
+     *
+     */
+    public Film() {
         this.titre = "";
         this.version = "";
         this.fiche = "";
     }
-    public Film(String titre){
+
+    /**
+     *
+     * Constructeur de Film avec titre.
+     *
+     */
+    public Film(String titre) {
         this.titre = titre;
         this.version = null;
         this.fiche = null;
     }
-    @JsonProperty(value="titre")
+
+    @JsonProperty(value = "titre")
     public String getTitre() {
         return titre;
     }
-    @JsonProperty(value="version")
+
+    @JsonProperty(value = "version")
     @JsonInclude(Include.NON_NULL)
     public String getVersion() {
         return version;
     }
-    @JsonProperty(value="fiche")
+
+    @JsonProperty(value = "fiche")
     @JsonInclude(Include.NON_NULL)
     public String getFiche() {
         return fiche;
