@@ -1,20 +1,6 @@
 {
   "cinema" : {
     "nom" : "Mon Cinema",
-    "salles" : [
-      {
-        "nom" : "Salle 1",
-        "capacite" : 100
-      },
-      {
-        "nom" : "Salle 2",
-        "capacite" : 70
-      },
-      {
-        "nom" : "Salle 3",
-        "capacite" : 50
-      }
-    ],
     "films" : [
       {
         "titre" : "Mission Impossible - Fallout",

@@ -6,17 +6,21 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.sun.media.jfxmedia.logging.Logger;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import org.picocontainer.Startable;
+import java.lang.Class;
+import java.util.logging.Level;
 //import java.util.*; // Il faut eviter les import *
 
 @JsonRootName(value = "cinema")
 //@JsonIgnoreProperties(ignoreUnknown=false)
-public class Cinema {
-
+public class Cinema implements Startable {
+    Logger logger;
     @JsonProperty(value = "nom")
     private String nom;
 
@@ -34,11 +38,15 @@ public class Cinema {
      *
      * Constructeur de Cinema avec nom.
      *
+     * @param nom
+     * @param salles
      */
-    public Cinema(String nom) {
+    public Cinema(String nom, List<Salle> salles){
         this.nom = nom;
         //this.salles = new HashMap<String, Salle>();
-        this.salles = new ArrayList<Salle>();
+        
+       // this.salles = new ArrayList<Salle>();
+       this.salles = salles;
         // this.films = new HashMap<String, Film>();
         this.films = new ArrayList<Film>();
         this.seances = new ArrayList<Seance>();
@@ -167,6 +175,26 @@ public class Cinema {
                             + ", salles : " + salles
                             + ", films : " + films
                             + ", seances : " + seances + "}";
+    }
+// Methodes de Startable de Pico Container
+    @Override
+    public void start() {
+        Logger.logMsg(Logger.INFO,"Server started");
+        /*try {
+            Class c = Class.forName(Cinema);
+            //c = c.getClass();
+             Logger logMsg = Logger.logMsg(Logger.INFO,c.getName());
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Cinema.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.*/
+    }
+
+    @Override
+    public void stop() {
+        Logger.logMsg(Logger.INFO,"Server stopped");
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
