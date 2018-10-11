@@ -6,10 +6,8 @@
 
 package fr.univlyon1.m2tiw.tiw1.metier;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonSetter;
+
 
 /**
  *
@@ -18,35 +16,79 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 //@JsonIgnoreProperties(ignoreUnknown=true)
 public class MonCinema extends Cinema {
 
+    /**
+     *
+     * Le cinema.
+     *
+     */
     @JsonProperty(value = "cinema")
-    public Cinema cinema;
+    private Cinema cinema;
 
-    public MonCinema(Cinema cinema, String nom) {
+    /**
+     *
+     * Constructeur de MonCinema.
+     *
+     * @param monCinema .
+     *
+     * @param nom .
+     *
+     */
+    public MonCinema(final Cinema monCinema, final String nom) {
         super(nom);
-        this.cinema = cinema;
+        this.cinema = monCinema;
     }
 
-    public MonCinema(String nom) {
+    /**
+     *
+     * Constructeur de MonCinema.
+     *
+     * @param nom .
+     *
+     */
+    public MonCinema(final String nom) {
         super(nom);
     }
 
+
+    /**
+     *
+     * Constructeur de MonCinema.
+     *
+     *
+     */
     public MonCinema() {
     }
-   
 
+    /**
+     *
+     * @return l'affichage.
+     *
+     */
     @Override
     public String toString() {
         return  "{" + cinema + '}';
     }
 
+    /**
+     *
+     * @return le cinema .
+     *
+     */
     @JsonProperty(value = "cinema")
     public Cinema getCinema() {
         return cinema;
     }
 
+    /**
+     *
+     * Setter de films .
+     *
+     * @param monCinema .
+     *
+     */
     @JsonProperty(value = "cinema")
-    public void setCinema(Cinema cinema) {
-        this.cinema = cinema;
+    public void setCinema(final Cinema monCinema) {
+        this.cinema = monCinema;
     }
-    
+
 }

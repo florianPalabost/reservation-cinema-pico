@@ -28,10 +28,15 @@ public class CinemaTest {
             LOGGER.info(monCinema.toString());
             LOGGER.info("DONE PARSE JSON");
             // test copy to global var cinema
-            //cinema = monCinema.cinema;
-            cinema.setFilms(monCinema.cinema.getFilms());
-            cinema.setSeances(monCinema.cinema.getSeances());
-            cinema.setSalles(monCinema.cinema.getSalles());  
+            // cinema = monCinema.cinema;
+
+            // Correction avec Checkstyle
+            // cinema.setFilms(monCinema.cinema.getFilms());
+            // cinema.setSeances(monCinema.cinema.getSeances());
+            // cinema.setSalles(monCinema.cinema.getSalles());
+            cinema.setFilms(monCinema.getCinema().getFilms());
+            cinema.setSeances(monCinema.getCinema().getSeances());
+            cinema.setSalles(monCinema.getCinema().getSalles());
         }
         catch(JsonGenerationException e){
             e.printStackTrace();

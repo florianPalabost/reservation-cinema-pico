@@ -18,16 +18,26 @@ public interface Cinemadao {
      *
      * @param name .
      *
+     * @return le resultat de la recherche par le nom
+     *
      */
-    public Cinema findByName(String name);
+    Cinema findByName(String name);
 
     /**
      *
      * @param cinema .
      *
+     * @return update
+     *
      */
+    boolean update(Cinema cinema);
 
-    public boolean update(Cinema cinema);
-    
-    public boolean delete(Cinema cinema);
+    /**
+     *
+     * @param cinema .
+     *
+     * @return delete
+     *
+     */
+    boolean delete(Cinema cinema);
 }

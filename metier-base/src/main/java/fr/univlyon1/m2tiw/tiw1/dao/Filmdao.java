@@ -18,20 +18,26 @@ public interface Filmdao {
      *
      * @param name .
      *
+     * @return recherche par nom
+     *
      */
-    public abstract Film findByName(String name);
+    Film findByName(String name);
 
     /**
      *
      * @param film .
      *
+     * @return update
+     *
      */
-    public abstract boolean update(Film film);
-    
+    boolean update(Film film);
+
     /**
      *
      * @param film .
      *
+     * @return delete
+     *
      */
-    public abstract boolean delete(Film film);
+    boolean delete(Film film);
 }

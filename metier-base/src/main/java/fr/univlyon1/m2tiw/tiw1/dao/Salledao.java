@@ -11,5 +11,5 @@ package fr.univlyon1.m2tiw.tiw1.dao;
  * @author florian.
  */
 public interface Salledao {
-    
+
 }
