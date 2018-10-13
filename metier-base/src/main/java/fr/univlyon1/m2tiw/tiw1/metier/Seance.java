@@ -1,115 +1,89 @@
 package fr.univlyon1.m2tiw.tiw1.metier;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
+import fr.univlyon1.m2tiw.tiw1.metier.dao.ReservationDAO;
 import fr.univlyon1.m2tiw.tiw1.utils.SeanceCompleteException;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
-@JsonRootName(value = "seance")
-@JsonIgnoreProperties(ignoreUnknown = true)
-@JsonInclude(JsonInclude.Include.NON_NULL) 
 public class Seance {
-
-    // @JsonProperty(value="film")
     private final Film film;
-
-    //@JsonProperty(value="salle")
     private final Salle salle;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ssX", timezone = "UTC")
-    @JsonProperty(value = "date")
     private final java.util.Date date;
-
-    @JsonProperty(value = "prix")
     private final float prix;
-
-    @JsonProperty(value = "reservations")
     private List<Reservation> reservations;
+    private final String id;
+    private ReservationDAO reservationDAO;
 
-    /**
-     *
-     * Constructeur de Seance avec film, salle, date et prix.
-     *
-     */
     public Seance(Film film, Salle salle, Date date, float prix) {
         this.film = film;
         this.salle = salle;
         this.date = date;
         this.prix = prix;
         this.reservations = new ArrayList<Reservation>();
+        this.id = UUID.nameUUIDFromBytes(
+                (film.getTitre()
+                        + film.getVersion()
+                        + salle.getNom()
+                        + date.toString())
+                        .getBytes())
+                .toString();
     }
 
-    /**
-     *
-     * Constructeur de Seance.
-     *
-     */
-    public Seance() {
-        this.film = null;
-        this.salle = null;
-        this.date = null;
-        this.prix = 0;
-        this.reservations = null;
-    }
-
-    @JsonProperty(value = "film")
     public Film getFilm() {
         return film;
     }
 
-    @JsonProperty(value = "salle")
     public Salle getSalle() {
         return salle;
     }
 
-    @JsonProperty(value = "date")
     public Date getDate() {
         return date;
     }
 
-    @JsonProperty(value = "prix")
     public float getPrix() {
         return prix;
     }
 
-    /**
-     *
-     * Pour creer la reservation.
-     *
-     */
-    public void createReservation(String prenom, String nom,
-                                  String email) throws SeanceCompleteException {
-        if (this.salle.getCapacite() >= this.reservations.size()) {
+    public void setReservationDAO(ReservationDAO reservationDAO) {
+        this.reservationDAO = reservationDAO;
+    }
+
+    public Reservation createReservation(String prenom, String nom, String email) throws SeanceCompleteException {
+        if (this.salle.getCapacite() <= this.reservations.size())
             throw new SeanceCompleteException();
-        }
         Reservation resa = new Reservation(prenom, nom, email);
         this.reservations.add(resa);
+        resa.setSeanceId(getId());
         resa.setPaye(true);
+        if (reservationDAO != null) {
+            reservationDAO.save(resa);
+        }
+        return resa;
     }
 
     public void cancelReservation(Reservation reservation) {
         this.reservations.remove(reservation);
+        if (reservationDAO != null) {
+            reservationDAO.delete(reservation);
+        }
     }
 
-    public void setReservations(List<Reservation> reservations) {
-        this.reservations = reservations;
+    public String getId() {
+        return id;
     }
 
     @Override
-    public String toString() {
-        return "{" + "film:" + film
-                   + ", salle:" + salle
-                   + ", date:" + date
-                   + ", prix:" + prix
-                   + ", reservations:" + reservations + '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Seance seance = (Seance) o;
+        return Objects.equals(id, seance.id);
     }
-    
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id);
+    }
 }

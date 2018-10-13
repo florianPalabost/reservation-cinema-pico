@@ -1,30 +1,26 @@
 package fr.univlyon1.m2tiw.tiw1.metier;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import javax.persistence.*;
+import java.util.Objects;
 
-@JsonRootName(value = "reservation")
+@Entity
+@NamedQueries({
+        @NamedQuery(name="getBySeance", query="SELECT r FROM Reservation r WHERE r.seanceId = ?")
+})
 public class Reservation {
-
-    @JsonProperty(value = "prenom")
-    private final String prenom;
-
-    @JsonProperty(value = "nom")
-    private final String nom;
-
-    @JsonProperty(value = "email")
-    private final String email;
-
-    @JsonProperty(value = "paye")
+    @Id
+    @GeneratedValue
+    private Long id;
+    private String prenom;
+    private String nom;
+    private String email;
     private boolean paye;
+    @Column(nullable = false)
+    private String seanceId;
 
-    /**
-     *
-     * Constructeur de Reservation avec prenom, nom et email.
-     *
-     */
+    public Reservation() {
+    }
+
     public Reservation(String prenom, String nom, String email) {
         this.prenom = prenom;
         this.nom = nom;
@@ -32,28 +28,64 @@ public class Reservation {
         this.paye = false;
     }
 
-    @JsonGetter
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPrenom() {
         return prenom;
     }
 
-    @JsonGetter
     public String getNom() {
         return nom;
     }
 
-    @JsonGetter
     public String getEmail() {
         return email;
     }
 
-    @JsonGetter
     public boolean isPaye() {
         return paye;
     }
 
-    @JsonSetter
     public void setPaye(boolean paye) {
         this.paye = paye;
+    }
+
+    public String getSeanceId() {
+        return seanceId;
+    }
+
+    public void setSeanceId(String seanceId) {
+        this.seanceId = seanceId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Reservation that = (Reservation) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

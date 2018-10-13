@@ -5,7 +5,6 @@
  */
 package fr.univlyon1.m2tiw.tiw1.serveur;
 
-import fr.univlyon1.m2tiw.tiw1.dao.Salledao;
 import fr.univlyon1.m2tiw.tiw1.metier.Cinema;
 import fr.univlyon1.m2tiw.tiw1.metier.Salle;
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ import org.picocontainer.MutablePicoContainer;
  */
 public class Serveur {
     public List<Salle> salles = new ArrayList();
-    public Cinema cinema = new Cinema("monCinema",salles);
+    // public Cinema cinema = new Cinema("monCinema",salles);
     // for pico container TODO Impl
     // public ProgrammationDao progDAO = new ProgrammationDao();
     // public ReservationDao reservationDAO = new ReservationDao();
@@ -35,13 +34,13 @@ public class Serveur {
    
 
     public Serveur() {
-         MutablePicoContainer pico = new DefaultPicoContainer()
+        /* MutablePicoContainer pico = new DefaultPicoContainer()
             .addComponent(cinema)
             .addComponent(salles)
             .addComponent(ProgrammationDao.class).addComponent(ReservationDao.class);
          // recupere le component de type cinema
          cinema = pico.getComponent(Cinema.class);
-         pico.start();
+         pico.start();*/
     }
    
     
