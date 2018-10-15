@@ -152,4 +152,10 @@ public class Cinema {
     public Film getFilm(String film) {
         return films.get(film);
     }
+
+    @Override
+    public String toString() {
+        return "{" + "nom:" + nom + ", salles:" + salles + ", films:" + films + ", seances:" + seances + '}';
+    }
+    
 }

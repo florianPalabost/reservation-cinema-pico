@@ -2,12 +2,16 @@ package fr.univlyon1.m2tiw.tiw1.metier.jsondto;
 
 import fr.univlyon1.m2tiw.tiw1.metier.Cinema;
 import fr.univlyon1.m2tiw.tiw1.metier.Salle;
+import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONSalleDAO;
 
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class CinemaDTO {
@@ -18,15 +22,18 @@ public class CinemaDTO {
     public Collection<SalleDTO> salles;
     public Collection<FilmDTO> films;
     public Collection<SeanceDTO> seances;
-
+     private static final Logger LOGGER = Logger.getLogger(CinemaDTO.class.getName() );
     /**
      *
      * As Cinema .
      *
+     * @return Cinema
      */
     public Cinema asCinema() throws ParseException, IOException {
-        Collection<Salle> sallesCinema = null;
-                //salles.stream().map(SalleDTO::asSalle).collect(Collectors.toList());
+        List<Salle> sallesCinema =  new JSONSalleDAO().load();
+        LOGGER.info("CINEMA DTO->sallles");
+        LOGGER.info(sallesCinema.toString());
+        //sallesCinema.addAll(salles.stream().map(SalleDTO::asSalle).collect(Collectors.toList()));
         Cinema cinema = new Cinema(nom, sallesCinema);
         for (FilmDTO f : films) {
             cinema.addFilm(f.asFilm());

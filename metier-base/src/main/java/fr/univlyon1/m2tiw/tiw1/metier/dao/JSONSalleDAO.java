@@ -28,7 +28,6 @@ public class JSONSalleDAO implements SalleDAO {
     @Override
     public List<Salle> load() throws IOException {
         salles = new ArrayList<>();
-        LOGGER.info("DAO START");
         Collection<SalleDTO> sallesDTO = mapper.readValue(RESOURCE, SalleWrapper.class).salles;
         salles.addAll(sallesDTO.stream().map(SalleDTO::asSalle).collect(Collectors.toList()));
         LOGGER.info("in DAO : salles VAUT ");
@@ -36,15 +35,13 @@ public class JSONSalleDAO implements SalleDAO {
         LOGGER.info("in DAO : SALLESDTO VAUT ");
         LOGGER.info(sallesDTO.toString());
         return salles;
-        //return sallesDTO;
     }
 
     @Override
     public String toString() {
-        for(Salle s : salles){
-            return "{" + "salles:" + s.toString() + '}';            
-        }
-        return "";
+        return "{" + salles + '}';
     }
+
+
     
 }

@@ -114,6 +114,12 @@ public class Seance {
     }
 
     @Override
+    public String toString() {
+        return "{" + "film:" + film + ", salle:" + salle + ", date:" + date + ", prix:" + prix + ", reservations:" + reservations + ", id:" + id + '}';
+    }
+    
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

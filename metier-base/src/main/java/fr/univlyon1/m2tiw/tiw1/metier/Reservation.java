@@ -111,4 +111,11 @@ public class Reservation {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    @Override
+    public String toString() {
+        return "{" + "id:" + id + ", prenom:" + prenom + ", nom:" + nom + ", email:" + email + ", paye:" + paye + ", seanceId:" + seanceId + '}';
+    }
+    
+    
 }

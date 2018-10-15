@@ -1,5 +1,7 @@
 package fr.univlyon1.m2tiw.tiw1.metier;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONCinemaDAO;
 import java.io.IOException;
 import java.util.Collection;
@@ -22,36 +24,15 @@ public class CinemaTest {
             LOGGER.info(cinema.toString());
             // assert cinema bien rempli TODO
             
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-               /*mapper.enable(SerializationFeature.INDENT_OUTPUT);
-        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        mapper.setSerializationInclusion(Include.NON_NULL);
-        
-            monCinema = mapper.readValue(new File("src/main/resources/sample-data/mon-cinema.json"),MonCinema.class);
-            LOGGER.info("MON CINEMA PARSE JSON");
-            LOGGER.info(monCinema.toString());
-            LOGGER.info("DONE PARSE JSON");
-            // test copy to global var cinema
-            //cinema = monCinema.cinema;
-            cinema.setFilms(monCinema.cinema.getFilms());
-            cinema.setSeances(monCinema.cinema.getSeances());
-            cinema.setSalles(monCinema.cinema.getSalles());  
-        }
-        catch(JsonGenerationException e){
+        } catch(JsonGenerationException e){
             e.printStackTrace();
         }
         catch (JsonMappingException e) {
             e.printStackTrace();
-        } 
+        }
         catch (IOException e) {
             e.printStackTrace();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
- */
+        }  
     }
       /* 
     @Test

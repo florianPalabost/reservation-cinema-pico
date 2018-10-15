@@ -57,4 +57,11 @@ public class Film {
 
         return Objects.hash(titre, version);
     }
+
+    @Override
+    public String toString() {
+        return "{" + "titre:" + titre + ", version:" + version + ", fiche:" + fiche + '}';
+    }
+    
+    
 }
