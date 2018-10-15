@@ -8,6 +8,13 @@ public class SeanceDTO {
     public String date;
     public float prix;
 
+    /**
+     *
+     * Seance DTO .
+     *
+     * @param seance
+     *
+     */
     public static SeanceDTO fromSeance(Seance seance) {
         SeanceDTO dto = new SeanceDTO();
         dto.film = seance.getFilm().getTitre() + " - " + seance.getFilm().getVersion();

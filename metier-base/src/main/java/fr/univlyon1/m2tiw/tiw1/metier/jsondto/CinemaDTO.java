@@ -11,15 +11,22 @@ import java.util.Date;
 import java.util.stream.Collectors;
 
 public class CinemaDTO {
-    public static final SimpleDateFormat DATE_PARSER = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss zzz");
+    public static final SimpleDateFormat DATE_PARSER =
+            new SimpleDateFormat("yyyy-MM-dd HH:mm:ss zzz");
 
     public String nom;
     public Collection<SalleDTO> salles;
     public Collection<FilmDTO> films;
     public Collection<SeanceDTO> seances;
 
+    /**
+     *
+     * As Cinema .
+     *
+     */
     public Cinema asCinema() throws ParseException, IOException {
-        Collection<Salle> sallesCinema = salles.stream().map(SalleDTO::asSalle).collect(Collectors.toList());
+        Collection<Salle> sallesCinema =
+                salles.stream().map(SalleDTO::asSalle).collect(Collectors.toList());
         Cinema cinema = new Cinema(nom, sallesCinema);
         for (FilmDTO f : films) {
             cinema.addFilm(f.asFilm());

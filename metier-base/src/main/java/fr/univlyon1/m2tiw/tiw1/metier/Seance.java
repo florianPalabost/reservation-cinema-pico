@@ -3,7 +3,12 @@ package fr.univlyon1.m2tiw.tiw1.metier;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.ReservationDAO;
 import fr.univlyon1.m2tiw.tiw1.utils.SeanceCompleteException;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Date;
+import java.util.UUID;
+import java.util.Objects;
+
 
 public class Seance {
     private final Film film;
@@ -14,6 +19,19 @@ public class Seance {
     private final String id;
     private ReservationDAO reservationDAO;
 
+    /**
+     *
+     * Constructeur de Reservation .
+     *
+     * @param film .
+     *
+     * @param salle .
+     *
+     * @param date .
+     *
+     * @param prix .
+     *
+     */
     public Seance(Film film, Salle salle, Date date, float prix) {
         this.film = film;
         this.salle = salle;
@@ -49,9 +67,24 @@ public class Seance {
         this.reservationDAO = reservationDAO;
     }
 
-    public Reservation createReservation(String prenom, String nom, String email) throws SeanceCompleteException {
-        if (this.salle.getCapacite() <= this.reservations.size())
+    /**
+     *
+     * Pour creer la reservation.
+     *
+     * @param prenom .
+     *
+     * @param nom .
+     *
+     * @param email .
+     *
+     * @throws SeanceCompleteException Exception de la seance complete.
+     *
+     */
+    public Reservation createReservation(String prenom, String nom,
+                                         String email) throws SeanceCompleteException {
+        if (this.salle.getCapacite() <= this.reservations.size()) {
             throw new SeanceCompleteException();
+        }
         Reservation resa = new Reservation(prenom, nom, email);
         this.reservations.add(resa);
         resa.setSeanceId(getId());
@@ -62,6 +95,13 @@ public class Seance {
         return resa;
     }
 
+    /**
+     *
+     * Annuler une reservation .
+     *
+     * @param reservation .
+     *
+     */
     public void cancelReservation(Reservation reservation) {
         this.reservations.remove(reservation);
         if (reservationDAO != null) {
@@ -75,8 +115,12 @@ public class Seance {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Seance seance = (Seance) o;
         return Objects.equals(id, seance.id);
     }

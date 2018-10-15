@@ -11,7 +11,8 @@ import java.text.ParseException;
 
 public class JSONCinemaDAO implements CinemaDAO {
 
-    private static final URL RESOURCE = JSONCinemaDAO.class.getResource("/sample-data/mon-cinema.json");
+    private static final URL RESOURCE = JSONCinemaDAO.class.getResource(
+            "/sample-data/mon-cinema.json");
 
     private final ObjectMapper mapper = new ObjectMapper();
 

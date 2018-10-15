@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package fr.univlyon1.m2tiw.tiw1.serveur;
 
 import fr.univlyon1.m2tiw.tiw1.metier.Cinema;
@@ -12,10 +13,7 @@ import java.util.List;
 import org.picocontainer.DefaultPicoContainer;
 import org.picocontainer.MutablePicoContainer;
 
-/**
- *
- * @author florian
- */
+
 public class Serveur {
     public List<Salle> salles = new ArrayList();
     // public Cinema cinema = new Cinema("monCinema",salles);
@@ -31,8 +29,11 @@ public class Serveur {
     
     
     // Create pico container
-   
 
+
+    /**
+     * Serveur .
+     */
     public Serveur() {
         /* MutablePicoContainer pico = new DefaultPicoContainer()
             .addComponent(cinema)

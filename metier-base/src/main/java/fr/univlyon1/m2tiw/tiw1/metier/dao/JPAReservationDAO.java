@@ -21,7 +21,8 @@ public class JPAReservationDAO implements ReservationDAO {
 
     @Override
     public void save(Reservation reservation) {
-        em.getTransaction().begin(); // Ne devrait pas être ici, mais on verra ça avec les transactions déclaratives de Spring
+        em.getTransaction().begin(); // Ne devrait pas être ici,
+        // mais on verra ça avec les transactions déclaratives de Spring
         if (reservation.getId() == null) {
             em.persist(reservation);
         } else {
@@ -39,7 +40,8 @@ public class JPAReservationDAO implements ReservationDAO {
     public void delete(Reservation reservation) {
         Reservation persisted = getById(reservation.getId());
         if (persisted != null) {
-            em.getTransaction().begin(); // Ne devrait pas être ici, mais on verra ça avec les transactions déclaratives de Spring
+            em.getTransaction().begin(); // Ne devrait pas être ici,
+            // mais on verra ça avec les transactions déclaratives de Spring
             em.remove(persisted);
             em.getTransaction().commit();
         }
@@ -47,7 +49,8 @@ public class JPAReservationDAO implements ReservationDAO {
 
     @Override
     public Collection<Reservation> getBySeance(String seanceId) {
-        return em.createNamedQuery("getBySeance", Reservation.class).setParameter(1, seanceId).getResultList();
+        return em.createNamedQuery("getBySeance",
+                Reservation.class).setParameter(1, seanceId).getResultList();
     }
 
     @Override

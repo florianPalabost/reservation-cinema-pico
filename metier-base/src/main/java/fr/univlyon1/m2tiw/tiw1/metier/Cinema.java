@@ -8,7 +8,12 @@ import fr.univlyon1.m2tiw.tiw1.metier.dao.ReservationDAO;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Date;
+import java.util.Collection;
 
 public class Cinema {
     private final String nom;
@@ -18,6 +23,15 @@ public class Cinema {
     private ReservationDAO reservationDAO;
     private ProgrammationDAO programmationDAO;
 
+    /**
+     *
+     * Constructeur de Cinema avec nom.
+     *
+     * @param nom .
+     *
+     * @param salles .
+     *
+     */
     public Cinema(String nom, Collection<Salle> salles) throws IOException, ParseException {
         this.nom = nom;
         this.salles = new HashMap<String, Salle>();
@@ -26,7 +40,8 @@ public class Cinema {
         reservationDAO = new JPAReservationDAO();
         setSalles(salles);
         programmationDAO = new JSONProgrammationDAO(this.getSalles());
-        // Attention, les salles doivent être cohérentes avec l'information contenue dans le fichier JSON des seances
+        // Attention, les salles doivent être cohérentes avec
+        // l'information contenue dans le fichier JSON des seances
     }
 
     public String getNom() {
@@ -50,6 +65,16 @@ public class Cinema {
         this.films.remove(film);
     }
 
+    /**
+     *
+     * Ajouter une seance .
+     *
+     * @param salle .
+     * @param film .
+     * @param date .
+     * @param prix .
+     *
+     */
     public void createSeance(Salle salle, Film film, Date date, float prix) throws IOException {
         Seance seance = new Seance(film, salle, date, prix);
         this.seances.add(seance);
@@ -70,6 +95,13 @@ public class Cinema {
         return salles.values();
     }
 
+    /**
+     *
+     * Setter de salles .
+     *
+     * @param nSalles .
+     *
+     */
     public void setSalles(Collection<Salle> nSalles) {
         this.salles.clear();
         for (Salle s : nSalles) {
@@ -81,6 +113,13 @@ public class Cinema {
         return films.values();
     }
 
+    /**
+     *
+     * Setter de seances .
+     *
+     * @param nFilms .
+     *
+     */
     public void setFilms(Collection<Film> nFilms) throws IOException {
         this.films.clear();
         for (Film f : nFilms) {
@@ -92,6 +131,13 @@ public class Cinema {
         return seances;
     }
 
+    /**
+     *
+     * Setter de seances .
+     *
+     * @param seances .
+     *
+     */
     public void setSeances(List<Seance> seances) {
         this.seances = seances;
         for (Seance s : seances) {

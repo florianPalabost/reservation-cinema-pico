@@ -10,6 +10,15 @@ public class Film {
     //La fiche du film sur Linked Movie Database
     private final String fiche;
 
+    /**
+     *
+     * Constructeur de Film avec titre, version et fiche.
+     *
+     * @param titre .
+     * @param version .
+     * @param fiche .
+     *
+     */
     public Film(String titre,
                 String version,
                 String fiche) {
@@ -32,11 +41,15 @@ public class Film {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Film film = (Film) o;
-        return Objects.equals(titre, film.titre) &&
-                Objects.equals(version, film.version);
+        return Objects.equals(titre, film.titre)
+                && Objects.equals(version, film.version);
     }
 
     @Override

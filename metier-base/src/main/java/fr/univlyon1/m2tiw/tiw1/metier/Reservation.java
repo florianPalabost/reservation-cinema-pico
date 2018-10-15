@@ -1,11 +1,19 @@
 package fr.univlyon1.m2tiw.tiw1.metier;
 
-import javax.persistence.*;
+//import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+
 import java.util.Objects;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name="getBySeance", query="SELECT r FROM Reservation r WHERE r.seanceId = ?")
+        @NamedQuery(name = "getBySeance", query =
+                "SELECT r FROM Reservation r WHERE r.seanceId = ?")
 })
 public class Reservation {
     @Id
@@ -21,6 +29,17 @@ public class Reservation {
     public Reservation() {
     }
 
+    /**
+     *
+     * Constructeur de Reservation .
+     *
+     * @param prenom .
+     *
+     * @param nom .
+     *
+     * @param email .
+     *
+     */
     public Reservation(String prenom, String nom, String email) {
         this.prenom = prenom;
         this.nom = nom;
@@ -78,8 +97,12 @@ public class Reservation {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Reservation that = (Reservation) o;
         return Objects.equals(id, that.id);
     }

@@ -18,8 +18,8 @@ import org.junit.Test;
  * @author flori
  */
 public class SalleTest {
-    public JSONSalleDAO jsonSalleDAO;
-    
+    /*public JSONSalleDAO jsonSalleDAO;
+
     @Test
     public void getSalles(){
         try {
@@ -28,5 +28,5 @@ public class SalleTest {
         } catch (IOException ex) {
             Logger.getLogger(SalleTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    }*/
 }

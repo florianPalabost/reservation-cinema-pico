@@ -11,6 +11,13 @@ public class FilmDTO {
         return new Film(titre, version, fiche);
     }
 
+    /**
+     *
+     * FilmDTO.
+     *
+     * @param f .
+     *
+     */
     public static FilmDTO fromFilm(Film f) {
         FilmDTO dto = new FilmDTO();
         dto.titre = f.getTitre();
