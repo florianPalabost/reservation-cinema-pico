@@ -12,20 +12,39 @@ import fr.univlyon1.m2tiw.tiw1.metier.jsondto.SalleDTO;
 import fr.univlyon1.m2tiw.tiw1.metier.jsondto.SalleWrapper;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class JSONSalleDAO implements SalleDAO {
 
     private static final URL RESOURCE = JSONSalleDAO.class.getResource("/sample-data/salles.json");
     private final ObjectMapper mapper = new ObjectMapper();
     private static final Logger LOGGER = Logger.getLogger(JSONSalleDAO.class.getName());
+    private List<Salle> salles;
+    
+    @Override
+    public List<Salle> load() throws IOException {
+        salles = new ArrayList<>();
+        LOGGER.info("DAO START");
+        Collection<SalleDTO> sallesDTO = mapper.readValue(RESOURCE, SalleWrapper.class).salles;
+        salles.addAll(sallesDTO.stream().map(SalleDTO::asSalle).collect(Collectors.toList()));
+        LOGGER.info("in DAO : salles VAUT ");
+        LOGGER.info(salles.toString());
+        LOGGER.info("in DAO : SALLESDTO VAUT ");
+        LOGGER.info(sallesDTO.toString());
+        return salles;
+        //return sallesDTO;
+    }
 
     @Override
-    public Salle load() throws IOException {
-        SalleDTO salleDTO = mapper.readValue(RESOURCE, SalleWrapper.class).salles;
-        LOGGER.info("SALLES PARSE JSON");
-        LOGGER.info(salleDTO.toString());
-        return salleDTO.asSalle();
+    public String toString() {
+        for(Salle s : salles){
+            return "{" + "salles:" + s.toString() + '}';            
+        }
+        return "";
     }
     
 }

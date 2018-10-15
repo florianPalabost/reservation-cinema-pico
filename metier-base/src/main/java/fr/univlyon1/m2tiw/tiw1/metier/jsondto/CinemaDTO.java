@@ -25,8 +25,8 @@ public class CinemaDTO {
      *
      */
     public Cinema asCinema() throws ParseException, IOException {
-        Collection<Salle> sallesCinema =
-                salles.stream().map(SalleDTO::asSalle).collect(Collectors.toList());
+        Collection<Salle> sallesCinema = null;
+                //salles.stream().map(SalleDTO::asSalle).collect(Collectors.toList());
         Cinema cinema = new Cinema(nom, sallesCinema);
         for (FilmDTO f : films) {
             cinema.addFilm(f.asFilm());

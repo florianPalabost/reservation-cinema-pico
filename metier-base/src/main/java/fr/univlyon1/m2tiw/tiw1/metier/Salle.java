@@ -1,5 +1,7 @@
 package fr.univlyon1.m2tiw.tiw1.metier;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 public class Salle {
     private final String nom;
@@ -9,12 +11,19 @@ public class Salle {
         this.nom = nom;
         this.capacite = capacite;
     }
-
+    @JsonProperty("nom")
     public String getNom() {
         return nom;
     }
-
+    @JsonProperty("capacite")
     public int getCapacite() {
         return capacite;
     }
+
+    @Override
+    public String toString() {
+        return "{" + "nom:" + nom + ", capacite:" + capacite + '}';
+    }
+    
+    
 }

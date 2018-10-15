@@ -6,7 +6,9 @@
 
 package fr.univlyon1.m2tiw.tiw1.metier.jsondto;
 
+import java.util.Collection;
+
 
 public class SalleWrapper {
-    public SalleDTO salles;  
+    public Collection<SalleDTO> salles;  
 }
