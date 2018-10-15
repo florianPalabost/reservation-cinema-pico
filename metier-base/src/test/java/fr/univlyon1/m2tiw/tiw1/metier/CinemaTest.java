@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.logging.Logger;
 import org.junit.Test;
 import static junit.framework.TestCase.assertEquals;
@@ -15,7 +16,10 @@ public class CinemaTest {
     //TODO importer le fichier mon-cinema.json
     /*
     ObjectMapper mapper = new ObjectMapper();
-    private Cinema cinema = new Cinema("Mon Cinema");
+    */
+    private Collection<Salle> salles;
+   // private Cinema cinema = new Cinema("Mon Cinema",salles);
+    /*
     private static final Logger LOGGER = Logger.getLogger( MonCinema.class.getName() );
     private MonCinema monCinema;
     
@@ -56,7 +60,7 @@ public class CinemaTest {
     
     public void getNbSeances() throws Exception {
         //testImportJson();
-       // assertEquals(84, cinema.getNbSeances());
+     //   assertEquals(84, cinema.getNbSeances());
     }
 
 }

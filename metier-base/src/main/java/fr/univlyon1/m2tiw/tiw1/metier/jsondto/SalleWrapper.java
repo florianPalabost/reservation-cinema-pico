@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package fr.univlyon1.m2tiw.tiw1.dao;
+package fr.univlyon1.m2tiw.tiw1.metier.jsondto;
 
 /**
  *
- * @author florian.
+ * @author flori
  */
-public interface Reservationdao {
-    
+public class SalleWrapper {
+    public SalleDTO salles;  
 }
