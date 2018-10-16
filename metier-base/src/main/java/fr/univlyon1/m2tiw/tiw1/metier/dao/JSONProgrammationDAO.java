@@ -46,7 +46,7 @@ public class JSONProgrammationDAO implements ProgrammationDAO {
     private Map<String, Seance> seances = null;
     private Map<String, Salle> salles;
 
-    public JSONProgrammationDAO(Collection<Salle> salles) throws IOException, ParseException {
+    public JSONProgrammationDAO(List<Salle> salles) throws IOException, ParseException {
         setSalles(salles);
         load();
     }
@@ -64,9 +64,6 @@ public class JSONProgrammationDAO implements ProgrammationDAO {
             this.salles.put(s.getNom(), s);
         }
     }
-
-
-
 
     private void load() throws IOException, ParseException {
         films = new ArrayList<>();
@@ -163,4 +160,11 @@ public class JSONProgrammationDAO implements ProgrammationDAO {
         seances.remove(seance);
         save();
     }
+
+    @Override
+    public String toString() {
+        return "JSONProgDAO{" + "films=" + films + ", seances=" + seances + ", salles=" + salles + '}';
+    }
+    
+    
 }

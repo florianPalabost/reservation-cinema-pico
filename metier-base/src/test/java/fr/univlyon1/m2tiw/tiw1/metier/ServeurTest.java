@@ -7,8 +7,11 @@ package fr.univlyon1.m2tiw.tiw1.metier;
 
 import fr.univlyon1.m2tiw.tiw1.serveur.Serveur;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.logging.Logger;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
+import org.picocontainer.PicoContainer;
 
 /**
  *
@@ -19,10 +22,22 @@ public class ServeurTest {
      private static final Logger LOGGER = Logger.getLogger(CinemaTest.class.getName() );
     
     @Test
-    public void initServ() throws IOException{
+    public void testCreateCineWithServ() throws IOException, ParseException{
+         LOGGER.info("--------testCreateCineWithServ------------");
         server = new Serveur();
-        Cinema cinema;
+        Cinema cinema = null;
         cinema = server.createCinema();
-        LOGGER.info(cinema.toString());
+        LOGGER.info("classe : "+cinema.getClass());
+        assertEquals(cinema.getClass(),Cinema.class);
+        assertEquals("Mon Cinema",cinema.getNom());
+    }
+    
+    @Test
+    public void testInitPicoContainer() throws IOException{
+        LOGGER.info("--------testInitPicoContainer------------");
+        server = new Serveur();
+       
+        LOGGER.info("server cinema:"+server.getCinema());
+        //assertEquals("Mon Cinema",c.getNom());
     }
 }

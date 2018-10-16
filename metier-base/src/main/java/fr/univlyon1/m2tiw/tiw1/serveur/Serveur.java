@@ -8,49 +8,64 @@ package fr.univlyon1.m2tiw.tiw1.serveur;
 
 import fr.univlyon1.m2tiw.tiw1.metier.Cinema;
 import fr.univlyon1.m2tiw.tiw1.metier.Salle;
+import fr.univlyon1.m2tiw.tiw1.metier.dao.JPAReservationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONCinemaDAO;
+import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONProgrammationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONSalleDAO;
+import fr.univlyon1.m2tiw.tiw1.metier.dao.ProgrammationDAO;
+import fr.univlyon1.m2tiw.tiw1.metier.dao.ReservationDAO;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.text.ParseException;
 import java.util.List;
 import org.picocontainer.DefaultPicoContainer;
 import org.picocontainer.MutablePicoContainer;
+import org.picocontainer.PicoContainer;
 
 
 public class Serveur {
-    public Cinema createCinema() throws IOException{
+    private Cinema cinema;
+    /**
+     * Serveur : Instantie un PicoCotainer et recupere Cinema .
+     * @throws java.io.IOException
+     */
+    public Serveur() throws IOException {
         List<Salle> salles = new JSONSalleDAO().load();
-        Cinema cinema = new JSONCinemaDAO().load(salles);
+        MutablePicoContainer pico = new DefaultPicoContainer()
+            .addComponent(Cinema.class)
+            .addComponent(String.class)
+            .addComponent(salles)
+            .addComponent(JSONSalleDAO.class)
+            .addComponent(JSONProgrammationDAO.class)
+            .addComponent(JPAReservationDAO.class);
+         // recuperer le component de type cinema ?
+        cinema = pico.getComponent(Cinema.class);
+        pico.start();  
+    }
+    
+    /**
+     * 
+     * @return une instance du cinema créé
+     * @throws IOException
+     * @throws ParseException 
+     */
+    public Cinema createCinema() throws IOException, ParseException{
+        List<Salle> salles = new JSONSalleDAO().load();
+        JSONProgrammationDAO progDAO = new JSONProgrammationDAO(salles);
+        JPAReservationDAO reservDAO = new JPAReservationDAO();
+        Cinema cinema = new JSONCinemaDAO().load(salles,progDAO,reservDAO);
+        
         System.out.println(cinema.toString());
         return cinema;
     }
-  
-    // for pico container TODO Impl
-    // public ProgrammationDao progDAO = new ProgrammationDao();
-    // public ReservationDao reservationDAO = new ReservationDao();
-   
-    
-    // read salles.json and put it in salles , Do it with the dao
-    //public Salledao salleDAO = new Salledao();
-    
     //delete method add & delete salles
     
-    
-    // Create pico container
-
-
-    /**
-     * Serveur .
-     */
-    public Serveur() {
-        /* MutablePicoContainer pico = new DefaultPicoContainer()
-            .addComponent(cinema)
-            .addComponent(salles)
-            .addComponent(ProgrammationDao.class).addComponent(ReservationDao.class);
-         // recupere le component de type cinema
-         cinema = pico.getComponent(Cinema.class);
-         pico.start();*/
+    // cense renvoyer une ref vers instance de Cinema
+    public Cinema getCinema() {
+        return cinema;
     }
+    
+    
+
    
     
 }

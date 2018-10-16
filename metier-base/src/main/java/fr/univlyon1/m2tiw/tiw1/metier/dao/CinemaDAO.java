@@ -7,5 +7,5 @@ import java.io.IOException;
 import java.util.List;
 
 public interface CinemaDAO {
-    public Cinema load(List<Salle> salles) throws IOException;
+    public Cinema load(List<Salle> salles,JSONProgrammationDAO progDAO,JPAReservationDAO reservDAO) throws IOException;
 }

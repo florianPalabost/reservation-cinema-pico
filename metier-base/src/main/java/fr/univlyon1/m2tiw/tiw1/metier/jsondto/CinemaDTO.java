@@ -2,6 +2,8 @@ package fr.univlyon1.m2tiw.tiw1.metier.jsondto;
 
 import fr.univlyon1.m2tiw.tiw1.metier.Cinema;
 import fr.univlyon1.m2tiw.tiw1.metier.Salle;
+import fr.univlyon1.m2tiw.tiw1.metier.dao.JPAReservationDAO;
+import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONProgrammationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONSalleDAO;
 
 import java.io.IOException;
@@ -22,19 +24,29 @@ public class CinemaDTO {
     public Collection<SalleDTO> salles;
     public Collection<FilmDTO> films;
     public Collection<SeanceDTO> seances;
-     private static final Logger LOGGER = Logger.getLogger(CinemaDTO.class.getName() );
+    private static final Logger LOGGER = Logger.getLogger(CinemaDTO.class.getName() );
     /**
      *
      * As Cinema .
      *
+     * @param sallesCinema
+     * @param progDAO
+     * @param reservDAO
      * @return Cinema
+     * @throws java.text.ParseException
+     * @throws java.io.IOException
      */
-    public Cinema asCinema(List<Salle> sallesCinema) throws ParseException, IOException {
+    public Cinema asCinema(List<Salle> sallesCinema,JSONProgrammationDAO progDAO,JPAReservationDAO reservDAO) throws ParseException, IOException {
         //List<Salle> sallesCinema =  new JSONSalleDAO().load();
         LOGGER.info("CINEMA DTO->sallles");
         LOGGER.info(sallesCinema.toString());
         //sallesCinema.addAll(salles.stream().map(SalleDTO::asSalle).collect(Collectors.toList()));
-        Cinema cinema = new Cinema(nom, sallesCinema);
+        LOGGER.info("progDAO.toString()");
+        LOGGER.info(progDAO.toString());
+        Cinema cinema = new Cinema(nom, sallesCinema,progDAO,reservDAO);
+        // progDAO.initData(cinema);
+        
+        // voir si il faut pas deplacer/ supp ces deux loop
         for (FilmDTO f : films) {
             cinema.addFilm(f.asFilm());
         }

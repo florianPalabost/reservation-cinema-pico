@@ -30,16 +30,22 @@ public class Cinema {
      * @param nom .
      *
      * @param salles .
+     * @param progDAO
+     * @param reservDAO
+     * @throws java.io.IOException
+     * @throws java.text.ParseException
      *
      */
-    public Cinema(String nom, Collection<Salle> salles) throws IOException, ParseException {
+    public Cinema(String nom, List<Salle> salles,JSONProgrammationDAO progDAO, JPAReservationDAO reservDAO) throws IOException, ParseException {
         this.nom = nom;
         this.salles = new HashMap<String, Salle>();
         this.films = new HashMap<String, Film>();
         this.seances = new ArrayList<Seance>();
-        reservationDAO = new JPAReservationDAO();
+        //reservationDAO = new JPAReservationDAO();
+        reservationDAO = reservDAO;
         setSalles(salles);
-        programmationDAO = new JSONProgrammationDAO(this.getSalles());
+        programmationDAO = progDAO;
+        //programmationDAO = new JSONProgrammationDAO(this.getSalles());
         // Attention, les salles doivent être cohérentes avec
         // l'information contenue dans le fichier JSON des seances
     }
