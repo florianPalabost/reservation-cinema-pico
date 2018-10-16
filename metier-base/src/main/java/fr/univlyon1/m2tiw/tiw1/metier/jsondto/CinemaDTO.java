@@ -29,8 +29,8 @@ public class CinemaDTO {
      *
      * @return Cinema
      */
-    public Cinema asCinema() throws ParseException, IOException {
-        List<Salle> sallesCinema =  new JSONSalleDAO().load();
+    public Cinema asCinema(List<Salle> sallesCinema) throws ParseException, IOException {
+        //List<Salle> sallesCinema =  new JSONSalleDAO().load();
         LOGGER.info("CINEMA DTO->sallles");
         LOGGER.info(sallesCinema.toString());
         //sallesCinema.addAll(salles.stream().map(SalleDTO::asSalle).collect(Collectors.toList()));

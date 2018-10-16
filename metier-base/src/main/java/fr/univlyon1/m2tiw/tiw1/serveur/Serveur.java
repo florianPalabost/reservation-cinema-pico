@@ -8,6 +8,9 @@ package fr.univlyon1.m2tiw.tiw1.serveur;
 
 import fr.univlyon1.m2tiw.tiw1.metier.Cinema;
 import fr.univlyon1.m2tiw.tiw1.metier.Salle;
+import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONCinemaDAO;
+import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONSalleDAO;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import org.picocontainer.DefaultPicoContainer;
@@ -15,8 +18,13 @@ import org.picocontainer.MutablePicoContainer;
 
 
 public class Serveur {
-    public List<Salle> salles = new ArrayList();
-    // public Cinema cinema = new Cinema("monCinema",salles);
+    public Cinema createCinema() throws IOException{
+        List<Salle> salles = new JSONSalleDAO().load();
+        Cinema cinema = new JSONCinemaDAO().load(salles);
+        System.out.println(cinema.toString());
+        return cinema;
+    }
+  
     // for pico container TODO Impl
     // public ProgrammationDao progDAO = new ProgrammationDao();
     // public ReservationDao reservationDAO = new ReservationDao();
