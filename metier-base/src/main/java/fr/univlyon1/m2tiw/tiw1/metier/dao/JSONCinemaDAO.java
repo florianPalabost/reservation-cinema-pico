@@ -21,7 +21,8 @@ public class JSONCinemaDAO implements CinemaDAO {
     private final ObjectMapper mapper = new ObjectMapper();
 
     @Override
-    public Cinema load(List<Salle> salles, JSONProgrammationDAO progDAO, JPAReservationDAO reservDAO) throws IOException {
+    public Cinema load(List<Salle> salles, JSONProgrammationDAO progDAO,
+                       JPAReservationDAO reservDAO) throws IOException {
         CinemaDTO cinemaDTO = mapper.readValue(RESOURCE, CinemaWrapper.class).cinema;
         try {
             return cinemaDTO.asCinema(salles,progDAO,reservDAO);

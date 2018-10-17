@@ -29,10 +29,11 @@ import org.picocontainer.PicoContainer;
 
 public class ServeurImpl implements Serveur {
     private Cinema cinema;
-    private static final Logger LOGGER = Logger.getLogger(ServeurImpl.class.getName() );
+    private static final Logger LOGGER = Logger.getLogger(ServeurImpl.class.getName());
+
     /**
      * Serveur : Instantie un PicoCotainer et recupere Cinema .
-     * @throws java.io.IOException
+     * @throws java.io.IOException IOException
      */
     public ServeurImpl() throws IOException {
         List<Salle> salles = new JSONSalleDAO().load();
@@ -61,19 +62,19 @@ public class ServeurImpl implements Serveur {
         pico.addComponent(String.class);
         // faire des dependances/ liens avec cinema et film et seances
         pico.addComponent(Cinema.class);
-         // recuperer le component de type cinema ?
+        // recuperer le component de type cinema ?
         cinema = pico.getComponent(Cinema.class);
         pico.start();
-     LOGGER.info("SERVEUR PICO CINEMA : "+cinema.toString());
+        LOGGER.info("SERVEUR PICO CINEMA : " + cinema.toString());
     }
     
     /**
      * 
      * @return une instance du cinema créé
-     * @throws IOException
-     * @throws ParseException 
+     * @throws IOException IOException
+     * @throws ParseException ParseException
      */
-    public Cinema createCinema() throws IOException, ParseException{
+    public Cinema createCinema() throws IOException, ParseException {
         List<Salle> salles = new JSONSalleDAO().load();
         JSONProgrammationDAO progDAO = new JSONProgrammationDAO(salles);
         JPAReservationDAO reservDAO = new JPAReservationDAO();

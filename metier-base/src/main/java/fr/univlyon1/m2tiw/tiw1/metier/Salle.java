@@ -11,10 +11,12 @@ public class Salle {
         this.nom = nom;
         this.capacite = capacite;
     }
+
     @JsonProperty("nom")
     public String getNom() {
         return nom;
     }
+
     @JsonProperty("capacite")
     public int getCapacite() {
         return capacite;

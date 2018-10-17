@@ -24,19 +24,23 @@ public class CinemaDTO {
     public Collection<SalleDTO> salles;
     public Collection<FilmDTO> films;
     public Collection<SeanceDTO> seances;
-    private static final Logger LOGGER = Logger.getLogger(CinemaDTO.class.getName() );
+    private static final Logger LOGGER = Logger.getLogger(CinemaDTO.class.getName());
+
     /**
      *
      * As Cinema .
      *
-     * @param sallesCinema
-     * @param progDAO
-     * @param reservDAO
+     * @param sallesCinema .
+     * @param progDAO .
+     * @param reservDAO .
+     *
      * @return Cinema
-     * @throws java.text.ParseException
-     * @throws java.io.IOException
+     *
+     * @throws java.text.ParseException ParseException
+     * @throws java.io.IOException IOException
      */
-    public Cinema asCinema(List<Salle> sallesCinema,JSONProgrammationDAO progDAO,JPAReservationDAO reservDAO) throws ParseException, IOException {
+    public Cinema asCinema(List<Salle> sallesCinema,JSONProgrammationDAO progDAO,
+                           JPAReservationDAO reservDAO) throws ParseException, IOException {
         //List<Salle> sallesCinema =  new JSONSalleDAO().load();
         LOGGER.info("CINEMA DTO->sallles");
         LOGGER.info(sallesCinema.toString());

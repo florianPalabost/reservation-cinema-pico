@@ -114,7 +114,12 @@ public class Reservation {
 
     @Override
     public String toString() {
-        return "{" + "id:" + id + ", prenom:" + prenom + ", nom:" + nom + ", email:" + email + ", paye:" + paye + ", seanceId:" + seanceId + '}';
+        return "{" + "id:" + id
+                   + ", prenom:" + prenom
+                   + ", nom:" + nom
+                   + ", email:" + email
+                   + ", paye:" + paye
+                   + ", seanceId:" + seanceId + '}';
     }
     
     

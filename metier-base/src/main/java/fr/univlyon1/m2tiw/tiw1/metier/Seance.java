@@ -115,7 +115,12 @@ public class Seance {
 
     @Override
     public String toString() {
-        return "{" + "film:" + film + ", salle:" + salle + ", date:" + date + ", prix:" + prix + ", reservations:" + reservations + ", id:" + id + '}';
+        return "{" + "film:" + film
+                   + ", salle:" + salle
+                   + ", date:" + date
+                   + ", prix:" + prix
+                   + ", reservations:" + reservations
+                   + ", id:" + id + '}';
     }
     
 

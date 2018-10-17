@@ -21,13 +21,15 @@ import org.junit.Test;
  */
 public class SalleTest {
     private List<Salle> salles;
-    private static final Logger LOGGER = Logger.getLogger(SalleTest.class.getName() );
+    private static final Logger LOGGER = Logger.getLogger(SalleTest.class.getName());
+
     @Test
-    public void getSalles(){
+    public void getSalles() {
         try {
             salles = new JSONSalleDAO().load();
             LOGGER.info(salles.toString());
-            assertEquals("[{nom:Salle 1, capacite:100}, {nom:Salle 2, capacite:70}, {nom:Salle 3, capacite:50}]",salles.toString());
+            assertEquals("[{nom:Salle 1, capacite:100}, {nom:Salle 2, capacite:70}, "
+                    + "{nom:Salle 3, capacite:50}]",salles.toString());
         } catch (IOException ex) {
             Logger.getLogger(SalleTest.class.getName()).log(Level.SEVERE, null, ex);
         }

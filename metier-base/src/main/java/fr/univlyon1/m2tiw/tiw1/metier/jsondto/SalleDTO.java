@@ -14,18 +14,22 @@ public class SalleDTO {
     public Salle asSalle() {
         return new Salle(nom,capacite);
     }
+
     @JsonProperty("nom")
     public String getNom() {
         return nom;
     }
+
     @JsonProperty("nom")
     public void setNom(String nom) {
         this.nom = nom;
     }
+
     @JsonProperty("capacite")
     public int getCapacite() {
         return capacite;
     }
+
     @JsonProperty("capacite")
     public void setCapacite(int capacite) {
         this.capacite = capacite;

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fr.univlyon1.m2tiw.tiw1.metier;
 
 import fr.univlyon1.m2tiw.tiw1.serveur.ServeurImpl;
@@ -20,11 +15,11 @@ import org.picocontainer.PicoContainer;
  */
 public class ServeurTest {
     private ServeurImpl server;
-    private static final Logger LOGGER = Logger.getLogger(CinemaTest.class.getName() );
+    private static final Logger LOGGER = Logger.getLogger(CinemaTest.class.getName());
     
     @Test
-    public void testCreateCineWithServ() throws IOException{
-         LOGGER.info("--------testCreateCineWithServ------------");
+    public void testCreateCineWithServ() throws IOException {
+        LOGGER.info("--------testCreateCineWithServ------------");
         server = new ServeurImpl();
         Cinema cinema = null;
         try {
@@ -32,17 +27,17 @@ public class ServeurTest {
         } catch (ParseException ex) {
             Logger.getLogger(ServeurTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        LOGGER.info("classe : "+cinema.getClass());
+        LOGGER.info("classe : " + cinema.getClass());
         assertEquals(cinema.getClass(),Cinema.class);
         assertEquals("Mon Cinema",cinema.getNom());
     }
     
     @Test
-    public void testInitPicoContainer() throws IOException{
+    public void testInitPicoContainer() throws IOException {
         LOGGER.info("--------testInitPicoContainer------------");
         server = new ServeurImpl();
        
-        LOGGER.info("test server cinema:"+server.getCinema());
+        LOGGER.info("test server cinema:" + server.getCinema());
         Cinema c = server.getCinema();
         assertEquals("Mon Cinema",c.getNom());
     }

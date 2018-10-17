@@ -30,13 +30,15 @@ public class Cinema {
      * @param nom .
      *
      * @param salles .
-     * @param progDAO
-     * @param reservDAO
-     * @throws java.io.IOException
-     * @throws java.text.ParseException
+     * @param progDAO .
+     * @param reservDAO .
+     *
+     * @throws java.io.IOException IOException
+     * @throws java.text.ParseException ParseException
      *
      */
-    public Cinema(String nom, List<Salle> salles,JSONProgrammationDAO progDAO, JPAReservationDAO reservDAO) throws IOException, ParseException {
+    public Cinema(String nom, List<Salle> salles,JSONProgrammationDAO progDAO,
+                  JPAReservationDAO reservDAO) throws IOException, ParseException {
         this.nom = nom;
         this.salles = new HashMap<String, Salle>();
         this.films = new HashMap<String, Film>();
@@ -161,7 +163,10 @@ public class Cinema {
 
     @Override
     public String toString() {
-        return "{" + "nom:" + nom + ", salles:" + salles + ", films:" + films + ", seances:" + seances + '}';
+        return "{"  + "nom:" + nom
+                    + ", salles:" + salles
+                    + ", films:" + films
+                    + ", seances:" + seances + '}';
     }
     
 }

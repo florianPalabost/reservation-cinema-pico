@@ -20,9 +20,9 @@ import org.junit.Test;
 public class CinemaTest {
  
     private Collection<Salle> salles;
-   // private Cinema cinema = new Cinema("Mon Cinema",salles);
+    // private Cinema cinema = new Cinema("Mon Cinema",salles);
     private final ObjectMapper mapper = new ObjectMapper();
-    private static final Logger LOGGER = Logger.getLogger(CinemaTest.class.getName() );
+    private static final Logger LOGGER = Logger.getLogger(CinemaTest.class.getName());
     private Cinema cinema;
     private ServeurImpl serveur;
     /*
@@ -55,8 +55,10 @@ public class CinemaTest {
     }
 
     @Test
-    public void testChargementJackson() throws IOException, SeanceCompleteException, ParseException{
-        CinemaWrapper wrapper = mapper.readValue(Cinema.class.getResource("/sample-data/mon-cinema.json"), CinemaWrapper.class);
+    public void testChargementJackson() throws IOException,
+            SeanceCompleteException, ParseException {
+        CinemaWrapper wrapper = mapper.readValue(Cinema.class.getResource(
+                "/sample-data/mon-cinema.json"), CinemaWrapper.class);
         assertEquals(84, wrapper.cinema.seances.size());
     }
 
