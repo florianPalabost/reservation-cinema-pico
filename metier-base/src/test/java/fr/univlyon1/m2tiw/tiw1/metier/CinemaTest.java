@@ -14,7 +14,12 @@ import java.text.ParseException;
 import java.util.Collection;
 import java.util.List;
 import java.util.logging.Logger;
+import org.junit.After;
+import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class CinemaTest {
@@ -25,26 +30,23 @@ public class CinemaTest {
     private static final Logger LOGGER = Logger.getLogger(CinemaTest.class.getName());
     private Cinema cinema;
     private ServeurImpl serveur;
-    /*
-    @Test
-    public void testImportJson(){
-        try{
-            cinema = new JSONCinemaDAO().load();
-            LOGGER.info("cinema.toString()");
-            LOGGER.info(cinema.toString());
-            // assert cinema bien rempli TODO
-            
-        } catch(JsonGenerationException e){
-            e.printStackTrace();
-        }
-        catch (JsonMappingException e) {
-            e.printStackTrace();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }  
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
     }
-    */
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+
+    @Before
+    public void setUp() throws Exception {
+    }
+
+    @After
+    public void tearDown() throws Exception {
+    }
+
     @Test
     public void getNbSeances() throws IOException, SeanceCompleteException, ParseException {
         /*List<Salle> sallles = new JSONSalleDAO().load();
@@ -72,6 +74,44 @@ public class CinemaTest {
         Seance s = c.getSeances().get(1);
         Reservation r = s.createReservation("titi","machin", "titi.machin@nowhere.net");
         s.cancelReservation(r);
+    }
+// TESTS GENERES AUTOMATIQUEMENT LES ENLEVER SI INUTILES
+    /**
+     * Test of toString method, of class Cinema.
+     */
+    @Test
+    public void testToString() {
+        System.out.println("toString");
+        Cinema instance = null;
+        String expResult = "";
+        String result = instance.toString();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of start method, of class Cinema.
+     */
+    @Test
+    public void testStart() {
+        System.out.println("start");
+        Cinema instance = null;
+        instance.start();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of stop method, of class Cinema.
+     */
+    @Test
+    public void testStop() {
+        System.out.println("stop");
+        Cinema instance = null;
+        instance.stop();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
 

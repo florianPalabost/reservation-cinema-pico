@@ -29,14 +29,15 @@ public class ServeurImpl implements Serveur {
      * @throws java.io.IOException IOException
      */
     public ServeurImpl() throws IOException {
-        DefaultPicoContainer pico = new DefaultPicoContainer(new Caching());
+        DefaultPicoContainer pico = new DefaultPicoContainer();
+        // DefaultPicoContainer pico = new DefaultPicoContainer(new Caching());
         pico.addComponent(JSONSalleDAO.class);
         pico.addComponent(JPAReservationDAO.class);
         pico.addComponent(pico.getComponent(JSONSalleDAO.class).load());
         pico.addComponent(JSONProgrammationDAO.class);
         pico.addComponent(JSONCinemaDAO.class);
-        // Injection du nom du cinema ds le contstructeur pour permettre a pico
-        // de faire le lien (attribut nom)
+        // nom : "Mon Cinema", même string pour déduire le nom du ficher 
+        // et nommer le cinéma
         // On appelle JSONCinemDAO a partir de pico pour recuperer le cinema
         // on utilise load(nom, salles, progDAO,reservDAO) de cette classe
         cinema = pico.getComponent(JSONCinemaDAO.class).load("Mon Cinema",
@@ -49,8 +50,8 @@ public class ServeurImpl implements Serveur {
         pico.addComponent(String.class);
         pico.addComponent(Cinema.class);
         
-        // lancement du picoContainer
-        pico.start();
+        // lancement du cinema
+        cinema.start();
         LOGGER.info("SERVEUR PICO : CINEMA = " + cinema.toString());
     }
     
@@ -72,7 +73,7 @@ public class ServeurImpl implements Serveur {
     }
     //delete method add & delete salles
     
-    // cense renvoyer une ref vers instance de Cinema
+    // methode service cense renvoyer une ref vers instance de Cinema
     public Cinema getCinema() {
         return cinema;
     }
