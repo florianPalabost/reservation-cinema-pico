@@ -7,24 +7,17 @@
 package fr.univlyon1.m2tiw.tiw1.serveur;
 
 import fr.univlyon1.m2tiw.tiw1.metier.Cinema;
-import fr.univlyon1.m2tiw.tiw1.metier.Film;
 import fr.univlyon1.m2tiw.tiw1.metier.Salle;
-import fr.univlyon1.m2tiw.tiw1.metier.Seance;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JPAReservationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONCinemaDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONProgrammationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONSalleDAO;
-import fr.univlyon1.m2tiw.tiw1.metier.dao.ProgrammationDAO;
-import fr.univlyon1.m2tiw.tiw1.metier.dao.ReservationDAO;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.picocontainer.DefaultPicoContainer;
-import org.picocontainer.MutablePicoContainer;
-import org.picocontainer.PicoContainer;
+import org.picocontainer.behaviors.Caching;
 
 
 public class ServeurImpl implements Serveur {
@@ -36,36 +29,29 @@ public class ServeurImpl implements Serveur {
      * @throws java.io.IOException IOException
      */
     public ServeurImpl() throws IOException {
-        List<Salle> salles = new JSONSalleDAO().load();
-        //JSONProgrammationDAO progDAO = new JSONProgrammationDAO(salles);
-        DefaultPicoContainer pico = new DefaultPicoContainer();
-        pico.addConfig("nom", "Mon Cinema");
-        //pico.addConfig("salles", salles);
-        /*
-        try {
-            pico.addConfig("films", new JSONProgrammationDAO(salles).getFilms());
-            pico.addConfig("seances", new JSONProgrammationDAO(salles).getSeances());
-        } catch (ParseException ex) {
-            Logger.getLogger(ServeurImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        */
-        //pico.addConfig("reservations", new JPAReservationDAO());
+        DefaultPicoContainer pico = new DefaultPicoContainer(new Caching());
         pico.addComponent(JSONSalleDAO.class);
-        pico.addComponent(JSONProgrammationDAO.class);
         pico.addComponent(JPAReservationDAO.class);
-        pico.addComponent(Film.class);
-        pico.addComponent(Salle.class);
-        pico.addComponent(Seance.class);
+        pico.addComponent(pico.getComponent(JSONSalleDAO.class).load());
+        pico.addComponent(JSONProgrammationDAO.class);
+        pico.addComponent(JSONCinemaDAO.class);
+        // Injection du nom du cinema ds le contstructeur pour permettre a pico
+        // de faire le lien (attribut nom)
+        // On appelle JSONCinemDAO a partir de pico pour recuperer le cinema
+        // on utilise load(nom, salles, progDAO,reservDAO) de cette classe
+        cinema = pico.getComponent(JSONCinemaDAO.class).load("Mon Cinema",
+            pico.getComponent(JSONSalleDAO.class).load(),
+            pico.getComponent(JSONProgrammationDAO.class),
+            pico.getComponent(JPAReservationDAO.class));
+        
+        // voir si utile de les laisser ?
         pico.addComponent(Integer.class);
-        pico.addComponent(ArrayList.class);
-        //pico.addComponent(salles);
         pico.addComponent(String.class);
-        // faire des dependances/ liens avec cinema et film et seances
         pico.addComponent(Cinema.class);
-        // recuperer le component de type cinema ?
-        cinema = pico.getComponent(Cinema.class);
+        
+        // lancement du picoContainer
         pico.start();
-        LOGGER.info("SERVEUR PICO CINEMA : " + cinema.toString());
+        LOGGER.info("SERVEUR PICO : CINEMA = " + cinema.toString());
     }
     
     /**
@@ -78,7 +64,7 @@ public class ServeurImpl implements Serveur {
         List<Salle> salles = new JSONSalleDAO().load();
         JSONProgrammationDAO progDAO = new JSONProgrammationDAO(salles);
         JPAReservationDAO reservDAO = new JPAReservationDAO();
-        cinema = new JSONCinemaDAO().load(salles,progDAO,reservDAO);
+        cinema = new JSONCinemaDAO().load("Mon Cinema",salles,progDAO,reservDAO);
         
         LOGGER.info("SERVEUR CREATE CINEMA");
         LOGGER.info(cinema.toString());
