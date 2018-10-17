@@ -163,7 +163,15 @@ public class JSONProgrammationDAO implements ProgrammationDAO {
 
     @Override
     public String toString() {
-        return "JSONProgDAO{" + "films=" + films + ", seances=" + seances + ", salles=" + salles + '}';
+        return "{" + "films=" + films + ", seances=" + seances + ", salles=" + salles + '}';
+    }
+
+    public Collection<Film> getFilms() {
+        return films;
+    }
+
+    public Map<String, Seance> getSeances() {
+        return seances;
     }
     
     

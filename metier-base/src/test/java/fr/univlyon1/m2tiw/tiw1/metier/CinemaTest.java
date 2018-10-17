@@ -7,7 +7,7 @@ import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONCinemaDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONProgrammationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONSalleDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.jsondto.CinemaWrapper;
-import fr.univlyon1.m2tiw.tiw1.serveur.Serveur;
+import fr.univlyon1.m2tiw.tiw1.serveur.ServeurImpl;
 import fr.univlyon1.m2tiw.tiw1.utils.SeanceCompleteException;
 import java.io.IOException;
 import java.text.ParseException;
@@ -24,7 +24,7 @@ public class CinemaTest {
     private final ObjectMapper mapper = new ObjectMapper();
     private static final Logger LOGGER = Logger.getLogger(CinemaTest.class.getName() );
     private Cinema cinema;
-    private Serveur serveur;
+    private ServeurImpl serveur;
     /*
     @Test
     public void testImportJson(){
@@ -49,7 +49,7 @@ public class CinemaTest {
     public void getNbSeances() throws IOException, SeanceCompleteException, ParseException {
         /*List<Salle> sallles = new JSONSalleDAO().load();
         JSONProgrammationDAO progDAO = new JSONProgrammationDAO(sallles);*/
-        serveur = new Serveur();
+        serveur = new ServeurImpl();
         Cinema c = serveur.createCinema();
         assertEquals(84, c.getNbSeances());
     }
@@ -65,7 +65,7 @@ public class CinemaTest {
         /*List<Salle> sallles = new JSONSalleDAO().load();
         JSONProgrammationDAO progDAO = new JSONProgrammationDAO(sallles);
         Cinema c =  new JSONCinemaDAO().load(sallles,progDAO);*/
-        serveur = new Serveur();
+        serveur = new ServeurImpl();
         Cinema c = serveur.createCinema();
         Seance s = c.getSeances().get(1);
         Reservation r = s.createReservation("titi","machin", "titi.machin@nowhere.net");
