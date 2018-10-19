@@ -27,8 +27,8 @@ import static fr.univlyon1.m2tiw.tiw1.metier.jsondto.CinemaDTO.DATE_PARSER;
 
 public class JSONProgrammationDAO implements ProgrammationDAO {
 
-    public static final File SEANCES_JSON = new File("seances.json");
-    public static final File FILMS_JSON = new File("films.json");
+    public static File SEANCES_JSON = new File("seances.json");
+    public static File FILMS_JSON = new File("films.json");
     private static ObjectMapper mapper = new ObjectMapper();
 
     static {
@@ -46,9 +46,16 @@ public class JSONProgrammationDAO implements ProgrammationDAO {
     private Map<String, Seance> seances = null;
     private Map<String, Salle> salles;
 
-    public JSONProgrammationDAO(List<Salle> salles) throws IOException, ParseException {
+    /**
+     *
+     * @param nom
+     * @param salles
+     * @throws IOException
+     * @throws ParseException
+     */
+    public JSONProgrammationDAO(String nom,List<Salle> salles) throws IOException, ParseException {
         setSalles(salles);
-        load();
+        load(nom);
     }
 
     /**
@@ -65,9 +72,11 @@ public class JSONProgrammationDAO implements ProgrammationDAO {
         }
     }
 
-    private void load() throws IOException, ParseException {
+    private void load(String nom) throws IOException, ParseException {
         films = new ArrayList<>();
         seances = new HashMap<>();
+        FILMS_JSON = new File(nom+"_films.json");
+        SEANCES_JSON = new File(nom+"_seances.json");
         if (FILMS_JSON.exists()) {
             Collection<FilmDTO> filmDTOs = mapper.readValue(FILMS_JSON, list_of_films_type);
             films.addAll(filmDTOs.stream().map(FilmDTO::asFilm).collect(Collectors.toList()));
@@ -80,6 +89,10 @@ public class JSONProgrammationDAO implements ProgrammationDAO {
                     seances.put(s.getId(), s);
                 }
             }
+            else {
+            }
+        }
+        else {
         }
     }
 

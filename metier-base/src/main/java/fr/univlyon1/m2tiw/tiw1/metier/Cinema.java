@@ -55,24 +55,24 @@ public class Cinema implements Startable {
         // l'information contenue dans le fichier JSON des seances
     }
 
-    private String getNom() {
+    public String getNom() {
         return nom;
     }
 
-    private void addSalle(Salle salle) {
+    public void addSalle(Salle salle) {
         this.salles.put(salle.getNom(), salle);
     }
 
-    private void removeSalle(Salle salle) {
+    public void removeSalle(Salle salle) {
         this.salles.remove(salle);
     }
 
-    private void addFilm(Film film) throws IOException {
+    public void addFilm(Film film) throws IOException {
         this.films.put(film.getTitre() + " - " + film.getVersion(), film);
         programmationDAO.save(film);
     }
 
-    private void removeFilm(Film film) {
+    public void removeFilm(Film film) {
         this.films.remove(film);
     }
 
@@ -86,23 +86,23 @@ public class Cinema implements Startable {
      * @param prix .
      *
      */
-    private void createSeance(Salle salle, Film film, Date date, float prix) throws IOException {
+    public void createSeance(Salle salle, Film film, Date date, float prix) throws IOException {
         Seance seance = new Seance(film, salle, date, prix);
         this.seances.add(seance);
         programmationDAO.save(seance);
         seance.setReservationDAO(reservationDAO);
     }
 
-    private void removeSeance(Seance seance) throws IOException {
+    public void removeSeance(Seance seance) throws IOException {
         seances.remove(seance);
         programmationDAO.delete(seance);
     }
 
-    private int getNbSeances() {
+    public int getNbSeances() {
         return seances.size();
     }
 
-    private Collection<Salle> getSalles() {
+    public Collection<Salle> getSalles() {
         return salles.values();
     }
 
@@ -113,14 +113,14 @@ public class Cinema implements Startable {
      * @param nSalles .
      *
      */
-    private void setSalles(Collection<Salle> nSalles) {
+    public void setSalles(Collection<Salle> nSalles) {
         this.salles.clear();
         for (Salle s : nSalles) {
             addSalle(s);
         }
     }
 
-    private Collection<Film> getFilms() {
+    public Collection<Film> getFilms() {
         return films.values();
     }
 
@@ -131,14 +131,14 @@ public class Cinema implements Startable {
      * @param nFilms .
      *
      */
-    private void setFilms(Collection<Film> nFilms) throws IOException {
+    public void setFilms(Collection<Film> nFilms) throws IOException {
         this.films.clear();
         for (Film f : nFilms) {
             addFilm(f);
         }
     }
 
-    private List<Seance> getSeances() {
+    public List<Seance> getSeances() {
         return seances;
     }
 
@@ -149,18 +149,18 @@ public class Cinema implements Startable {
      * @param seances .
      *
      */
-    private void setSeances(List<Seance> seances) {
+    public void setSeances(List<Seance> seances) {
         this.seances = seances;
         for (Seance s : seances) {
             s.setReservationDAO(reservationDAO);
         }
     }
 
-    private Salle getSalle(String salle) {
+    public Salle getSalle(String salle) {
         return salles.get(salle);
     }
 
-    private Film getFilm(String film) {
+    public Film getFilm(String film) {
         return films.get(film);
     }
     
@@ -170,8 +170,21 @@ public class Cinema implements Startable {
      * @param parametres paires nom/valeur des parametres des requetes
      * @return
      */
-    public String processRequest(String commande, HashMap<String, String> parametres){
-      return null;  
+    public Object processRequest(String commande, HashMap<String, Object> parametres){
+        Object o = null;
+        switch(commande) {
+            default:
+            case "getSalles":
+                o = this.getSalles();
+                break;
+            case "getFilms":
+                o = this.getFilms();
+                break;
+            case "getFilm":
+                
+        }
+        
+        return o;  
     }
     
     @Override

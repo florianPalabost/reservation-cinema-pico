@@ -30,17 +30,17 @@ public class ServeurImpl implements Serveur {
      */
     public ServeurImpl() throws IOException {
         DefaultPicoContainer pico = new DefaultPicoContainer();
-        // DefaultPicoContainer pico = new DefaultPicoContainer(new Caching());
         pico.addComponent(JSONSalleDAO.class);
         pico.addComponent(JPAReservationDAO.class);
         pico.addComponent(pico.getComponent(JSONSalleDAO.class).load());
         pico.addComponent(JSONProgrammationDAO.class);
         pico.addComponent(JSONCinemaDAO.class);
+        pico.addComponent("mon-cinema");
         // nom : "Mon Cinema", même string pour déduire le nom du ficher 
         // et nommer le cinéma
         // On appelle JSONCinemDAO a partir de pico pour recuperer le cinema
         // on utilise load(nom, salles, progDAO,reservDAO) de cette classe
-        cinema = pico.getComponent(JSONCinemaDAO.class).load("Mon Cinema",
+        cinema = pico.getComponent(JSONCinemaDAO.class).load("mon-cinema",
             pico.getComponent(JSONSalleDAO.class).load(),
             pico.getComponent(JSONProgrammationDAO.class),
             pico.getComponent(JPAReservationDAO.class));
@@ -51,7 +51,7 @@ public class ServeurImpl implements Serveur {
         pico.addComponent(Cinema.class);
         
         // lancement du cinema
-        cinema.start();
+        //cinema.start();
         LOGGER.info("SERVEUR PICO : CINEMA = " + cinema.toString());
     }
     
@@ -63,7 +63,7 @@ public class ServeurImpl implements Serveur {
      */
     public Cinema createCinema() throws IOException, ParseException {
         List<Salle> salles = new JSONSalleDAO().load();
-        JSONProgrammationDAO progDAO = new JSONProgrammationDAO(salles);
+        JSONProgrammationDAO progDAO = new JSONProgrammationDAO("mon-cinema",salles);
         JPAReservationDAO reservDAO = new JPAReservationDAO();
         cinema = new JSONCinemaDAO().load("Mon Cinema",salles,progDAO,reservDAO);
         
