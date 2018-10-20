@@ -17,6 +17,7 @@
       <property name="hibernate.hbm2ddl.auto" value="update"/>
       <property name="hibernate.connection.username" value="sa"/>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+      <property name="show_sql">false</property>
     </properties>
   </persistence-unit>
 </persistence>

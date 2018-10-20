@@ -55,24 +55,24 @@ public class Cinema implements Startable {
         // l'information contenue dans le fichier JSON des seances
     }
 
-    public String getNom() {
+    private String getNom() {
         return nom;
     }
 
-    public void addSalle(Salle salle) {
+    private void addSalle(Salle salle) {
         this.salles.put(salle.getNom(), salle);
     }
 
-    public void removeSalle(Salle salle) {
+    private void removeSalle(Salle salle) {
         this.salles.remove(salle);
     }
 
-    public void addFilm(Film film) throws IOException {
+    private void addFilm(Film film) throws IOException {
         this.films.put(film.getTitre() + " - " + film.getVersion(), film);
         programmationDAO.save(film);
     }
 
-    public void removeFilm(Film film) {
+    private void removeFilm(Film film) {
         this.films.remove(film);
     }
 
@@ -86,23 +86,23 @@ public class Cinema implements Startable {
      * @param prix .
      *
      */
-    public void createSeance(Salle salle, Film film, Date date, float prix) throws IOException {
+    private void createSeance(Salle salle, Film film, Date date, float prix) throws IOException {
         Seance seance = new Seance(film, salle, date, prix);
         this.seances.add(seance);
         programmationDAO.save(seance);
         seance.setReservationDAO(reservationDAO);
     }
 
-    public void removeSeance(Seance seance) throws IOException {
+    private void removeSeance(Seance seance) throws IOException {
         seances.remove(seance);
         programmationDAO.delete(seance);
     }
 
-    public int getNbSeances() {
+    private int getNbSeances() {
         return seances.size();
     }
 
-    public Collection<Salle> getSalles() {
+    private Collection<Salle> getSalles() {
         return salles.values();
     }
 
@@ -113,14 +113,14 @@ public class Cinema implements Startable {
      * @param nSalles .
      *
      */
-    public void setSalles(Collection<Salle> nSalles) {
+    private void setSalles(Collection<Salle> nSalles) {
         this.salles.clear();
         for (Salle s : nSalles) {
             addSalle(s);
         }
     }
 
-    public Collection<Film> getFilms() {
+    private Collection<Film> getFilms() {
         return films.values();
     }
 
@@ -131,14 +131,14 @@ public class Cinema implements Startable {
      * @param nFilms .
      *
      */
-    public void setFilms(Collection<Film> nFilms) throws IOException {
+    private void setFilms(Collection<Film> nFilms) throws IOException {
         this.films.clear();
         for (Film f : nFilms) {
             addFilm(f);
         }
     }
 
-    public List<Seance> getSeances() {
+    private List<Seance> getSeances() {
         return seances;
     }
 
@@ -149,43 +149,40 @@ public class Cinema implements Startable {
      * @param seances .
      *
      */
-    public void setSeances(List<Seance> seances) {
+    private void setSeances(List<Seance> seances) {
         this.seances = seances;
         for (Seance s : seances) {
             s.setReservationDAO(reservationDAO);
         }
     }
 
-    public Salle getSalle(String salle) {
+    private Salle getSalle(String salle) {
         return salles.get(salle);
     }
 
-    public Film getFilm(String film) {
+    private Film getFilm(String film) {
         return films.get(film);
     }
     
-    /**
-     *
-     * @param commande methodes add,remove,get,...
-     * @param parametres paires nom/valeur des parametres des requetes
-     * @return
-     */
-    public Object processRequest(String commande, HashMap<String, Object> parametres){
+    public Object process(String commande){
         Object o = null;
         switch(commande) {
             default:
             case "getSalles":
                 o = this.getSalles();
+                LOGGER.info("getSalles toString()");
+                LOGGER.info(o.toString());
                 break;
             case "getFilms":
                 o = this.getFilms();
+                LOGGER.info("getFilms toString()");
+                LOGGER.info(o.toString());
                 break;
-            case "getFilm":
-                
         }
         
         return o;  
     }
+   
     
     @Override
     public String toString() {

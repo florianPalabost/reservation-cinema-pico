@@ -12,6 +12,7 @@ import fr.univlyon1.m2tiw.tiw1.utils.SeanceCompleteException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Logger;
 import org.junit.After;
@@ -98,5 +99,18 @@ public class CinemaTest {
         //fail("The test case is a prototype.");
     }
 
+    @Test
+    public void testProcessRequest() throws IOException {
+        serveur = new ServeurImpl();
+        Cinema c = serveur.getCinema();
+        HashMap params = new HashMap();
+        params.put("film", "Operation Finale");
+        LOGGER.info("--------process REQUEST TEST------------");
+        LOGGER.info("map params(): "+params.toString());
+        LOGGER.info("getFilms(): "+c.processRequest("getFilms", null).toString());
+        LOGGER.info("getFilm(): "+c.processRequest("getFilm", params).toString());
+    }   
+    
+    
 
 }

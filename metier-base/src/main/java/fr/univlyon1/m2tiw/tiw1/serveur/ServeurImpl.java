@@ -14,6 +14,7 @@ import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONProgrammationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONSalleDAO;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Logger;
 import org.picocontainer.DefaultPicoContainer;
@@ -71,7 +72,41 @@ public class ServeurImpl implements Serveur {
         LOGGER.info(cinema.toString());
         return cinema;
     }
-    //delete method add & delete salles
+    //TODO delete method add & delete salles
+    
+    
+    /**
+     *
+     * @param commande methodes add,remove,get,...
+     * @param parametres paires nom/valeur des parametres des requetes
+     * @return
+     */
+    @Override
+    public Object processRequest(String commande, HashMap<String, Object> parametres){
+        Object o = null;
+        switch(commande) {
+            default:
+            case "getSalles":
+                o = cinema.getSalles();
+                LOGGER.info("getSalles toString()");
+                LOGGER.info(o.toString());
+                break;
+            case "getFilms":
+                o = cinema.getFilms();
+                LOGGER.info("getFilms toString()");
+                LOGGER.info(o.toString());
+                break;
+            case "getFilm":
+                o= cinema.getFilm((String) parametres.get("film"));
+                LOGGER.info("getFilm: "+o.toString());
+                break;
+        }
+        
+        return o;  
+    } 
+    
+    
+    
     
     // methode service cense renvoyer une ref vers instance de Cinema
     public Cinema getCinema() {
