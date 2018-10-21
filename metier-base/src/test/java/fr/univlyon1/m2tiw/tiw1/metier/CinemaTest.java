@@ -107,8 +107,8 @@ public class CinemaTest {
         params.put("film", "Operation Finale");
         LOGGER.info("--------process REQUEST TEST------------");
         LOGGER.info("map params(): "+params.toString());
-        LOGGER.info("getFilms(): "+c.processRequest("getFilms", null).toString());
-        LOGGER.info("getFilm(): "+c.processRequest("getFilm", params).toString());
+        LOGGER.info("getFilms(): "+serveur.processRequest("getFilms", null).toString());
+        LOGGER.info("getFilm(): "+serveur.processRequest("getFilm", params).toString());
     }   
     
     

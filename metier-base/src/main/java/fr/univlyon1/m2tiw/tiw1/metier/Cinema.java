@@ -58,7 +58,7 @@ public class Cinema implements Startable {
     private String getNom() {
         return nom;
     }
-
+    
     private void addSalle(Salle salle) {
         this.salles.put(salle.getNom(), salle);
     }
@@ -66,7 +66,7 @@ public class Cinema implements Startable {
     private void removeSalle(Salle salle) {
         this.salles.remove(salle);
     }
-
+    
     private void addFilm(Film film) throws IOException {
         this.films.put(film.getTitre() + " - " + film.getVersion(), film);
         programmationDAO.save(film);
@@ -164,7 +164,7 @@ public class Cinema implements Startable {
         return films.get(film);
     }
     
-    public Object process(String commande){
+    public Object process(String commande, Map<String,Object> parametres) throws IOException{
         Object o = null;
         switch(commande) {
             default:
@@ -178,6 +178,14 @@ public class Cinema implements Startable {
                 LOGGER.info("getFilms toString()");
                 LOGGER.info(o.toString());
                 break;
+            case "createSeance":
+                // o = this.createSeance(salle, film, date, 0);
+            case "removeSeance":
+                // void
+                // o = this.removeSeance(seance);
+            case " addFilm":
+                // void
+                this.addFilm((Film) parametres.get("film"));
         }
         
         return o;  

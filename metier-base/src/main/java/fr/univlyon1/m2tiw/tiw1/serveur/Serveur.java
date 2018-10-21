@@ -1,11 +1,12 @@
 package fr.univlyon1.m2tiw.tiw1.serveur;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
- * @author flori
+ * @author florian
  */
 public interface Serveur {
-      public Object processRequest(String commande, HashMap<String, Object> parametres);
+      public Object processRequest(String commande, Map<String, Object> parametres);
 }

@@ -36,6 +36,7 @@ public class ServeurTest {
     public void testInitPicoContainer() throws IOException {
         LOGGER.info("--------testInitPicoContainer------------");
         server = (Serveur)new ServeurImpl();
+        LOGGER.info("CLASS SERVEUR : "+server.getClass());
         //server = new ServeurImpl();
         LOGGER.info("PROCESS REQUEST GETFILMS : "+server.processRequest("getFilms", null));
         // LOGGER.info("test server cinema:" + server.getCinema());

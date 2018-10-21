@@ -12,10 +12,14 @@ import fr.univlyon1.m2tiw.tiw1.metier.dao.JPAReservationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONCinemaDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONProgrammationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONSalleDAO;
+import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaRessourceFilms;
+import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaRessourceSalles;
+import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaRessourceSeances;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 import org.picocontainer.DefaultPicoContainer;
 import org.picocontainer.behaviors.Caching;
@@ -37,6 +41,17 @@ public class ServeurImpl implements Serveur {
         pico.addComponent(JSONProgrammationDAO.class);
         pico.addComponent(JSONCinemaDAO.class);
         pico.addComponent("mon-cinema");
+        
+        
+        // classes uniformisation 2.2
+        // pico.addComponent(CinemaRessourceFilms.class);
+        // pico.addComponent(CinemaRessourceSalles.class);
+        // pico.addComponent(CinemaRessourceSeances.class);
+        
+        // cineRessFilm = pico.getComponent(CinemaRessourceFilms.class);
+        // cineRessSalles = pico.getComponent(CinemaRessourceSalles.class);
+        // cineRessSeances = pico.getComponent(CinemaRessourceSeances.class);
+        
         // nom : "Mon Cinema", même string pour déduire le nom du ficher 
         // et nommer le cinéma
         // On appelle JSONCinemDAO a partir de pico pour recuperer le cinema
@@ -82,12 +97,13 @@ public class ServeurImpl implements Serveur {
      * @return
      */
     @Override
-    public Object processRequest(String commande, HashMap<String, Object> parametres){
+    public Object processRequest(String commande, Map<String, Object> parametres){
         Object o = null;
-        switch(commande) {
+        cinema.process(commande,parametres);
+/*        switch(commande) {
             default:
             case "getSalles":
-                o = cinema.getSalles();
+                o = cinema.process(commande,parametres);
                 LOGGER.info("getSalles toString()");
                 LOGGER.info(o.toString());
                 break;
@@ -101,7 +117,7 @@ public class ServeurImpl implements Serveur {
                 LOGGER.info("getFilm: "+o.toString());
                 break;
         }
-        
+  */      
         return o;  
     } 
     
