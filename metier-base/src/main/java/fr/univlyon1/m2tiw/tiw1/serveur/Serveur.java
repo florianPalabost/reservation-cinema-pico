@@ -1,6 +1,5 @@
 package fr.univlyon1.m2tiw.tiw1.serveur;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**

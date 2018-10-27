@@ -173,12 +173,12 @@ public class JSONProgrammationDAO implements ProgrammationDAO {
         seances.remove(seance);
         save();
     }
-
+/*
     @Override
     public String toString() {
         return "{" + "films=" + films + ", seances=" + seances + ", salles=" + salles + '}';
     }
-
+*/
     public Collection<Film> getFilms() {
         return films;
     }

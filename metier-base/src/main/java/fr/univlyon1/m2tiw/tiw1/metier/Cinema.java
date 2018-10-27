@@ -24,6 +24,8 @@ public class Cinema implements Startable {
     private List<Seance> seances;
     private ReservationDAO reservationDAO;
     private ProgrammationDAO programmationDAO;
+    private final String commande;
+    
     private static final Logger LOGGER = Logger.getLogger(Cinema.class.getName());
 
     /**
@@ -43,14 +45,20 @@ public class Cinema implements Startable {
     public Cinema(String nom, List<Salle> salles,JSONProgrammationDAO progDAO,
                   JPAReservationDAO reservDAO) throws IOException, ParseException {
         this.nom = nom;
-        this.salles = new HashMap<String, Salle>();
-        this.films = new HashMap<String, Film>();
-        this.seances = new ArrayList<Seance>();
+        this.salles = new HashMap<>();
+        this.films = new HashMap<>();
+        progDAO.getFilms().forEach((film) -> {
+            this.films.put(film.getTitre(),film);
+        });
+
+        this.seances = new ArrayList<>(progDAO.getSeances().values());
         //reservationDAO = new JPAReservationDAO();
         reservationDAO = reservDAO;
-        setSalles(salles);
         programmationDAO = progDAO;
+        setSalles(salles);
+        this.commande = "";
         //programmationDAO = new JSONProgrammationDAO(this.getSalles());
+        
         // Attention, les salles doivent être cohérentes avec
         // l'information contenue dans le fichier JSON des seances
     }
@@ -93,7 +101,7 @@ public class Cinema implements Startable {
         seance.setReservationDAO(reservationDAO);
     }
 
-    private void removeSeance(Seance seance) throws IOException {
+    public void removeSeance(Seance seance) throws IOException {
         seances.remove(seance);
         programmationDAO.delete(seance);
     }
@@ -113,14 +121,14 @@ public class Cinema implements Startable {
      * @param nSalles .
      *
      */
-    private void setSalles(Collection<Salle> nSalles) {
+    public void setSalles(Collection<Salle> nSalles) {
         this.salles.clear();
         for (Salle s : nSalles) {
             addSalle(s);
         }
     }
 
-    private Collection<Film> getFilms() {
+    public Collection<Film> getFilms() {
         return films.values();
     }
 
@@ -138,7 +146,7 @@ public class Cinema implements Startable {
         }
     }
 
-    private List<Seance> getSeances() {
+    public List<Seance> getSeances() {
         return seances;
     }
 
@@ -165,30 +173,59 @@ public class Cinema implements Startable {
     }
     
     public Object process(String commande, Map<String,Object> parametres) throws IOException{
-        Object o = null;
-        switch(commande) {
-            default:
+       switch (commande) {
+            case "getNom":
+                return getNom();
+
             case "getSalles":
-                o = this.getSalles();
-                LOGGER.info("getSalles toString()");
-                LOGGER.info(o.toString());
-                break;
+                return getSalles();
+            
+            case "getSalle":
+                return getSalle((String) parametres.get("salleName"));
+
             case "getFilms":
-                o = this.getFilms();
-                LOGGER.info("getFilms toString()");
-                LOGGER.info(o.toString());
-                break;
+                return getFilms();
+                
+            case "getFilm":
+                return getFilm((String) parametres.get("filmName"));
+
+            case "getSeances":
+                return getSeances();
+
+            case "getNbSeances":
+                return getNbSeances();
+
+          /*  case "getNbSalles":
+                return getNbSalles();*/
+
+            case "addSalle":
+                addSalle((Salle)parametres.get("salle"));
+                return null;
+
+            case "removeSalle":
+                removeSalle((Salle)parametres.get("salle"));
+                return null;
+
+            case "addFilm":
+                addFilm((Film) parametres.get("film"));
+                return null;
+
+            case "removeFilm":
+                removeFilm((Film) parametres.get("film"));
+                return null;
+
             case "createSeance":
-                // o = this.createSeance(salle, film, date, 0);
+                createSeance((Salle) parametres.get("salle"),(Film) parametres.get("film"), (Date) parametres.get("date"),(float) parametres.get("prix"));
+                return null;
+
             case "removeSeance":
-                // void
-                // o = this.removeSeance(seance);
-            case " addFilm":
-                // void
-                this.addFilm((Film) parametres.get("film"));
+                removeSeance((Seance) parametres.get("seance"));
+                return null;
+
+            default:
+                return null;
         }
-        
-        return o;  
+
     }
    
     
@@ -205,9 +242,10 @@ public class Cinema implements Startable {
      */
     @Override
     public void start() {
-        LOGGER.info("Component Cinema STARTED. Objet d'acces aux données : "+this.getClass());
-        LOGGER.info(this.toString());
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //LOGGER.info("Component Cinema STARTED. Objet d'acces aux données : "+this.getClass());
+        LOGGER.info("Component Cinema STARTED. Objet d'acces aux données : "+this.programmationDAO.toString());
+        //LOGGER.info(this.toString());
+        // throw new UnsupportedOperationException("PB Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -216,7 +254,7 @@ public class Cinema implements Startable {
     @Override
     public void stop() {
         LOGGER.info("SERVER STOPPED");
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // throw new UnsupportedOperationException("PB Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

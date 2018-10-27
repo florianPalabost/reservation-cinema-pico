@@ -7,22 +7,15 @@
 package fr.univlyon1.m2tiw.tiw1.serveur;
 
 import fr.univlyon1.m2tiw.tiw1.metier.Cinema;
-import fr.univlyon1.m2tiw.tiw1.metier.Salle;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JPAReservationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONCinemaDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONProgrammationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONSalleDAO;
-import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaRessourceFilms;
-import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaRessourceSalles;
-import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaRessourceSeances;
 import java.io.IOException;
-import java.text.ParseException;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.picocontainer.DefaultPicoContainer;
-import org.picocontainer.behaviors.Caching;
 
 
 public class ServeurImpl implements Serveur {
@@ -34,6 +27,7 @@ public class ServeurImpl implements Serveur {
      * @throws java.io.IOException IOException
      */
     public ServeurImpl() throws IOException {
+        // setup pico container
         DefaultPicoContainer pico = new DefaultPicoContainer();
         pico.addComponent(JSONSalleDAO.class);
         pico.addComponent(JPAReservationDAO.class);
@@ -41,6 +35,7 @@ public class ServeurImpl implements Serveur {
         pico.addComponent(JSONProgrammationDAO.class);
         pico.addComponent(JSONCinemaDAO.class);
         pico.addComponent("mon-cinema");
+        pico.addComponent(Cinema.class);
         
         
         // classes uniformisation 2.2
@@ -56,18 +51,18 @@ public class ServeurImpl implements Serveur {
         // et nommer le cinéma
         // On appelle JSONCinemDAO a partir de pico pour recuperer le cinema
         // on utilise load(nom, salles, progDAO,reservDAO) de cette classe
-        cinema = pico.getComponent(JSONCinemaDAO.class).load("mon-cinema",
+        /* cinema = pico.getComponent(JSONCinemaDAO.class).load("mon-cinema",
             pico.getComponent(JSONSalleDAO.class).load(),
             pico.getComponent(JSONProgrammationDAO.class),
             pico.getComponent(JPAReservationDAO.class));
-        
+        */
+        cinema = pico.getComponent(Cinema.class);
         // voir si utile de les laisser ?
         pico.addComponent(Integer.class);
         pico.addComponent(String.class);
-        pico.addComponent(Cinema.class);
         
         // lancement du cinema
-        //cinema.start();
+        cinema.start();
         LOGGER.info("SERVEUR PICO : CINEMA = " + cinema.toString());
     }
     
@@ -77,6 +72,7 @@ public class ServeurImpl implements Serveur {
      * @throws IOException IOException
      * @throws ParseException ParseException
      */
+    /*
     public Cinema createCinema() throws IOException, ParseException {
         List<Salle> salles = new JSONSalleDAO().load();
         JSONProgrammationDAO progDAO = new JSONProgrammationDAO("mon-cinema",salles);
@@ -88,7 +84,7 @@ public class ServeurImpl implements Serveur {
         return cinema;
     }
     //TODO delete method add & delete salles
-    
+   */ 
     
     /**
      *
@@ -98,27 +94,12 @@ public class ServeurImpl implements Serveur {
      */
     @Override
     public Object processRequest(String commande, Map<String, Object> parametres){
-        Object o = null;
-        cinema.process(commande,parametres);
-/*        switch(commande) {
-            default:
-            case "getSalles":
-                o = cinema.process(commande,parametres);
-                LOGGER.info("getSalles toString()");
-                LOGGER.info(o.toString());
-                break;
-            case "getFilms":
-                o = cinema.getFilms();
-                LOGGER.info("getFilms toString()");
-                LOGGER.info(o.toString());
-                break;
-            case "getFilm":
-                o= cinema.getFilm((String) parametres.get("film"));
-                LOGGER.info("getFilm: "+o.toString());
-                break;
+        try {
+            return cinema.process(commande, parametres);
+        } catch (IOException ex) {
+            Logger.getLogger(ServeurImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-  */      
-        return o;  
+        return null;
     } 
     
     
