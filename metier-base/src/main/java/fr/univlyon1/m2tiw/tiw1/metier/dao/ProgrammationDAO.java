@@ -6,6 +6,7 @@ import fr.univlyon1.m2tiw.tiw1.metier.Seance;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Map;
 
 public interface ProgrammationDAO {
 
@@ -22,4 +23,8 @@ public interface ProgrammationDAO {
     void save(Film film) throws IOException;
 
     void delete(Seance seance) throws IOException;
+    
+    Collection<Film> getFilms();
+    
+    Map<String, Seance> getSeances(); 
 }
