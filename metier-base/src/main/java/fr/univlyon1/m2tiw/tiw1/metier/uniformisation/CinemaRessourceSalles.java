@@ -6,9 +6,10 @@
 package fr.univlyon1.m2tiw.tiw1.metier.uniformisation;
 
 import fr.univlyon1.m2tiw.tiw1.metier.Salle;
-import fr.univlyon1.m2tiw.tiw1.serveur.ServeurImpl;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -19,11 +20,11 @@ import java.util.logging.Logger;
 // gestion des salles
 public class CinemaRessourceSalles extends CinemaAbs {
     //addSalle, removeSalle(on oubli ces deux normalement) et enfin getSalles(), getSalle()
-    private Map<String, Salle> salles;
+    private Map<String, Salle> salles= new HashMap<>();
     private static final Logger LOGGER = Logger.getLogger(CinemaRessourceSalles.class.getName());
 
-    public CinemaRessourceSalles(Map<String, Salle> salles) {
-        this.salles = salles;
+    public CinemaRessourceSalles(List<Salle> salles) {
+        setSalles(salles);
     }
     
     private void addSalle(Salle salle) {
@@ -49,6 +50,10 @@ public class CinemaRessourceSalles extends CinemaAbs {
         }
     }
     
+    public int getNbSalles(){
+        return this.salles.size();
+    }
+    
     public Object process(String commande, Map<String,Object> parametres) throws IOException{
          switch (commande) {
             case "getSalles":
@@ -57,9 +62,6 @@ public class CinemaRessourceSalles extends CinemaAbs {
             case "getSalle":
                 return getSalle((String) parametres.get("nomSalle"));
 
-          /*  case "getNbSalles":
-                return getNbSalles();*/
-
             case "addSalle":
                 addSalle((Salle)parametres.get("salle"));
                 return null;
@@ -67,6 +69,9 @@ public class CinemaRessourceSalles extends CinemaAbs {
             case "removeSalle":
                 removeSalle((Salle)parametres.get("salle"));
                 return null;
+                
+            case "getNbSalles":
+                return getNbSalles();
 
             default:
                 return null;

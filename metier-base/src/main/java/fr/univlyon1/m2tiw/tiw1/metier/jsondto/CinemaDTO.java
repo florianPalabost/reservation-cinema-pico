@@ -42,15 +42,16 @@ public class CinemaDTO {
     public Cinema asCinema(List<Salle> sallesCinema,JSONProgrammationDAO progDAO,
                            JPAReservationDAO reservDAO) throws ParseException, IOException {
         //List<Salle> sallesCinema =  new JSONSalleDAO().load();
-        LOGGER.info("CINEMA DTO->sallles");
-        LOGGER.info(sallesCinema.toString());
+        //  LOGGER.info("CINEMA DTO->sallles");
+        // LOGGER.info(sallesCinema.toString());
         //sallesCinema.addAll(salles.stream().map(SalleDTO::asSalle).collect(Collectors.toList()));
-        LOGGER.info("progDAO.toString()");
-        LOGGER.info(progDAO.toString());
+        // LOGGER.info("progDAO.toString()");
+        // LOGGER.info(progDAO.toString());
         Cinema cinema = new Cinema(nom, sallesCinema,progDAO,reservDAO);
         // progDAO.initData(cinema);
         
         // voir si il faut pas deplacer/ supp ces deux loop
+        
         for (FilmDTO f : films) {
             cinema.addFilm(f.asFilm());
         }

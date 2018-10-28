@@ -46,8 +46,40 @@ public class CinemaRessourceFilms extends CinemaAbs {
         }
     }
     
+    private Film getFilm(String film) {
+        return films.get(film);
+    }
+    
+    public Collection<Film> getFilms() {
+        return films.values();
+    }
+    
+    public int getNbFilms() {
+        return films.size();
+    }
+    
     public Object process(String commande, Map<String,Object> parametres) throws IOException{
-        return null;
+        switch(commande){
+            case "getFilms":
+                return getFilms();
+                
+            case "getFilm":
+                return getFilm((String) parametres.get("nomFilm"));
+                
+            case "addFilm":
+                addFilm((Film) parametres.get("film"));
+                return null;
+
+            case "removeFilm":
+                removeFilm((Film) parametres.get("film"));
+                return null;
+                
+            case "getNbFilms":
+                return getNbFilms();
+                
+             default:
+                return null;
+       }
     }
     
     @Override

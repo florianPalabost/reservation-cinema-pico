@@ -43,20 +43,20 @@ public class ServeurTest {
     public void testInitPicoContainer() throws IOException {
         LOGGER.info("--------testInitPicoContainer------------");
         LOGGER.info("CLASS SERVEUR : "+serveur.getClass());
-        LOGGER.info("PROCESS REQUEST GETFILMS : "+serveur.processRequest("getFilms", null));
+        LOGGER.info("PROCESS REQUEST GETFILMS : "+serveur.processRequest("FILM","getFilms", null));
         
         Map<String,Object> params = new HashMap<>();
         params.put("class","Seance");
-        LOGGER.info(serveur.processRequest("getSeances", params).toString());
+        //LOGGER.info(serveur.processRequest("SEANCE","getSeances", params).toString());
         // LOGGER.info("test server cinema:" + server.getCinema());
-        // Cinema c = server.getCinema();
-        // assertEquals("Mon Cinema",c.getNom());
+        //Cinema c = serveur.getCinema();
+        assertEquals("mon-cinema",serveur.processRequest("CINEMA", "getNom", null));
     }
     
     @Test
     public void testProcessRequest(){
-        String nomCinema;
-        nomCinema = (String) serveur.processRequest("getNom", null);
-        assertEquals("mon-cinema",nomCinema);
+        assertEquals("mon-cinema",serveur.processRequest("CINEMA", "getNom", null));
+        assertEquals(6,serveur.processRequest("FILM", "getNbFilms", null));
+        assertEquals(3,serveur.processRequest("SALLE", "getNbSalles", null));
     }
 }

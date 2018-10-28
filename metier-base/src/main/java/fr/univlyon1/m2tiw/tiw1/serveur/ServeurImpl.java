@@ -11,11 +11,15 @@ import fr.univlyon1.m2tiw.tiw1.metier.dao.JPAReservationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONCinemaDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONProgrammationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONSalleDAO;
+import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaRessourceFilms;
+import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaRessourceSalles;
+import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaRessourceSeances;
 import java.io.IOException;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.picocontainer.DefaultPicoContainer;
+import org.picocontainer.behaviors.Caching;
 
 
 public class ServeurImpl implements Serveur {
@@ -28,7 +32,7 @@ public class ServeurImpl implements Serveur {
      */
     public ServeurImpl() throws IOException {
         // setup pico container
-        DefaultPicoContainer pico = new DefaultPicoContainer();
+        DefaultPicoContainer pico = new DefaultPicoContainer(new Caching());
         pico.addComponent(JSONSalleDAO.class);
         pico.addComponent(JPAReservationDAO.class);
         pico.addComponent(pico.getComponent(JSONSalleDAO.class).load());
@@ -39,9 +43,9 @@ public class ServeurImpl implements Serveur {
         
         
         // classes uniformisation 2.2
-        // pico.addComponent(CinemaRessourceFilms.class);
-        // pico.addComponent(CinemaRessourceSalles.class);
-        // pico.addComponent(CinemaRessourceSeances.class);
+        pico.addComponent(CinemaRessourceFilms.class);
+        pico.addComponent(CinemaRessourceSalles.class);
+        pico.addComponent(CinemaRessourceSeances.class);
         
         // cineRessFilm = pico.getComponent(CinemaRessourceFilms.class);
         // cineRessSalles = pico.getComponent(CinemaRessourceSalles.class);
@@ -89,15 +93,18 @@ public class ServeurImpl implements Serveur {
     
     /**
      *
+     * @param methode
      * @param commande methodes add,remove,get,...
-     * @param parametres paires nom/valeur des parametres des requetes
+     * @param parametres paires nom/valeur des parametres    des requetes
      * @return
      */
     @Override
-    public Object processRequest(String commande, Map<String, Object> parametres){
+    public Object processRequest(String methode, String commande, Map<String, Object> parametres){
         try {
-            return cinema.process(commande, parametres);
+            return cinema.process(methode,commande, parametres);
         } catch (IOException ex) {
+            Logger.getLogger(ServeurImpl.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(ServeurImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;

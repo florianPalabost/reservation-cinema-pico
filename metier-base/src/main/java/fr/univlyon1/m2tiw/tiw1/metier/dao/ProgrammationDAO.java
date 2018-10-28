@@ -10,7 +10,7 @@ import java.util.Map;
 
 public interface ProgrammationDAO {
 
-    void initData(Cinema cinema) throws IOException;
+    void initData(Cinema cinema) throws Exception;
 
     Seance getSeanceById(String id);
 

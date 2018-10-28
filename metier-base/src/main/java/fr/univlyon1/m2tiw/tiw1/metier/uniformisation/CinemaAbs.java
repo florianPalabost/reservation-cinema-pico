@@ -12,11 +12,8 @@ import fr.univlyon1.m2tiw.tiw1.metier.dao.ProgrammationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.ReservationDAO;
 import fr.univlyon1.m2tiw.tiw1.serveur.ServeurImpl;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -35,28 +32,7 @@ public abstract class CinemaAbs implements CinemaInt{
     private CinemaRessourceFilms cineRessFilms;
     private CinemaRessourceSalles cineRessSalles;
     private CinemaRessourceSeances cineRessSeances;
-  /*   
-     // Gestion des salles
-    abstract public void addSalle(Salle salle);
-    abstract void removeSalle(Salle salle);
-    abstract Collection<Salle> getSalles();
-    abstract void setSalles(Collection<Salle> nSalles);
-    abstract Salle getSalle(String salle);
-    
-    //Gestion des films
-    abstract void addFilm(Film film);
-    abstract void removeFilm(Film film);
-    abstract Collection<Film> getFilms();
-    abstract void setFilms(Collection<Film> nFilms);
-    abstract Film getFilm(String film);
-    
-    // Gestion des seances
-    abstract void createSeance(Salle salle, Film film, Date date, float prix);
-    abstract void removeSeance(Seance seance);
-    abstract int getNbSeances();
-    abstract List<Seance> getSeances();
-    abstract void setSeances(List<Seance> seances);
-*/
+
     @Override
     public void start() {
         LOGGER.info("Component CinemaABSs STARTED. Objet d'acces aux données : "+this.programmationDAO.toString());
@@ -80,6 +56,7 @@ public abstract class CinemaAbs implements CinemaInt{
     @Override
     public Object process(String methode, String commande, Map<String, Object> parametres) throws IOException  {
         // suivant la commande XXXXX appellez le bon CinemaRessourceXXXX
+        // SI ON A LE TEMPS : Factoriser ce code ...
         switch (methode) {
             case "FILM":
                 return cineRessFilms.process(commande, parametres);      

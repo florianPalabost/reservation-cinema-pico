@@ -24,7 +24,7 @@ public class CinemaTest {
     @Test
     public void getNbSeances() throws IOException, SeanceCompleteException, ParseException {
         serveur = new ServeurImpl();
-        assertEquals(84,serveur.processRequest("getNbSeances",null));
+        assertEquals(84,serveur.processRequest("SEANCE","getNbSeances",null));
     }
 
     @Test
@@ -53,11 +53,11 @@ public class CinemaTest {
         serveur = new ServeurImpl();
         Cinema c = serveur.getCinema();
         HashMap params = new HashMap();
-        params.put("film", "Operation Finale");
+        params.put("nomFilm", (Object)"Operation Finale - VF");
         LOGGER.info("--------process REQUEST TEST------------");
         LOGGER.info("map params(): "+params.toString());
-        LOGGER.info("getFilms(): "+serveur.processRequest("getFilms", null).toString());
-        LOGGER.info("getFilm(): "+serveur.processRequest("getFilm", params).toString());
+        LOGGER.info("getFilms(): "+serveur.processRequest("FILM","getFilms", null).toString());
+        LOGGER.info("getFilm(): "+serveur.processRequest("FILM","getFilm", params).toString());
         
         // TODO faire des methodes pour avoir la taille de films,salles... comme getNbSeances
     }   
