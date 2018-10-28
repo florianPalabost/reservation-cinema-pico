@@ -18,7 +18,7 @@ import org.junit.Test;
  */
 public class ServeurTest {
     private Serveur serveur;
-    private static final Logger LOGGER = Logger.getLogger(CinemaTest.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ServeurTest.class.getName());
     
     @Before
     public void initServeur() throws IOException {
@@ -43,7 +43,7 @@ public class ServeurTest {
     public void testInitPicoContainer() throws IOException {
         LOGGER.info("--------testInitPicoContainer------------");
         LOGGER.info("CLASS SERVEUR : "+serveur.getClass());
-        LOGGER.info("PROCESS REQUEST GETFILMS : "+serveur.processRequest("FILM","getFilms", null));
+        LOGGER.info("PROCESS REQUEST GETFILMS : "+serveur.processRequest("FILM", "getFilms", null));
         
         Map<String,Object> params = new HashMap<>();
         params.put("class","Seance");

@@ -5,9 +5,9 @@ import fr.univlyon1.m2tiw.tiw1.metier.dao.JPAReservationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONProgrammationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.ProgrammationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.ReservationDAO;
-import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaRessourceFilms;
-import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaRessourceSalles;
-import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaRessourceSeances;
+import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaRessourceFilms;
+import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaRessourceSalles;
+import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaRessourceSeances;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -211,7 +211,7 @@ public class Cinema implements Startable {
      */
     @Override
     public void start() {
-                LOGGER.info("Cinema STARTED ");
+        LOGGER.info("Cinema STARTED ");
         cineRessFilms.start();
         cineRessSalles.start();
         cineRessSeances.start();

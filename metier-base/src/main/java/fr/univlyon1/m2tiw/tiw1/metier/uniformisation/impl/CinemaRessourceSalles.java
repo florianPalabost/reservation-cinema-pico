@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.univlyon1.m2tiw.tiw1.metier.uniformisation;
+package fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl;
 
 import fr.univlyon1.m2tiw.tiw1.metier.Salle;
+import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaAbs;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;

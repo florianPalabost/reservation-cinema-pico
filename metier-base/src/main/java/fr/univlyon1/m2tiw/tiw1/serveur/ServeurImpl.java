@@ -11,9 +11,11 @@ import fr.univlyon1.m2tiw.tiw1.metier.dao.JPAReservationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONCinemaDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONProgrammationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONSalleDAO;
-import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaRessourceFilms;
-import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaRessourceSalles;
-import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaRessourceSeances;
+import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaContext;
+import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaContextImpl;
+import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaRessourceFilms;
+import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaRessourceSalles;
+import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaRessourceSeances;
 import java.io.IOException;
 import java.util.Map;
 import java.util.logging.Level;
@@ -47,19 +49,12 @@ public class ServeurImpl implements Serveur {
         pico.addComponent(CinemaRessourceSalles.class);
         pico.addComponent(CinemaRessourceSeances.class);
         
-        // cineRessFilm = pico.getComponent(CinemaRessourceFilms.class);
-        // cineRessSalles = pico.getComponent(CinemaRessourceSalles.class);
-        // cineRessSeances = pico.getComponent(CinemaRessourceSeances.class);
+        // Contexte 3.X
+        CinemaContext cineContext = new CinemaContextImpl();
+        cineContext.setProgDAO(pico.getComponent(JSONProgrammationDAO.class));
+        pico.addComponent(cineContext);
         
-        // nom : "Mon Cinema", même string pour déduire le nom du ficher 
-        // et nommer le cinéma
-        // On appelle JSONCinemDAO a partir de pico pour recuperer le cinema
-        // on utilise load(nom, salles, progDAO,reservDAO) de cette classe
-        /* cinema = pico.getComponent(JSONCinemaDAO.class).load("mon-cinema",
-            pico.getComponent(JSONSalleDAO.class).load(),
-            pico.getComponent(JSONProgrammationDAO.class),
-            pico.getComponent(JPAReservationDAO.class));
-        */
+ 
         cinema = pico.getComponent(Cinema.class);
         
         // voir si utile de les laisser ?
@@ -68,7 +63,6 @@ public class ServeurImpl implements Serveur {
         
         // lancement du cinema
         cinema.start();
-        LOGGER.info("SERVEUR PICO : CINEMA = " + cinema.toString());
     }
     
     /**

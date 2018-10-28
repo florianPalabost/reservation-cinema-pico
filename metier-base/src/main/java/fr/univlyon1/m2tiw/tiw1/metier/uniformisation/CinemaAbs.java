@@ -5,6 +5,9 @@
  */
 package fr.univlyon1.m2tiw.tiw1.metier.uniformisation;
 
+import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaRessourceSeances;
+import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaRessourceFilms;
+import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaRessourceSalles;
 import fr.univlyon1.m2tiw.tiw1.metier.Film;
 import fr.univlyon1.m2tiw.tiw1.metier.Salle;
 import fr.univlyon1.m2tiw.tiw1.metier.Seance;
@@ -35,14 +38,12 @@ public abstract class CinemaAbs implements CinemaInt{
 
     @Override
     public void start() {
-        LOGGER.info("Component CinemaABSs STARTED. Objet d'acces aux données : "+this.programmationDAO.toString());
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        LOGGER.info("Component CinemaAbs STARTED. Objet d'acces aux données : "+this.programmationDAO.toString());
     }
 
     @Override
     public void stop() {
-        LOGGER.info("SERVER STOPPED");
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        LOGGER.info("CinemaAbs STOPPED");
     }
 
     /**
