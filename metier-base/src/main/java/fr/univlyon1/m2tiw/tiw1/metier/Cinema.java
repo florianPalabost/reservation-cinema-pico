@@ -181,13 +181,13 @@ public class Cinema implements Startable {
                 return getSalles();
             
             case "getSalle":
-                return getSalle((String) parametres.get("salleName"));
+                return getSalle((String) parametres.get("nomSalle"));
 
             case "getFilms":
                 return getFilms();
                 
             case "getFilm":
-                return getFilm((String) parametres.get("filmName"));
+                return getFilm((String) parametres.get("nomFilm"));
 
             case "getSeances":
                 return getSeances();

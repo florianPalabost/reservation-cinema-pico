@@ -17,7 +17,7 @@ import org.junit.Test;
  * @author florian
  */
 public class ServeurTest {
-    private ServeurImpl serveur;
+    private Serveur serveur;
     private static final Logger LOGGER = Logger.getLogger(CinemaTest.class.getName());
     
     @Before

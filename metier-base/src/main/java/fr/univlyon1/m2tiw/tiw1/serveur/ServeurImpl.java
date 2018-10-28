@@ -57,6 +57,7 @@ public class ServeurImpl implements Serveur {
             pico.getComponent(JPAReservationDAO.class));
         */
         cinema = pico.getComponent(Cinema.class);
+        
         // voir si utile de les laisser ?
         pico.addComponent(Integer.class);
         pico.addComponent(String.class);
@@ -105,7 +106,7 @@ public class ServeurImpl implements Serveur {
     
     
     
-    // methode service cense renvoyer une ref vers instance de Cinema
+    // methode service temporaire pour renvoyer une ref vers instance de Cinema
     public Cinema getCinema() {
         return cinema;
     }
