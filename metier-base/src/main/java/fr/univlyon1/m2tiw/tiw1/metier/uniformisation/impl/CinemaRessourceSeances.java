@@ -11,6 +11,7 @@ import fr.univlyon1.m2tiw.tiw1.metier.Seance;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.ProgrammationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.ReservationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaAbs;
+import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaContext;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Date;
@@ -31,12 +32,17 @@ public class CinemaRessourceSeances extends CinemaAbs {
     private ProgrammationDAO progDAO;
     private ReservationDAO reservationDAO;
 
+    /*
     public CinemaRessourceSeances(ProgrammationDAO progDAO, ReservationDAO reservationDAO) {
         this.progDAO = progDAO;
         this.reservationDAO = reservationDAO;
         setSeances(this.progDAO.getSeances().values());
+    }*/
+    public CinemaRessourceSeances(CinemaContext cineContext) {
+        this.progDAO = (ProgrammationDAO) cineContext.getProgDAO();
+        this.reservationDAO = reservationDAO;
+        setSeances(this.progDAO.getSeances().values());
     }
-    
     
      public void setSeances(Collection<Seance> seances) {
         this.seances = seances;

@@ -51,7 +51,7 @@ public class CinemaTest {
     @Test
     public void testProcess() throws IOException {
         serveur = new ServeurImpl();
-        Cinema c = serveur.getCinema();
+        //Cinema c = serveur.getCinema();
         HashMap params = new HashMap();
         params.put("nomFilm", (Object)"Operation Finale - VF");
         LOGGER.info("--------process REQUEST TEST------------");

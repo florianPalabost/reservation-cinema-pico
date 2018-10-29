@@ -2,6 +2,7 @@ package fr.univlyon1.m2tiw.tiw1.metier.dao;
 
 import fr.univlyon1.m2tiw.tiw1.metier.Cinema;
 import fr.univlyon1.m2tiw.tiw1.metier.Film;
+import fr.univlyon1.m2tiw.tiw1.metier.Salle;
 import fr.univlyon1.m2tiw.tiw1.metier.Seance;
 
 import java.io.IOException;
@@ -27,4 +28,6 @@ public interface ProgrammationDAO {
     Collection<Film> getFilms();
     
     Map<String, Seance> getSeances(); 
+    
+    public Map<String, Salle> getSalles();
 }

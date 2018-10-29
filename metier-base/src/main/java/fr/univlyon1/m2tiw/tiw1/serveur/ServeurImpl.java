@@ -109,13 +109,13 @@ public class ServeurImpl implements Serveur {
     
     
     
-    
+    /*
     // methode service temporaire pour renvoyer une ref vers instance de Cinema
     public Cinema getCinema() {
         return cinema;
     }
     
-    
+    */
 
    
     

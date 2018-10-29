@@ -186,6 +186,10 @@ public class JSONProgrammationDAO implements ProgrammationDAO {
     public Map<String, Seance> getSeances() {
         return seances;
     }
+
+    public Map<String, Salle> getSalles() {
+        return salles;
+    }
     
     
 }
