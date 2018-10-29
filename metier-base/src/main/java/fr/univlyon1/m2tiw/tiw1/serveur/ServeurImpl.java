@@ -11,6 +11,9 @@ import fr.univlyon1.m2tiw.tiw1.metier.dao.JPAReservationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONCinemaDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONProgrammationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONSalleDAO;
+import fr.univlyon1.m2tiw.tiw1.metier.dao.ProgrammationDAO;
+import fr.univlyon1.m2tiw.tiw1.metier.dao.ReservationDAO;
+import fr.univlyon1.m2tiw.tiw1.metier.dao.SalleDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaContext;
 import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaContextImpl;
 import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaRessourceFilms;
@@ -51,7 +54,9 @@ public class ServeurImpl implements Serveur {
         
         // Contexte 3.X
         CinemaContext cineContext = new CinemaContextImpl();
-        cineContext.setProgDAO(pico.getComponent(JSONProgrammationDAO.class));
+        cineContext.setDAO(ProgrammationDAO.CONTEXT,pico.getComponent(JSONProgrammationDAO.class));
+        cineContext.setDAO(SalleDAO.CONTEXT,pico.getComponent(JSONSalleDAO.class));
+        cineContext.setDAO(ReservationDAO.CONTEXT,pico.getComponent(JPAReservationDAO.class));
         pico.addComponent(cineContext);
         
  

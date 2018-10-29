@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 public interface SalleDAO {
+    public static final String CONTEXT = "salle";
 
     public List<Salle> load() throws IOException;
 

@@ -33,7 +33,7 @@ public class CinemaRessourceFilms extends CinemaAbs {
     }*/
     
     public CinemaRessourceFilms(CinemaContext cineContext) throws IOException {
-        this.progDAO = (ProgrammationDAO) cineContext.getProgDAO();
+        this.progDAO = (ProgrammationDAO) cineContext.getDAO(ProgrammationDAO.CONTEXT);
         setFilms(progDAO.getFilms());
     }
     

@@ -1,22 +1,13 @@
 package fr.univlyon1.m2tiw.tiw1.metier;
 
 
-import fr.univlyon1.m2tiw.tiw1.metier.dao.JPAReservationDAO;
-import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONProgrammationDAO;
-import fr.univlyon1.m2tiw.tiw1.metier.dao.ProgrammationDAO;
-import fr.univlyon1.m2tiw.tiw1.metier.dao.ReservationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaRessourceFilms;
 import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaRessourceSalles;
 import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaRessourceSeances;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Date;
-import java.util.Collection;
 import java.util.logging.Logger;
 import org.picocontainer.Startable;
 

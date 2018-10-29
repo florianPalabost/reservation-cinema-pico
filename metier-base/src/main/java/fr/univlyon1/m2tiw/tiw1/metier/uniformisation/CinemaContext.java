@@ -5,15 +5,15 @@
  */
 package fr.univlyon1.m2tiw.tiw1.metier.uniformisation;
 
-import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONProgrammationDAO;
-
 /**
  *
  * @author florian
  */
 public interface CinemaContext {
     // TODO obtenir une reference sur un obj ProgDAO existant
-    public Object getProgDAO();
+    // public Object getDAO();
+    public Object getDAO(String k);
     // TODO indiquer une ref a un progDAO existant
-    public void setProgDAO(JSONProgrammationDAO progDAO);
+    // public void setProgDAO(JSONProgrammationDAO progDAO);
+    public void setDAO(String k, Object o);
 }

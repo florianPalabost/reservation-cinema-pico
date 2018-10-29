@@ -7,6 +7,7 @@ package fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl;
 
 import fr.univlyon1.m2tiw.tiw1.metier.Salle;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONProgrammationDAO;
+import fr.univlyon1.m2tiw.tiw1.metier.dao.ProgrammationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaAbs;
 import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaContext;
 import java.io.IOException;
@@ -32,7 +33,7 @@ public class CinemaRessourceSalles extends CinemaAbs {
     } */
     
     public CinemaRessourceSalles(CinemaContext cineContext) {
-        JSONProgrammationDAO progDAO = (JSONProgrammationDAO) cineContext.getProgDAO();
+        JSONProgrammationDAO progDAO = (JSONProgrammationDAO) cineContext.getDAO(ProgrammationDAO.CONTEXT);
         setSalles((Collection<Salle>) progDAO.getSalles().values());
     }
     

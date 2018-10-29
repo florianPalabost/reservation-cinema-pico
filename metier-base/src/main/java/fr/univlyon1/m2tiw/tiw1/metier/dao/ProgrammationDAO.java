@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.Map;
 
 public interface ProgrammationDAO {
+    public static final String CONTEXT = "programmation";
 
     void initData(Cinema cinema) throws Exception;
 

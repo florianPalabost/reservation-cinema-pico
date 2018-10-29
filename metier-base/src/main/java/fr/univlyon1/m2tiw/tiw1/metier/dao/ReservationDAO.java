@@ -5,6 +5,8 @@ import fr.univlyon1.m2tiw.tiw1.metier.Reservation;
 import java.util.Collection;
 
 public interface ReservationDAO {
+    public static final String CONTEXT = "reservation";
+    
     void save(Reservation reservation);
 
     void delete(Reservation reservation);

@@ -39,8 +39,8 @@ public class CinemaRessourceSeances extends CinemaAbs {
         setSeances(this.progDAO.getSeances().values());
     }*/
     public CinemaRessourceSeances(CinemaContext cineContext) {
-        this.progDAO = (ProgrammationDAO) cineContext.getProgDAO();
-        this.reservationDAO = reservationDAO;
+        this.progDAO = (ProgrammationDAO) cineContext.getDAO(ProgrammationDAO.CONTEXT);
+        this.reservationDAO = (ReservationDAO) cineContext.getDAO(ReservationDAO.CONTEXT);
         setSeances(this.progDAO.getSeances().values());
     }
     
@@ -68,7 +68,26 @@ public class CinemaRessourceSeances extends CinemaAbs {
     }
     
     public Object process(String commande, Map<String,Object> parametres) throws IOException{
-        return null;
+        switch(commande){
+            case "createSeance":
+                // A TESTER 
+                createSeance((Salle)parametres.get("salle"),(Film) parametres.get("film"),(Date)parametres.get("date"),(Float) parametres.get("prix"));
+                return null;
+                
+            case "removeSeance":
+                removeSeance((Seance) parametres.get("seance"));
+                return null;
+                
+            case "getNbSeances":
+                return getNbSeances();
+
+            case "setSeances":
+                setSeances((Collection<Seance>) parametres.get("seances"));
+                return null;
+                
+             default:
+                return null;
+       }
     }
     
     @Override
