@@ -62,7 +62,10 @@ public class ServeurImpl implements Serveur {
         pico.addComponent(String.class);
         
         // lancement du cinema
-        cinema.start();
+        // cinema.start();
+        
+        // start tous les composants de pico qui implementent Startable en meme temps
+        pico.start();
     }
     
     /**

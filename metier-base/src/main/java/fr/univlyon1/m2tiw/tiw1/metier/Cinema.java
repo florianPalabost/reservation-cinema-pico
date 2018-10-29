@@ -212,9 +212,9 @@ public class Cinema implements Startable {
     @Override
     public void start() {
         LOGGER.info("Cinema STARTED ");
-        cineRessFilms.start();
-        cineRessSalles.start();
-        cineRessSeances.start();
+        //cineRessFilms.start();
+        //cineRessSalles.start();
+        //cineRessSeances.start();
         //LOGGER.info("Component Cinema STARTED. Objet d'acces aux données : "+this.getClass());
         //LOGGER.info("Component Cinema STARTED. Objet d'acces aux données : "+this.programmationDAO.toString());
         //LOGGER.info(this.toString());
@@ -227,9 +227,9 @@ public class Cinema implements Startable {
     @Override
     public void stop() {
         LOGGER.info("Cinema STOPPED");
-        cineRessFilms.stop();
-        cineRessSalles.stop();
-        cineRessSeances.stop();
+        //cineRessFilms.stop();
+        //cineRessSalles.stop();
+        //cineRessSeances.stop();
         // throw new UnsupportedOperationException("PB Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
