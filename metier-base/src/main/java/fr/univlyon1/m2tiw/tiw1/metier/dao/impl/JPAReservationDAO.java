@@ -1,6 +1,7 @@
-package fr.univlyon1.m2tiw.tiw1.metier.dao;
+package fr.univlyon1.m2tiw.tiw1.metier.dao.impl;
 
 import fr.univlyon1.m2tiw.tiw1.metier.Reservation;
+import fr.univlyon1.m2tiw.tiw1.metier.dao.ReservationDAO;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;

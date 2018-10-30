@@ -6,7 +6,7 @@
 package fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl;
 
 import fr.univlyon1.m2tiw.tiw1.metier.Salle;
-import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONProgrammationDAO;
+import fr.univlyon1.m2tiw.tiw1.metier.dao.impl.JSONProgrammationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.ProgrammationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaAbs;
 import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaContext;

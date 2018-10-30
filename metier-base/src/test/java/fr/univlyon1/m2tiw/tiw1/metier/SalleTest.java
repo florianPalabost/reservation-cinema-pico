@@ -1,6 +1,6 @@
 package fr.univlyon1.m2tiw.tiw1.metier;
 
-import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONSalleDAO;
+import fr.univlyon1.m2tiw.tiw1.metier.dao.impl.JSONSalleDAO;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;

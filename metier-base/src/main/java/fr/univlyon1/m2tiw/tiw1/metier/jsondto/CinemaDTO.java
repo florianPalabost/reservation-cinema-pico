@@ -2,9 +2,9 @@ package fr.univlyon1.m2tiw.tiw1.metier.jsondto;
 
 import fr.univlyon1.m2tiw.tiw1.metier.Cinema;
 import fr.univlyon1.m2tiw.tiw1.metier.Salle;
-import fr.univlyon1.m2tiw.tiw1.metier.dao.JPAReservationDAO;
-import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONProgrammationDAO;
-import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONSalleDAO;
+import fr.univlyon1.m2tiw.tiw1.metier.dao.impl.JPAReservationDAO;
+import fr.univlyon1.m2tiw.tiw1.metier.dao.impl.JSONProgrammationDAO;
+import fr.univlyon1.m2tiw.tiw1.metier.dao.impl.JSONSalleDAO;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -47,18 +47,19 @@ public class CinemaDTO {
         //sallesCinema.addAll(salles.stream().map(SalleDTO::asSalle).collect(Collectors.toList()));
         // LOGGER.info("progDAO.toString()");
         // LOGGER.info(progDAO.toString());
-        Cinema cinema = new Cinema(nom, sallesCinema,progDAO,reservDAO);
+        //Cinema cinema = new Cinema(nom, sallesCinema,progDAO,reservDAO);
         // progDAO.initData(cinema);
         
         // voir si il faut pas deplacer/ supp ces deux loop
         
-        for (FilmDTO f : films) {
+       /* for (FilmDTO f : films) {
             cinema.addFilm(f.asFilm());
         }
         for (SeanceDTO s : seances) {
             Date d = DATE_PARSER.parse(s.date);
             cinema.createSeance(cinema.getSalle(s.salle), cinema.getFilm(s.film), d, s.prix);
-        }
-        return cinema;
+        }*/
+        //return cinema;
+        return null;
     }
 }

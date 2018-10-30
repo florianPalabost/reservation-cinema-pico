@@ -7,10 +7,10 @@
 package fr.univlyon1.m2tiw.tiw1.serveur;
 
 import fr.univlyon1.m2tiw.tiw1.metier.Cinema;
-import fr.univlyon1.m2tiw.tiw1.metier.dao.JPAReservationDAO;
-import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONCinemaDAO;
-import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONProgrammationDAO;
-import fr.univlyon1.m2tiw.tiw1.metier.dao.JSONSalleDAO;
+import fr.univlyon1.m2tiw.tiw1.metier.dao.impl.JPAReservationDAO;
+import fr.univlyon1.m2tiw.tiw1.metier.dao.impl.JSONCinemaDAO;
+import fr.univlyon1.m2tiw.tiw1.metier.dao.impl.JSONProgrammationDAO;
+import fr.univlyon1.m2tiw.tiw1.metier.dao.impl.JSONSalleDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.ProgrammationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.ReservationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.SalleDAO;
