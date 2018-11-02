@@ -26,7 +26,7 @@ public class JSONCinemaDAO implements CinemaDAO {
                        JPAReservationDAO reservDAO) throws IOException {
         CinemaDTO cinemaDTO = mapper.readValue(RESOURCE, CinemaWrapper.class).cinema;
         try {
-            return cinemaDTO.asCinema(salles,progDAO,reservDAO);
+            return cinemaDTO.asCinema(nom);
         } catch (ParseException ex) {
             Logger.getLogger(JSONCinemaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

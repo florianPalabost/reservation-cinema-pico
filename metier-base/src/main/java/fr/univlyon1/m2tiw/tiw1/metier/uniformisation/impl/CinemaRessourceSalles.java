@@ -8,7 +8,7 @@ package fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl;
 import fr.univlyon1.m2tiw.tiw1.metier.Salle;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.impl.JSONProgrammationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.ProgrammationDAO;
-import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaAbs;
+import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.ACinemaRessource;
 import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaContext;
 import java.io.IOException;
 import java.util.Collection;
@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  * @author florian
  */
 // gestion des salles
-public class CinemaRessourceSalles extends CinemaAbs {
+public class CinemaRessourceSalles extends ACinemaRessource {
     //addSalle, removeSalle(on oubli ces deux normalement) et enfin getSalles(), getSalle()
     private Map<String, Salle> salles= new HashMap<>();
     private static final Logger LOGGER = Logger.getLogger(CinemaRessourceSalles.class.getName());

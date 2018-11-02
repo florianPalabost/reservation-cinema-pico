@@ -13,7 +13,7 @@ import org.picocontainer.Startable;
  *
  * @author florian
  */
-public interface CinemaInt extends Startable {
+public interface ICinema extends Startable {
   
     // Methode de service
     public Object process(String methode, String commande, Map<String,Object> parametres) throws IOException ;

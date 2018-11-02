@@ -10,7 +10,7 @@ package fr.univlyon1.m2tiw.metier.annuaire;
  * @author florian
  */
 public interface IRegistry {
-     public Object getReference(String refName);
+     public Object getReferencedObj(String refName);
      
-     public void setReference(String k, Object o);
+     public void setReferencedObj(String pathRef, Object o);
 }

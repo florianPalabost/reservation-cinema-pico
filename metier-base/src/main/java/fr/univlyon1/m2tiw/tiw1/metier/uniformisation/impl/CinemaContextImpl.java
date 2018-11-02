@@ -22,7 +22,10 @@ public class CinemaContextImpl implements CinemaContext {
 
     @Override
     public Object getDAO(String k) {
-        return cineContext.get(k);
+        if(cineContext.containsKey(k)) {
+            return cineContext.get(k);
+        }
+        return null;
     }
 
     @Override

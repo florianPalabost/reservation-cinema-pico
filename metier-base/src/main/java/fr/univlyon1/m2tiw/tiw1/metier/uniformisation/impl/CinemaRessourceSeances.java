@@ -10,7 +10,7 @@ import fr.univlyon1.m2tiw.tiw1.metier.Salle;
 import fr.univlyon1.m2tiw.tiw1.metier.Seance;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.ProgrammationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.ReservationDAO;
-import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaAbs;
+import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.ACinemaRessource;
 import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaContext;
 import java.io.IOException;
 import java.util.Collection;
@@ -25,7 +25,7 @@ import java.util.logging.Logger;
  */
 
 // gestion des seances 
-public class CinemaRessourceSeances extends CinemaAbs {
+public class CinemaRessourceSeances extends ACinemaRessource {
     //createSeance(), removeSeance(), getNbSeance()
     private static final Logger LOGGER = Logger.getLogger(CinemaRessourceSeances.class.getName());
     private Collection<Seance> seances;

@@ -5,12 +5,12 @@
  */
 package fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl;
 
-import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaAbs;
+import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.ACinemaRessource;
 
 /**
  *
  * @author florian
  */
-public class CinemaRessourceReservations extends CinemaAbs {
+public class CinemaRessourceReservations extends ACinemaRessource {
     
 }

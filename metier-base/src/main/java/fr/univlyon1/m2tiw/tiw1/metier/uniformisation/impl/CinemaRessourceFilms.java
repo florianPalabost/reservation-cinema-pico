@@ -7,7 +7,7 @@ package fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl;
 
 import fr.univlyon1.m2tiw.tiw1.metier.Film;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.ProgrammationDAO;
-import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaAbs;
+import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.ACinemaRessource;
 import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaContext;
 import java.io.IOException;
 import java.util.Collection;
@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  */
 
 // Gestion et consultation des films pour ressources 
-public class CinemaRessourceFilms extends CinemaAbs {
+public class CinemaRessourceFilms extends ACinemaRessource {
     // addFilm(), removeFilm() et getFilm()
     private static final Logger LOGGER = Logger.getLogger(CinemaRessourceSalles.class.getName());
     private HashMap<String, Film> films = new HashMap<>();
@@ -71,7 +71,7 @@ public class CinemaRessourceFilms extends CinemaAbs {
                 return getFilms();
                 
             case "getFilm":
-                return getFilm((String) parametres.get("nomFilm"));
+                return getFilm((String) parametres.get("titre"));
                 
             case "addFilm":
                 addFilm((Film) parametres.get("film"));

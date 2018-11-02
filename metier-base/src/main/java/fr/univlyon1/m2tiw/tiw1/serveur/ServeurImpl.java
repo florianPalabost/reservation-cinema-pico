@@ -6,6 +6,8 @@
 
 package fr.univlyon1.m2tiw.tiw1.serveur;
 
+import fr.univlyon1.m2tiw.metier.annuaire.IRegistry;
+import fr.univlyon1.m2tiw.metier.annuaire.Registry;
 import fr.univlyon1.m2tiw.tiw1.metier.Cinema;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.impl.JPAReservationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.impl.JSONCinemaDAO;
@@ -14,6 +16,7 @@ import fr.univlyon1.m2tiw.tiw1.metier.dao.impl.JSONSalleDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.ProgrammationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.ReservationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.SalleDAO;
+import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.ACinemaRessource;
 import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaContext;
 import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaContextImpl;
 import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaRessourceFilms;
@@ -29,13 +32,15 @@ import org.picocontainer.behaviors.Caching;
 
 public class ServeurImpl implements Serveur {
     private Cinema cinema;
+    private IRegistry registry;
     private static final Logger LOGGER = Logger.getLogger(ServeurImpl.class.getName());
 
     /**
      * Serveur : Instantie un PicoCotainer et recupere Cinema .
+     * @param registryImpl
      * @throws java.io.IOException IOException
      */
-    public ServeurImpl() throws IOException {
+    public ServeurImpl(Registry registryImpl) throws IOException {
         // setup pico container
         DefaultPicoContainer pico = new DefaultPicoContainer(new Caching());
         pico.addComponent(JSONSalleDAO.class);
@@ -59,7 +64,24 @@ public class ServeurImpl implements Serveur {
         cineContext.setDAO(ReservationDAO.CONTEXT,pico.getComponent(JPAReservationDAO.class));
         pico.addComponent(cineContext);
         
- 
+        // Binding 4.X
+        
+        registry = registryImpl;
+        // Bind server : /server
+        registry.setReferencedObj(Registry.CTX_ROOT,this);
+        
+        // Bind cineRessXXX : /app/cineRessXXX 
+        registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS+"/cinemaRessourceFilms",pico.getComponent(CinemaRessourceFilms.class));
+        registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS+"/cinemaRessourceSalles",pico.getComponent(CinemaRessourceSalles.class));
+        registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS+"/cinemaRessourceSeances",pico.getComponent(CinemaRessourceSeances.class));
+        
+        // Bind salles : /app/metier/salles
+        registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS+SalleDAO.CTX_METIER+"/salles",pico.getComponent(JSONSalleDAO.class).load());
+        
+        // Bind progdao et reservDAO : /app/persistence/progdao,ReservDao
+        registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS+"/persistence/programmationDAO",pico.getComponent(JSONProgrammationDAO.class));
+        registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS+"/persistence/reservationDAO",pico.getComponent(JPAReservationDAO.class));
+        
         cinema = pico.getComponent(Cinema.class);
         
         // voir si utile de les laisser ?

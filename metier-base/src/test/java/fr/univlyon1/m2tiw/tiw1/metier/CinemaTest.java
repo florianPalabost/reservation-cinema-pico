@@ -1,6 +1,7 @@
 package fr.univlyon1.m2tiw.tiw1.metier;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.univlyon1.m2tiw.metier.annuaire.Registry;
 import fr.univlyon1.m2tiw.tiw1.metier.jsondto.CinemaWrapper;
 import fr.univlyon1.m2tiw.tiw1.serveur.ServeurImpl;
 import fr.univlyon1.m2tiw.tiw1.utils.SeanceCompleteException;
@@ -10,6 +11,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.logging.Logger;
 import static org.junit.Assert.assertEquals;
+import org.junit.Before;
 import org.junit.Test;
 
 public class CinemaTest {
@@ -20,10 +22,16 @@ public class CinemaTest {
     private static final Logger LOGGER = Logger.getLogger(CinemaTest.class.getName());
     private Cinema cinema;
     private ServeurImpl serveur;
-
+    private Registry annuaire;
+    
+    @Before
+    public void initServeur() throws IOException {
+        annuaire = new Registry();
+        serveur = new ServeurImpl(annuaire);
+    }
+    
     @Test
     public void getNbSeances() throws IOException, SeanceCompleteException, ParseException {
-        serveur = new ServeurImpl();
         assertEquals(84,serveur.processRequest("SEANCE","getNbSeances",null));
     }
 
@@ -50,7 +58,6 @@ public class CinemaTest {
 
     @Test
     public void testProcess() throws IOException {
-        serveur = new ServeurImpl();
         //Cinema c = serveur.getCinema();
         HashMap params = new HashMap();
         params.put("nomFilm", (Object)"Operation Finale - VF");
