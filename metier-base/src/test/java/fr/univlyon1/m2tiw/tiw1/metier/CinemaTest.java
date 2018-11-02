@@ -60,7 +60,7 @@ public class CinemaTest {
     public void testProcess() throws IOException {
         //Cinema c = serveur.getCinema();
         HashMap params = new HashMap();
-        params.put("nomFilm", (Object)"Operation Finale - VF");
+        params.put("titre", (Object)"Operation Finale - VF");
         LOGGER.info("--------process REQUEST TEST------------");
         LOGGER.info("map params(): "+params.toString());
         LOGGER.info("getFilms(): "+serveur.processRequest("FILM","getFilms", null).toString());

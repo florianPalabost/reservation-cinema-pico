@@ -58,7 +58,7 @@ public class ServeurTest {
     @Test
     public void testProcessRequest(){
         assertEquals("mon-cinema",serveur.processRequest("CINEMA", "getNom", null));
-        assertEquals(6,serveur.processRequest("FILM", "getNbFilms", null));
+        assertEquals(7,serveur.processRequest("FILM", "getNbFilms", null));
         assertEquals(3,serveur.processRequest("SALLE", "getNbSalles", null));
     }
     
