@@ -145,7 +145,7 @@ public class ReservationTest {
     }
 
     @Test
-    public void equalsTest() {//not ok
+    public void equalsTest() {
 
         LOGGER.info(reservation1.toString());
         reservation1.setId(1L);
