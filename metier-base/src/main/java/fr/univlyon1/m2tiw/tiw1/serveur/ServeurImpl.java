@@ -37,7 +37,7 @@ public class ServeurImpl implements Serveur {
 
     /**
      * Serveur : Instantie un PicoCotainer et recupere Cinema .
-     * @param registryImpl
+     * @param registryImpl .
      * @throws java.io.IOException IOException
      */
     public ServeurImpl(Registry registryImpl) throws IOException {
@@ -71,16 +71,28 @@ public class ServeurImpl implements Serveur {
         registry.setReferencedObj(Registry.CTX_ROOT,this);
         
         // Bind cineRessXXX : /app/cineRessXXX 
-        registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS+"/cinemaRessourceFilms",pico.getComponent(CinemaRessourceFilms.class));
-        registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS+"/cinemaRessourceSalles",pico.getComponent(CinemaRessourceSalles.class));
-        registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS+"/cinemaRessourceSeances",pico.getComponent(CinemaRessourceSeances.class));
+        registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS
+                + "/cinemaRessourceFilms",
+                pico.getComponent(CinemaRessourceFilms.class));
+        registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS
+                + "/cinemaRessourceSalles",
+                pico.getComponent(CinemaRessourceSalles.class));
+        registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS
+                + "/cinemaRessourceSeances",
+                pico.getComponent(CinemaRessourceSeances.class));
         
         // Bind salles : /app/metier/salles
-        registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS+SalleDAO.CTX_METIER+"/salles",pico.getComponent(JSONSalleDAO.class).load());
+        registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS + SalleDAO.CTX_METIER
+                + "/salles",
+                pico.getComponent(JSONSalleDAO.class).load());
         
         // Bind progdao et reservDAO : /app/persistence/progdao,ReservDao
-        registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS+"/persistence/programmationDAO",pico.getComponent(JSONProgrammationDAO.class));
-        registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS+"/persistence/reservationDAO",pico.getComponent(JPAReservationDAO.class));
+        registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS
+                + "/persistence/programmationDAO",
+                pico.getComponent(JSONProgrammationDAO.class));
+        registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS
+                + "/persistence/reservationDAO",
+                pico.getComponent(JPAReservationDAO.class));
         
         cinema = pico.getComponent(Cinema.class);
         
@@ -117,13 +129,15 @@ public class ServeurImpl implements Serveur {
     
     /**
      *
-     * @param methode
+     * processRequest .
+     *
+     * @param methode methode .
      * @param commande methodes add,remove,get,...
      * @param parametres paires nom/valeur des parametres    des requetes
      * @return
      */
     @Override
-    public Object processRequest(String methode, String commande, Map<String, Object> parametres){
+    public Object processRequest(String methode, String commande, Map<String, Object> parametres) {
         try {
             return cinema.process(methode,commande, parametres);
         } catch (IOException ex) {
