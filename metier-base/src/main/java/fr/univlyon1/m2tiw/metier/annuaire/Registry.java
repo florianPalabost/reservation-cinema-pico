@@ -13,7 +13,7 @@ import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaContextImpl;
  * @author florian
  */
 public class Registry implements IRegistry {
-    public static final String CTX_ROOT = "server";
+    public static final String CTX_ROOT = "/server";
     public CinemaContext instanceRoot;
 
     public Registry() {

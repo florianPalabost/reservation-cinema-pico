@@ -75,7 +75,7 @@ public class ServeurTest {
     
     @Test
     public void getRegistryNbSalles() throws Exception {
-        int nbSalles = ((List<Salle>) annuaire.getReferencedObj("app/metier/salles")).size();
+        int nbSalles = ((List<Salle>) annuaire.getReferencedObj("/app/metier/salles")).size();
         assertEquals(3, nbSalles);
     }
 }
