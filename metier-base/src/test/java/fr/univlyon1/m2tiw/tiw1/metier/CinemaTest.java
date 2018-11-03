@@ -67,8 +67,68 @@ public class CinemaTest {
         LOGGER.info("getFilm(): "+serveur.processRequest("FILM","getFilm", params).toString());
         
         // TODO faire des methodes pour avoir la taille de films,salles... comme getNbSeances
-    }   
-    
-    
+    }
+
+    // ----------- CinemaRessourceFilms -----------
+    @Test
+    public void getFilms() {
+
+        //serveur = new ServeurImpl();
+
+        assertEquals("[{titre:Mission Impossible - Fallout, version:VO, fiche:https://www.imdb.com/title/tt4912910/?ref_=inth_ov_tt}, {titre:Toto, version:VF, fiche:https://toto.fr}, {titre:BlacKkKlansman, version:VO, fiche:https://www.imdb.com/title/tt7349662/?ref_=inth_ov_tt}, {titre:Burning, version:VO, fiche:https://www.imdb.com/title/tt7282468/?ref_=shtt_ov_tt}, {titre:Mission Impossible - Fallout, version:VF, fiche:https://www.imdb.com/title/tt4912910/?ref_=inth_ov_tt}, {titre:Operation Finale, version:VF, fiche:https://www.imdb.com/title/tt5208252/?ref_=inth_ov_tt}, {titre:Le poirier sauvage, version:VF, fiche:https://www.imdb.com/title/tt6628102/?ref_=shtt_ov_tt}]", serveur.processRequest("FILM","getFilms", null).toString());
+    }
+
+    @Test
+    public void getFilm() {
+
+        //serveur = new ServeurImpl();
+
+        HashMap params = new HashMap();
+
+        params.put("titre", (Object)"Operation Finale - VF");
+
+        assertEquals("{titre:Operation Finale, version:VF, fiche:https://www.imdb.com/title/tt5208252/?ref_=inth_ov_tt}", serveur.processRequest("FILM","getFilm", params).toString());
+    }
+
+    /*@Test
+    public void addFilm() {
+
+        //serveur = new ServeurImpl();
+
+        Film ratarouille = new Film("Ratatouille", "VO", "https://www.imdb.com/title/tt0382932/?ref_=nv_sr_1");
+
+        HashMap params = new HashMap();
+
+        params.put("film", (Object)ratarouille);
+
+        serveur.processRequest("FILM","addFilm", params);
+
+        assertEquals("[{titre:Mission Impossible - Fallout, version:VO, fiche:https://www.imdb.com/title/tt4912910/?ref_=inth_ov_tt}, {titre:Toto, version:VF, fiche:https://toto.fr}, {titre:BlacKkKlansman, version:VO, fiche:https://www.imdb.com/title/tt7349662/?ref_=inth_ov_tt}, {titre:Burning, version:VO, fiche:https://www.imdb.com/title/tt7282468/?ref_=shtt_ov_tt}, {titre:Mission Impossible - Fallout, version:VF, fiche:https://www.imdb.com/title/tt4912910/?ref_=inth_ov_tt}, {titre:Operation Finale, version:VF, fiche:https://www.imdb.com/title/tt5208252/?ref_=inth_ov_tt}, {titre:Le poirier sauvage, version:VF, fiche:https://www.imdb.com/title/tt6628102/?ref_=shtt_ov_tt}, {titre:Ratatouille, version:VO, fiche:https://www.imdb.com/title/tt0382932/?ref_=nv_sr_1}]", serveur.processRequest("FILM","getFilms", null).toString());
+    }*/
+
+    /*@Test
+    public void removeFilm()  { //removeFilm() A VERIFIER
+
+        //serveur = new ServeurImpl();
+
+        //Film missionImpossible = new Film("Mission Impossible - Fallout", "VO", "https://www.imdb.com/title/tt4912910/?ref_=inth_ov_tt");
+
+        HashMap params = new HashMap();
+
+        params.put("film", (Object)"Mission Impossible - Fallout, version:VO");
+
+        serveur.processRequest("FILM","removeFilm", params);
+
+        assertEquals("[{titre:BlacKkKlansman, version:VO, fiche:https://www.imdb.com/title/tt7349662/?ref_=inth_ov_tt}, {titre:Burning, version:VO, fiche:https://www.imdb.com/title/tt7282468/?ref_=shtt_ov_tt}, {titre:Mission Impossible - Fallout, version:VF, fiche:https://www.imdb.com/title/tt4912910/?ref_=inth_ov_tt}, {titre:Operation Finale, version:VF, fiche:https://www.imdb.com/title/tt5208252/?ref_=inth_ov_tt}, {titre:Le poirier sauvage, version:VF, fiche:https://www.imdb.com/title/tt6628102/?ref_=shtt_ov_tt}, {titre:Ratatouille, version:VO, fiche:https://www.imdb.com/title/tt0382932/?ref_=nv_sr_1}]", serveur.processRequest("FILM","getFilms", null).toString());
+
+    }*/
+
+    @Test
+    public void getNbFilms() {
+
+        //serveur = new ServeurImpl();
+
+        assertEquals(7, serveur.processRequest("FILM","getNbFilms", null));
+    }
 
 }
