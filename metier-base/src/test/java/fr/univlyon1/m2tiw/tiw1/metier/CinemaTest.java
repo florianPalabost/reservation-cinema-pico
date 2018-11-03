@@ -131,4 +131,67 @@ public class CinemaTest {
         assertEquals(7, serveur.processRequest("FILM","getNbFilms", null));
     }
 
+
+    // ----------- CinemaRessourceSalles -----------
+    @Test
+    public void getSalles() {
+
+        //serveur = new ServeurImpl();
+
+        assertEquals("[{nom:Salle 3, capacite:50}, {nom:Salle 2, capacite:70}, {nom:Salle 1, capacite:100}]",serveur.processRequest("SALLE","getSalles",null).toString());
+    }
+
+    @Test
+    public void getSalle() {
+
+        //serveur = new ServeurImpl();
+
+        HashMap params = new HashMap();
+
+        params.put("nomSalle", (Object)"Salle 2");
+
+        assertEquals("{nom:Salle 2, capacite:70}",serveur.processRequest("SALLE","getSalle", params).toString());
+    }
+
+    @Test
+    public void addSalle() {
+
+        //serveur = new ServeurImpl();
+
+        Salle salle4 = new Salle("Salle 4", 100);
+
+        HashMap params = new HashMap();
+
+        params.put("salle", (Object)salle4);
+
+        serveur.processRequest("SALLE", "addSalle", params);
+
+        assertEquals("[{nom:Salle 4, capacite:100}, {nom:Salle 3, capacite:50}, {nom:Salle 2, capacite:70}, {nom:Salle 1, capacite:100}]",serveur.processRequest("SALLE","getSalles", null).toString());
+    }
+
+    /*@Test
+    public void removeSalle()  { // A VERIFIER
+
+        //serveur = new ServeurImpl();
+
+        Salle salle2 = new Salle("Salle 2", 70);
+
+        HashMap params = new HashMap();
+
+        params.put("salle", (Object)salle2);
+
+        serveur.processRequest("SALLE", "removeSalle", params);
+
+        assertEquals("[{nom:Salle 3, capacite:50}, {nom:Salle 1, capacite:100}]",serveur.processRequest("SALLE","getSalles", null).toString());
+
+    }*/
+
+    @Test
+    public void getNbSalles() {
+
+        //serveur = new ServeurImpl();
+
+        assertEquals(3,serveur.processRequest("SALLE","getNbSalles",null));
+    }
+
 }
