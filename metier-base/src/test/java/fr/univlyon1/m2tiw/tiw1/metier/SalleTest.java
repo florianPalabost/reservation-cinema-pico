@@ -6,16 +6,9 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import static org.junit.Assert.assertEquals;
-
-
 import org.junit.Before;
 import org.junit.Test;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  *
@@ -27,13 +20,11 @@ public class SalleTest {
 
     @Before
     public void loadSalles() throws IOException {
-
         salles = new JSONSalleDAO().load();
     }
 
     @Test
     public void getSalles() throws IOException {
-        //salles = new JSONSalleDAO().load();
         LOGGER.info(salles.toString());
         assertEquals("[{nom:Salle 1, capacite:100}, {nom:Salle 2, capacite:70}, "
                 + "{nom:Salle 3, capacite:50}]", salles.toString());
@@ -41,8 +32,6 @@ public class SalleTest {
 
     @Test
     public void getNbSalles() throws IOException {
-
-        //salles = new JSONSalleDAO().load();
         LOGGER.info(salles.toString());
 
         //Il y a 3 salles
@@ -54,8 +43,6 @@ public class SalleTest {
 
     @Test
     public void getNom() throws IOException {
-
-        //salles = new JSONSalleDAO().load();
         LOGGER.info(salles.get(0).getNom());
         LOGGER.info(salles.get(1).getNom());
         LOGGER.info(salles.get(2).getNom());
@@ -71,12 +58,8 @@ public class SalleTest {
         }
     }
 
-
     @Test
     public void getCapacite() throws IOException {
-
-        //salles = new JSONSalleDAO().load();
-
         //Il y a 3 salles
         // - {nom:Salle 1, capacite:100},
         // - {nom:Salle 2, capacite:70},

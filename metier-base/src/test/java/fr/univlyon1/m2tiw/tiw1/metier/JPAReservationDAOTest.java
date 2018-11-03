@@ -18,11 +18,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  *
@@ -33,9 +28,7 @@ import static org.junit.Assert.assertTrue;
 public class JPAReservationDAOTest {
 
     private static final Logger LOGGER = Logger.getLogger(JPAReservationDAOTest.class.getName());
-
     private EntityManager em = null;
-
     private ReservationDAO rdao;
 
     private Reservation reservation1 = new Reservation("Alper", "EKMEKCI", "alper@alperekmekci.fr");
@@ -44,15 +37,12 @@ public class JPAReservationDAOTest {
 
     @Before
     public void setup() {
-
         em = Persistence.createEntityManagerFactory("pu").createEntityManager();
-
         rdao = new JPAReservationDAO(em);
     }
 
     @After
     public void tearDown() {
-
         em.close();
     }
 

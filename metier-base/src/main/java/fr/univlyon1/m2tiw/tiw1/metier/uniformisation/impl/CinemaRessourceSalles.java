@@ -41,8 +41,8 @@ public class CinemaRessourceSalles extends ACinemaRessource {
         this.salles.put(salle.getNom(), salle);
     }
 
-    private void removeSalle(Salle salle) {
-        this.salles.remove(salle);
+    private void removeSalle(String nomSalle) {
+        this.salles.remove(nomSalle);
     }
     
     private Salle getSalle(String salle) {
@@ -77,7 +77,7 @@ public class CinemaRessourceSalles extends ACinemaRessource {
                 return null;
 
             case "removeSalle":
-                removeSalle((Salle)parametres.get("salle"));
+                removeSalle((String)parametres.get("nomSalle"));
                 return null;
                 
             case "getNbSalles":

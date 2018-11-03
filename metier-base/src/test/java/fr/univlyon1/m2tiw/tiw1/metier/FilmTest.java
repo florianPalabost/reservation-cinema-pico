@@ -1,16 +1,8 @@
 package fr.univlyon1.m2tiw.tiw1.metier;
 
 import java.util.logging.Logger;
-
 import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  *
@@ -25,9 +17,7 @@ public class FilmTest {
 
     // Film4 = Film1
     private Film film4 = new Film("Incendies", "VF", "https://www.imdb.com/title/tt1255953/?ref_=nv_sr_1");
-
     private static final Logger LOGGER = Logger.getLogger(FilmTest.class.getName());
-
 
     @Test
     public void getTitre() {
