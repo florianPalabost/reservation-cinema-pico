@@ -6,8 +6,12 @@ import fr.univlyon1.m2tiw.tiw1.metier.jsondto.CinemaWrapper;
 import fr.univlyon1.m2tiw.tiw1.serveur.ServeurImpl;
 import fr.univlyon1.m2tiw.tiw1.utils.SeanceCompleteException;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.logging.Logger;
 import static org.junit.Assert.assertEquals;
@@ -71,7 +75,7 @@ public class CinemaTest {
 
     // ----------- CinemaRessourceFilms -----------
     @Test
-    public void getFilms() {
+    public void getFilms() { // OK
 
         //serveur = new ServeurImpl();
 
@@ -79,7 +83,7 @@ public class CinemaTest {
     }
 
     @Test
-    public void getFilm() {
+    public void getFilm() { // OK
 
         //serveur = new ServeurImpl();
 
@@ -91,7 +95,7 @@ public class CinemaTest {
     }
 
     /*@Test
-    public void addFilm() {
+    public void addFilm() { // OK (Il ajoute un film, c'est pour cela il est en commentaire)
 
         //serveur = new ServeurImpl();
 
@@ -107,7 +111,7 @@ public class CinemaTest {
     }*/
 
     /*@Test
-    public void removeFilm()  { //removeFilm() A VERIFIER
+    public void removeFilm()  {  // A VERIFIER
 
         //serveur = new ServeurImpl();
 
@@ -124,7 +128,7 @@ public class CinemaTest {
     }*/
 
     @Test
-    public void getNbFilms() {
+    public void getNbFilms() { // OK
 
         //serveur = new ServeurImpl();
 
@@ -134,7 +138,7 @@ public class CinemaTest {
 
     // ----------- CinemaRessourceSalles -----------
     @Test
-    public void getSalles() {
+    public void getSalles() { // OK
 
         //serveur = new ServeurImpl();
 
@@ -142,7 +146,7 @@ public class CinemaTest {
     }
 
     @Test
-    public void getSalle() {
+    public void getSalle() { // OK
 
         //serveur = new ServeurImpl();
 
@@ -154,7 +158,7 @@ public class CinemaTest {
     }
 
     @Test
-    public void addSalle() {
+    public void addSalle() { // OK
 
         //serveur = new ServeurImpl();
 
@@ -187,11 +191,145 @@ public class CinemaTest {
     }*/
 
     @Test
-    public void getNbSalles() {
+    public void getNbSalles() { // OK
 
         //serveur = new ServeurImpl();
 
         assertEquals(3,serveur.processRequest("SALLE","getNbSalles",null));
+    }
+
+
+    // ----------- CinemaRessourceSeances -----------
+    @Test
+    public void createSeance() throws ParseException { // A VERIFIER
+
+        //serveur = new ServeurImpl();
+
+        // Film
+        Film film = new Film("LaLaLand", "VO", "https://www.imdb.com/title/tt2975976/?ref_=nv_sr_1");
+
+        // Salle
+        Salle salle = new Salle("Salle LYON", 130);
+
+        // Date
+        String d = "2018-08-11 20:00:00 CET";
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss zzz");
+        Date dateSeance = format.parse(d);
+
+        // Prix
+        Float prix = 31.00f;
+
+        // Au debut getNbSeances = 84
+        assertEquals(84, serveur.processRequest("SEANCE", "getNbSeances", null));
+
+        HashMap params = new HashMap();
+
+        params.put("salle", (Object)salle);
+        params.put("film", (Object)film);
+        params.put("date", (Object)dateSeance);
+        params.put("prix", (Object)prix);
+
+        LOGGER.info("PARAMS : " + params);
+
+        serveur.processRequest("SEANCE", "createSeance", params);
+
+        // Apres la creation de la seance, getNbSeances = 84
+        assertEquals(85, serveur.processRequest("SEANCE", "getNbSeances", null));
+    }
+
+    /*@Test
+    public void removeSeance() throws ParseException { // OK (Il efface une seance, c'est pour cela il est en commentaire)
+
+        //serveur = new ServeurImpl();
+
+        //{ "film" : "Operation Finale - VF",
+        //  "salle" : "Salle 2",
+        //  "date" : "2018-09-25 20:00:00 CEST",
+        //  "prix" : 10.0 }
+
+        // Film
+        Film opFin = new Film("Operation Finale", "VF", "https://www.imdb.com/title/tt5208252/?ref_=inth_ov_tt");
+
+        // Salle
+        Salle salle2 = new Salle("Salle 2", 70);
+
+        // Date
+        String d = "2018-09-25 20:00:00 CEST";
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss zzz");
+        Date dateSeance = format.parse(d);
+
+        // Prix
+        Float prix = 10.0f;
+
+        // La seance a effacer
+        Seance maSeanceEffacer = new Seance(opFin, salle2, dateSeance, prix);
+
+        // Au debut getNbSeances = 84
+        assertEquals(84, serveur.processRequest("SEANCE", "getNbSeances", null));
+
+        HashMap params = new HashMap();
+
+        params.put("seance", (Object)maSeanceEffacer);
+
+        serveur.processRequest("SEANCE", "removeSeance", params);
+
+        // Apres l'effacement de la seance getNbSeances = 83
+        assertEquals(83, serveur.processRequest("SEANCE", "getNbSeances", null));
+    }*/
+
+    @Test
+    public void getNBSeances() { // OK
+
+        assertEquals(84, serveur.processRequest("SEANCE", "getNbSeances", null));
+    }
+
+    @Test
+    public void setSeances() throws ParseException { // OK
+
+        // Films
+        Film harryP = new Film("Harry Potter and the Prisoner of Azkaban", "VO", "https://www.imdb.com/title/tt0304141/?ref_=nv_sr_6");
+        Film batmanB = new Film("Batman Begins", "VF", "https://www.imdb.com/title/tt0372784/?ref_=nv_sr_2");
+
+        // Salles
+        Salle salleX = new Salle("Salle X", 200);
+        Salle salleY = new Salle("Salle Y", 170);
+
+        // Dates
+        String d1 = "2018-09-25 20:00:00 CEST";
+        String d2 = "2018-10-12 19:00:00 CEST";
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss zzz");
+        Date dateSeance1 = format.parse(d1);
+        Date dateSeance2 = format.parse(d2);
+
+        // Prix
+        Float prix1 = 10.0f;
+        Float prix2 = 11.0f;
+
+        // Les seances a creer
+        Seance maSeanceCreer1 = new Seance(harryP, salleX, dateSeance1, prix1);
+        Seance maSeanceCreer2 = new Seance(batmanB, salleY, dateSeance2, prix2);
+        LOGGER.info("maSeanceCreer1 : " + maSeanceCreer1);
+        LOGGER.info("maSeanceCreer2 : " + maSeanceCreer2);
+
+        // Creation de la nouvelle collection
+        Collection<Seance> colSeances = new ArrayList<Seance>() {{
+            add(maSeanceCreer1);
+            add(maSeanceCreer2);
+        }};
+
+        LOGGER.info("COLSEANCE : " + colSeances);
+
+        // Aavant de la creation de la seance, getNbSeances = 84
+        assertEquals(84, serveur.processRequest("SEANCE", "getNbSeances", null));
+
+        HashMap params = new HashMap();
+
+        params.put("seances", (Object)colSeances);
+
+        serveur.processRequest("SEANCE", "setSeances", params);
+
+        // Apres la creation de la seance, getNbSeances = 2
+        assertEquals(2, serveur.processRequest("SEANCE", "getNbSeances", null));
     }
 
 }
