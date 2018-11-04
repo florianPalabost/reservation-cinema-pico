@@ -33,6 +33,10 @@ import org.picocontainer.behaviors.Caching;
 public class ServeurImpl implements Serveur {
     private Cinema cinema;
     private IRegistry registry;
+    private static final String sallesFile = "salles.json";
+    private static final String filmsFile = "films.json";
+    private static final String seancesFile = "seances.json";
+
     private static final Logger LOGGER = Logger.getLogger(ServeurImpl.class.getName());
 
     /**
@@ -47,7 +51,7 @@ public class ServeurImpl implements Serveur {
         pico.addComponent(JPAReservationDAO.class);
         pico.addComponent(pico.getComponent(JSONSalleDAO.class).load());
         pico.addComponent(JSONProgrammationDAO.class);
-        pico.addComponent(JSONCinemaDAO.class);
+        //pico.addComponent(JSONCinemaDAO.class);
         pico.addComponent("mon-cinema");
         pico.addComponent(Cinema.class);
         

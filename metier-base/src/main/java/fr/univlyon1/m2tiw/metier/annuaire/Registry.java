@@ -13,11 +13,11 @@ import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaContextImpl;
  * @author florian
  */
 public class Registry implements IRegistry {
-    public static final String CTX_ROOT = "server";
-    public CinemaContext instanceRoot;
+    public static final String CTX_ROOT = "/server";
+    public CinemaContext root;
 
     public Registry() {
-        this.instanceRoot = new CinemaContextImpl();
+        this.root = new CinemaContextImpl();
     }
     
     /**
@@ -27,9 +27,9 @@ public class Registry implements IRegistry {
      */
     @Override
     public Object getReferencedObj(String refName){
-        Object currObj = instanceRoot;
+        Object currObj = root;
         for (String currentPath : refName.split("/")){
-            if(currObj != null){
+            if(currObj != null || currObj != ""){
                 currObj = ((CinemaContext)currObj).getDAO(currentPath);   
             }
             else {
@@ -49,7 +49,7 @@ public class Registry implements IRegistry {
     public void setReferencedObj(String pathRef, Object o){
         int i = 1 ;
         String[] tmpPath = pathRef.split("/") ;
-        Object currentObj = instanceRoot ;
+        Object currentObj = root ;
         
         // Parcours tant qu'on trouve un /
         for (String currPath : tmpPath) {
@@ -57,7 +57,7 @@ public class Registry implements IRegistry {
                 if (i == tmpPath.length) {
                     ((CinemaContext) currentObj).setDAO(currPath, o);
                 } else {
-                    if (((CinemaContext) currentObj).getDAO(currPath) == null) {
+                    if(((CinemaContext) currentObj).getDAO(currPath) == null) {
                         ((CinemaContext) currentObj).setDAO(currPath, new CinemaContextImpl());
                         currentObj = ((CinemaContext) currentObj).getDAO(currPath);
                     } else {

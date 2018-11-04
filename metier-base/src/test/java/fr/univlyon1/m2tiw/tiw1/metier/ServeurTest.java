@@ -56,15 +56,16 @@ public class ServeurTest {
     }
     
     @Test
-    public void testProcessRequest(){
+    public void testProcessRequestNBXXX(){ // OK
         // verifie qu'on recupere les bonnes informations
-        assertEquals("mon-cinema",serveur.processRequest("CINEMA", "getNom", null));
-        assertEquals(7,serveur.processRequest("FILM", "getNbFilms", null));
-        assertEquals(3,serveur.processRequest("SALLE", "getNbSalles", null));
+        assertEquals("mon-cinema",serveur.processRequest("CINEMA", "getNom", new HashMap<>()));
+        assertEquals(7,serveur.processRequest("FILM", "getNbFilms", new HashMap<>()));
+        assertEquals(3,serveur.processRequest("SALLE", "getNbSalles", new HashMap<>()));
+        assertEquals(84,serveur.processRequest("SEANCE", "getNbSeances", new HashMap<>()));
     }
     
     @Test
-    public void testAddAndGetFilm() {
+    public void testAddAndGetFilm() {// OK
         Film f = new Film("Toto","VF","https://toto.fr");
         Map<String,Object> params = new HashMap<>();
         params.put("titre", "Toto - VF");
@@ -74,9 +75,10 @@ public class ServeurTest {
     }
     
     @Test
-    public void getRegistryNbSalles() throws Exception {
-        int nbSalles = ((List<Salle>) annuaire.getReferencedObj("app/metier/salles")).size();
+    public void getRegistryNbSalles() throws Exception { //OK
+        int nbSalles = ((List<Salle>) annuaire.getReferencedObj("/app/metier/salles")).size();
         assertEquals(3, nbSalles);
     }
+
 }
 

@@ -54,7 +54,7 @@ public class JSONProgrammationDAO implements ProgrammationDAO {
      * @throws IOException
      * @throws ParseException
      */
-    public JSONProgrammationDAO(String nom,List<Salle> salles) throws IOException, ParseException {
+    public JSONProgrammationDAO(String nom,Collection<Salle> salles) throws IOException, ParseException {
         setSalles(salles);
         load(nom);
     }
@@ -89,21 +89,17 @@ public class JSONProgrammationDAO implements ProgrammationDAO {
                             DATE_PARSER.parse(dto.date), dto.prix);
                     seances.put(s.getId(), s);
                 }
-            }
-            else {
-            }
-        }
-        else {
+            }      
         }
     }
 
     @Override
     public void initData(Cinema cinema) throws Exception {
         films = new ArrayList<>();
-        films.addAll((Collection<? extends Film>) cinema.process("FILM", "getFilms",null));
+        films.addAll((Collection<Film>) cinema.process("FILM", "getFilms",null));
         seances = new HashMap<>();
-        for (Object s : (ArrayList) cinema.process("SEANCE", "getSeances", null)) {
-            seances.put(((Seance)s).getId(), (Seance) s);
+        for (Seance s :  (Collection<Seance>)cinema.process("SEANCE", "getSeances", null)) {
+            seances.put(s.getId(), s);
         }
         save();
     }

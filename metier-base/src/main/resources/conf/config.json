@@ -1,39 +1,35 @@
 {
-  "application-config": {
-    "name": "mon-cinema",
-    "service-components":
-        [
-          {
-            "class-name": "java.util.ArrayList",
-            "path" : "root/app/metier/salles"
-          }
+    "application-config": {
+        "name": "mon-cinema",
+        "business-components": [
+            {
+                "class-name": "fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaRessourceSalles",
+                "path" : "root/app/cinemaRessourceSalles"
+            },
+            {
+                "class-name": "fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaRessourceFilms",
+                "path" : "root/app/cinemaRessourceFilms"
+            },
+            {
+                "class-name": "fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaRessourceSeances",
+                "path" : "root/app/cinemaRessourceSeances"
+            }
         ],
-    "persistence-components":
-        [
-          {
-            "class-name": "fr.univlyon1.m2tiw.tiw1.metier.dao.ProgrammationDAO",
-            "path": "root/app/persistence/programmationDAO"
-          },
-          {
-            "class-name": "fr.univlyon1.m2tiw.tiw1.metier.dao.ReservationDAO",
-            "path":"root/app/persistence/reservationDAO"
-          }
-    ],
-    "ressources-components":
-        [
-          {
-            "class-name": "fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaRessourceSalles",
-            "path" : "root/app/cinemaRessourceSalle"
-          },
-          {
-            "class-name": "fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaRessourceFilms",
-            "path" : "root/app/cinemaRessourceFilms"
-          },
-          {
-            "class-name": "fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaRessourceSeances",
-            "path" : "root/app/cinemaRessourceSeances"
-          }
+        "service-components": [
+                {
+                    "class-name": "java.util.ArrayList",
+                    "path" : "root/app/metier/salles"
+                }
+            ],
+        "persistence-components": [
+                {
+                    "class-name": "fr.univlyon1.m2tiw.tiw1.metier.dao.impl.JSONProgrammationDAO",
+                    "path": "root/app/persistence/JSONProgrammationDAO"
+                },
+                {
+                    "class-name": "fr.univlyon1.m2tiw.tiw1.metier.dao.impl.JPAReservationDAO",
+                    "path":"root/app/persistence/JPAReservationDAO"
+                }
         ]
-
-  }
+    }
 }

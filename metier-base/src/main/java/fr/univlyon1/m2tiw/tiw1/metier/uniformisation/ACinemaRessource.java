@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  * @author florian
  */
 public abstract class ACinemaRessource implements ICinema{
-    public static final String CTX_CINE_RESS = "app";
+    public static final String CTX_CINE_RESS = "/app";
     private static final Logger LOGGER = Logger.getLogger(ServeurImpl.class.getName());
     // private final String nom;
     private Map<String, Salle> salles;
