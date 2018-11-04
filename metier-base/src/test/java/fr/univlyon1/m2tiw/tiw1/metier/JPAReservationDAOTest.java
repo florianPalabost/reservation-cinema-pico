@@ -21,6 +21,8 @@ import static org.junit.Assert.assertTrue;
 
 /**
  *
+ * JPAReservationDAOTest .
+ *
  * @author alper
  */
 // NAME_ASCENDING : Pour faire les test, il suivit un ordre alphabetique
@@ -31,9 +33,12 @@ public class JPAReservationDAOTest {
     private EntityManager em = null;
     private ReservationDAO rdao;
 
-    private Reservation reservation1 = new Reservation("Alper", "EKMEKCI", "alper@alperekmekci.fr");
-    private Reservation reservation2 = new Reservation("Florian", "PALABOST", "florian@palabost.fr");
-    private Reservation reservation3 = new Reservation("Eric", "CLAPTON", "ericlapton@gmail.com");
+    private Reservation reservation1 = new Reservation("Alper",
+            "EKMEKCI", "alper@alperekmekci.fr");
+    private Reservation reservation2 = new Reservation("Florian",
+            "PALABOST", "florian@palabost.fr");
+    private Reservation reservation3 = new Reservation("Eric",
+            "CLAPTON", "ericlapton@gmail.com");
 
     @Before
     public void setup() {
@@ -47,7 +52,7 @@ public class JPAReservationDAOTest {
     }
 
     @Test
-    public void aSave() {
+    public void aaSave() {
 
         // -------------- Save reservation1 --------------
         reservation1.setSeanceId("Seance1");
@@ -56,7 +61,8 @@ public class JPAReservationDAOTest {
         LOGGER.info(rdao.getBySeance("Seance1").toString());
         LOGGER.info(rdao.getBySeance("Seance2").toString());
 
-        assertEquals("[{id:1, prenom:Alper, nom:EKMEKCI, email:alper@alperekmekci.fr, paye:false, seanceId:Seance1}]", rdao.getBySeance("Seance1").toString());
+        assertEquals("[{id:1, prenom:Alper, nom:EKMEKCI, email:alper@alperekmekci.fr, "
+                + "paye:false, seanceId:Seance1}]", rdao.getBySeance("Seance1").toString());
         assertEquals("[]", rdao.getBySeance("Seance2").toString());
 
         // -------------- Save reservation2 --------------
@@ -66,8 +72,10 @@ public class JPAReservationDAOTest {
         LOGGER.info(rdao.getBySeance("Seance1").toString());
         LOGGER.info(rdao.getBySeance("Seance2").toString());
 
-        assertEquals("[{id:1, prenom:Alper, nom:EKMEKCI, email:alper@alperekmekci.fr, paye:false, seanceId:Seance1}]", rdao.getBySeance("Seance1").toString());
-        assertEquals("[{id:2, prenom:Florian, nom:PALABOST, email:florian@palabost.fr, paye:false, seanceId:Seance2}]", rdao.getBySeance("Seance2").toString());
+        assertEquals("[{id:1, prenom:Alper, nom:EKMEKCI, email:alper@alperekmekci.fr, "
+                + "paye:false, seanceId:Seance1}]", rdao.getBySeance("Seance1").toString());
+        assertEquals("[{id:2, prenom:Florian, nom:PALABOST, email:florian@palabost.fr, "
+                + "paye:false, seanceId:Seance2}]", rdao.getBySeance("Seance2").toString());
 
         // -------------- Save reservation3 --------------
         reservation3.setSeanceId("Seance1");
@@ -76,12 +84,16 @@ public class JPAReservationDAOTest {
         LOGGER.info(rdao.getBySeance("Seance1").toString());
         LOGGER.info(rdao.getBySeance("Seance2").toString());
 
-        assertEquals("[{id:1, prenom:Alper, nom:EKMEKCI, email:alper@alperekmekci.fr, paye:false, seanceId:Seance1}, {id:3, prenom:Eric, nom:CLAPTON, email:ericlapton@gmail.com, paye:false, seanceId:Seance1}]", rdao.getBySeance("Seance1").toString());
-        assertEquals("[{id:2, prenom:Florian, nom:PALABOST, email:florian@palabost.fr, paye:false, seanceId:Seance2}]", rdao.getBySeance("Seance2").toString());
+        assertEquals("[{id:1, prenom:Alper, nom:EKMEKCI, email:alper@alperekmekci.fr, "
+                + "paye:false, seanceId:Seance1}, "
+                + "{id:3, prenom:Eric, nom:CLAPTON, email:ericlapton@gmail.com, "
+                + "paye:false, seanceId:Seance1}]", rdao.getBySeance("Seance1").toString());
+        assertEquals("[{id:2, prenom:Florian, nom:PALABOST, email:florian@palabost.fr, "
+                + "paye:false, seanceId:Seance2}]", rdao.getBySeance("Seance2").toString());
     }
 
     @Test
-    public void bDelete() {
+    public void bbDelete() {
 
         reservation1.setSeanceId("Seance1");
         reservation2.setSeanceId("Seance2");
@@ -92,30 +104,57 @@ public class JPAReservationDAOTest {
         rdao.save(reservation3);
 
         // Avant de commencer delete
-        assertEquals("[{id:1, prenom:Alper, nom:EKMEKCI, email:alper@alperekmekci.fr, paye:false, seanceId:Seance1}, {id:3, prenom:Eric, nom:CLAPTON, email:ericlapton@gmail.com, paye:false, seanceId:Seance1}, {id:4, prenom:Alper, nom:EKMEKCI, email:alper@alperekmekci.fr, paye:false, seanceId:Seance1}, {id:6, prenom:Eric, nom:CLAPTON, email:ericlapton@gmail.com, paye:false, seanceId:Seance1}]", rdao.getBySeance("Seance1").toString());
-        assertEquals("[{id:2, prenom:Florian, nom:PALABOST, email:florian@palabost.fr, paye:false, seanceId:Seance2}, {id:5, prenom:Florian, nom:PALABOST, email:florian@palabost.fr, paye:false, seanceId:Seance2}]", rdao.getBySeance("Seance2").toString());
+        assertEquals("[{id:1, prenom:Alper, nom:EKMEKCI, email:alper@alperekmekci.fr, "
+                + "paye:false," + " seanceId:Seance1}, {id:3, prenom:Eric, nom:CLAPTON, "
+                + "email:ericlapton@gmail.com, paye:false, seanceId:Seance1}, "
+                + "{id:4, prenom:Alper, nom:EKMEKCI, "
+                + "email:alper@alperekmekci.fr, paye:false, seanceId:Seance1}, "
+                + "{id:6, prenom:Eric, nom:CLAPTON, email:ericlapton@gmail.com, paye:false, "
+                + "seanceId:Seance1}]", rdao.getBySeance("Seance1").toString());
+        assertEquals("[{id:2, prenom:Florian, nom:PALABOST, email:florian@palabost.fr, "
+                + "paye:false, seanceId:Seance2}, {id:5, prenom:Florian, nom:PALABOST, "
+                + "email:florian@palabost.fr, paye:false, seanceId:Seance2}]",
+                rdao.getBySeance("Seance2").toString());
 
         // -------------- delete reservation1 --------------
         rdao.delete(reservation1);
 
-        assertEquals("[{id:1, prenom:Alper, nom:EKMEKCI, email:alper@alperekmekci.fr, paye:false, seanceId:Seance1}, {id:3, prenom:Eric, nom:CLAPTON, email:ericlapton@gmail.com, paye:false, seanceId:Seance1}, {id:6, prenom:Eric, nom:CLAPTON, email:ericlapton@gmail.com, paye:false, seanceId:Seance1}]", rdao.getBySeance("Seance1").toString());
-        assertEquals("[{id:2, prenom:Florian, nom:PALABOST, email:florian@palabost.fr, paye:false, seanceId:Seance2}, {id:5, prenom:Florian, nom:PALABOST, email:florian@palabost.fr, paye:false, seanceId:Seance2}]", rdao.getBySeance("Seance2").toString());
+        assertEquals("[{id:1, prenom:Alper, nom:EKMEKCI, email:alper@alperekmekci.fr, "
+                + "paye:false, "
+                + "seanceId:Seance1}, {id:3, prenom:Eric, nom:CLAPTON, email:ericlapton@gmail.com, "
+                + "paye:false, seanceId:Seance1}, {id:6, prenom:Eric, nom:CLAPTON, "
+                + "email:ericlapton@gmail.com, paye:false, seanceId:Seance1}]",
+                rdao.getBySeance("Seance1").toString());
+        assertEquals("[{id:2, prenom:Florian, nom:PALABOST, email:florian@palabost.fr, "
+                + "paye:false, seanceId:Seance2}, {id:5, prenom:Florian, nom:PALABOST, "
+                + "email:florian@palabost.fr, paye:false, seanceId:Seance2}]",
+                rdao.getBySeance("Seance2").toString());
 
         // -------------- delete reservation2 --------------
         rdao.delete(reservation2);
 
-        assertEquals("[{id:1, prenom:Alper, nom:EKMEKCI, email:alper@alperekmekci.fr, paye:false, seanceId:Seance1}, {id:3, prenom:Eric, nom:CLAPTON, email:ericlapton@gmail.com, paye:false, seanceId:Seance1}, {id:6, prenom:Eric, nom:CLAPTON, email:ericlapton@gmail.com, paye:false, seanceId:Seance1}]", rdao.getBySeance("Seance1").toString());
-        assertEquals("[{id:2, prenom:Florian, nom:PALABOST, email:florian@palabost.fr, paye:false, seanceId:Seance2}]", rdao.getBySeance("Seance2").toString());
+        assertEquals("[{id:1, prenom:Alper, nom:EKMEKCI, email:alper@alperekmekci.fr, "
+                + "paye:false, seanceId:Seance1}, {id:3, prenom:Eric, nom:CLAPTON, "
+                + "email:ericlapton@gmail.com, paye:false, seanceId:Seance1}, "
+                + "{id:6, prenom:Eric, nom:CLAPTON, email:ericlapton@gmail.com, paye:false, "
+                + "seanceId:Seance1}]", rdao.getBySeance("Seance1").toString());
+        assertEquals("[{id:2, prenom:Florian, nom:PALABOST, email:florian@palabost.fr, "
+                + "paye:false, seanceId:Seance2}]",
+                rdao.getBySeance("Seance2").toString());
 
         // -------------- delete reservation3 --------------
         rdao.delete(reservation3);
 
-        assertEquals("[{id:1, prenom:Alper, nom:EKMEKCI, email:alper@alperekmekci.fr, paye:false, seanceId:Seance1}, {id:3, prenom:Eric, nom:CLAPTON, email:ericlapton@gmail.com, paye:false, seanceId:Seance1}]", rdao.getBySeance("Seance1").toString());
-        assertEquals("[{id:2, prenom:Florian, nom:PALABOST, email:florian@palabost.fr, paye:false, seanceId:Seance2}]", rdao.getBySeance("Seance2").toString());
+        assertEquals("[{id:1, prenom:Alper, nom:EKMEKCI, email:alper@alperekmekci.fr, "
+                + "paye:false, seanceId:Seance1}, {id:3, prenom:Eric, nom:CLAPTON, "
+                + "email:ericlapton@gmail.com, paye:false, seanceId:Seance1}]",
+                rdao.getBySeance("Seance1").toString());
+        assertEquals("[{id:2, prenom:Florian, nom:PALABOST, email:florian@palabost.fr, "
+                + "paye:false, seanceId:Seance2}]", rdao.getBySeance("Seance2").toString());
     }
 
     @Test
-    public void cGetBySeance() {
+    public void ccGetBySeance() {
 
         reservation1.setSeanceId("Seance1");
         rdao.save(reservation1);
@@ -130,11 +169,12 @@ public class JPAReservationDAOTest {
         Collection<Reservation> reservations2 = rdao.getBySeance("Seance2");
 
         assertTrue(reservations1.contains(reservation1));
-        assertFalse(reservations1.contains(reservation2));
-        assertTrue(reservations1.contains(reservation3));
-
         assertFalse(reservations2.contains(reservation1));
+
         assertTrue(reservations2.contains(reservation2));
+        assertFalse(reservations1.contains(reservation2));
+
+        assertTrue(reservations1.contains(reservation3));
         assertFalse(reservations2.contains(reservation3));
 
         assertEquals(4, reservations1.size());
@@ -142,7 +182,7 @@ public class JPAReservationDAOTest {
     }
 
     @Test
-    public void dGetById()  {
+    public void ddGetById()  {
 
         reservation1.setSeanceId("Seance1");
         rdao.save(reservation1);

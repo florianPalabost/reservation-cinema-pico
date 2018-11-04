@@ -15,6 +15,8 @@ import static org.junit.Assert.assertEquals;
 
 /**
  *
+ * SeanceTest .
+ *
  * @author alper
  */
 public class SeanceTest {
@@ -52,6 +54,12 @@ public class SeanceTest {
     public SeanceTest() throws ParseException {
     }
 
+
+    /**
+     *
+     * seances() .
+     *
+     */
     @Before
     public void seances() {
 
@@ -194,28 +202,36 @@ public class SeanceTest {
         seance4.createReservation("Alper", "EKMEKCI", "alper@alperekmekci.fr");
 
         LOGGER.info("Premiere Seance : " + seance1.toString());
-        /* Premiere Seance : {film:{titre:Incendies, version:VF, fiche:https://www.imdb.com/title/tt1255953/?ref_=nv_sr_1},
+        /* Premiere Seance : {film:{titre:Incendies, version:VF,
+        fiche:https://www.imdb.com/title/tt1255953/?ref_=nv_sr_1},
         salle:{nom:Salle1, capacite:30}, date:Wed Feb 14 21:00:00 CET 2018, prix:20.0,
         reservations:[{id:null, prenom:Alper, nom:EKMEKCI, email:alper@alperekmekci.fr,
-        paye:true, seanceId:5d2d38e8-890c-3bba-be52-efd31f58eb7e}], id:5d2d38e8-890c-3bba-be52-efd31f58eb7e} */
+        paye:true, seanceId:5d2d38e8-890c-3bba-be52-efd31f58eb7e}],
+        id:5d2d38e8-890c-3bba-be52-efd31f58eb7e} */
 
         LOGGER.info("Deuxieme Seance : " + seance2.toString());
-        /* Deuxieme Seance : {film:{titre:Limitless, version:VO, fiche:https://www.imdb.com/title/tt1219289/?ref_=nv_sr_3},
-        salle:{nom:Salle2, capacite:50}, date:Sat May 19 20:30:00 CEST 2018, prix:15.5, r
-        eservations:[{id:null, prenom:Florian, nom:PALABOST, email:florian@palabost.fr,
-        paye:true, seanceId:87be2690-e594-374f-989b-9351e1dcc966}], id:87be2690-e594-374f-989b-9351e1dcc966} */
+        /* Deuxieme Seance : {film:{titre:Limitless, version:VO,
+        fiche:https://www.imdb.com/title/tt1219289/?ref_=nv_sr_3},
+        salle:{nom:Salle2, capacite:50}, date:Sat May 19 20:30:00 CEST 2018, prix:15.5,
+        reservations:[{id:null, prenom:Florian, nom:PALABOST, email:florian@palabost.fr,
+        paye:true, seanceId:87be2690-e594-374f-989b-9351e1dcc966}],
+        id:87be2690-e594-374f-989b-9351e1dcc966} */
 
         LOGGER.info("Troisieme Seance : " + seance3.toString());
-        /* Troisieme Seance : {film:{titre:Ant-Man and the Wasp, version:VO, fiche:https://www.imdb.com/title/tt5095030/?ref_=nv_sr_3},
+        /* Troisieme Seance : {film:{titre:Ant-Man and the Wasp, version:VO,
+        fiche:https://www.imdb.com/title/tt5095030/?ref_=nv_sr_3},
         salle:{nom:Salle3, capacite:90}, date:Sat Aug 11 21:00:00 CEST 2018, prix:10.0,
         reservations:[{id:null, prenom:Eric, nom:CLAPTON, email:ericlapton@gmail.com,
-        paye:true, seanceId:688598f4-6586-3f4d-8bf7-321e02199a01}], id:688598f4-6586-3f4d-8bf7-321e02199a01} */
+        paye:true, seanceId:688598f4-6586-3f4d-8bf7-321e02199a01}],
+        id:688598f4-6586-3f4d-8bf7-321e02199a01} */
 
         LOGGER.info("Quatrieme Seance : " + seance4.toString());
-        /* Quatrieme Seance : {film:{titre:Incendies, version:VF, fiche:https://www.imdb.com/title/tt1255953/?ref_=nv_sr_1},
+        /* Quatrieme Seance : {film:{titre:Incendies, version:VF,
+        fiche:https://www.imdb.com/title/tt1255953/?ref_=nv_sr_1},
         salle:{nom:Salle1, capacite:30}, date:Wed Feb 14 21:00:00 CET 2018, prix:20.0,
         reservations:[{id:null, prenom:Alper, nom:EKMEKCI, email:alper@alperekmekci.fr,
-        paye:true, seanceId:5d2d38e8-890c-3bba-be52-efd31f58eb7e}], id:5d2d38e8-890c-3bba-be52-efd31f58eb7e} */
+        paye:true, seanceId:5d2d38e8-890c-3bba-be52-efd31f58eb7e}],
+        id:5d2d38e8-890c-3bba-be52-efd31f58eb7e} */
 
         assertEquals("{film:{titre:Incendies, version:VF, fiche:https://www.imdb.com/title/tt1255953/?ref_=nv_sr_1}, salle:{nom:Salle1, capacite:30}, date:Wed Feb 14 21:00:00 CET 2018, prix:20.0, reservations:[{id:null, prenom:Alper, nom:EKMEKCI, email:alper@alperekmekci.fr, paye:true, seanceId:5d2d38e8-890c-3bba-be52-efd31f58eb7e}], id:5d2d38e8-890c-3bba-be52-efd31f58eb7e}", seance1.toString());
         assertEquals("{film:{titre:Limitless, version:VO, fiche:https://www.imdb.com/title/tt1219289/?ref_=nv_sr_3}, salle:{nom:Salle2, capacite:50}, date:Sat May 19 20:30:00 CEST 2018, prix:15.5, reservations:[{id:null, prenom:Florian, nom:PALABOST, email:florian@palabost.fr, paye:true, seanceId:87be2690-e594-374f-989b-9351e1dcc966}], id:87be2690-e594-374f-989b-9351e1dcc966}", seance2.toString());
@@ -225,11 +241,6 @@ public class SeanceTest {
 
     @Test
     public void cancelReservation() throws SeanceCompleteException {
-
-        Reservation reservation1 = new Reservation("Alper", "EKMEKCI", "alper@alperekmekci.fr");
-        Reservation reservation2 = new Reservation("Florian", "PALABOST", "florian@palabost.fr");
-        Reservation reservation3 = new Reservation("Eric", "CLAPTON", "ericlapton@gmail.com");
-        Reservation reservation4 = new Reservation("Alper", "EKMEKCI", "alper@alperekmekci.fr");
 
         seance1.createReservation("Alper", "EKMEKCI", "alper@alperekmekci.fr");
         seance2.createReservation("Florian", "PALABOST", "florian@palabost.fr");
@@ -241,9 +252,16 @@ public class SeanceTest {
         assertEquals("{film:{titre:Ant-Man and the Wasp, version:VO, fiche:https://www.imdb.com/title/tt5095030/?ref_=nv_sr_3}, salle:{nom:Salle3, capacite:90}, date:Sat Aug 11 21:00:00 CEST 2018, prix:10.0, reservations:[{id:null, prenom:Eric, nom:CLAPTON, email:ericlapton@gmail.com, paye:true, seanceId:688598f4-6586-3f4d-8bf7-321e02199a01}], id:688598f4-6586-3f4d-8bf7-321e02199a01}", seance3.toString());
         assertEquals("{film:{titre:Incendies, version:VF, fiche:https://www.imdb.com/title/tt1255953/?ref_=nv_sr_1}, salle:{nom:Salle1, capacite:30}, date:Wed Feb 14 21:00:00 CET 2018, prix:20.0, reservations:[{id:null, prenom:Alper, nom:EKMEKCI, email:alper@alperekmekci.fr, paye:true, seanceId:5d2d38e8-890c-3bba-be52-efd31f58eb7e}], id:5d2d38e8-890c-3bba-be52-efd31f58eb7e}", seance4.toString());
 
+        Reservation reservation1 = new Reservation("Alper", "EKMEKCI", "alper@alperekmekci.fr");
         seance1.cancelReservation(reservation1);
+
+        Reservation reservation2 = new Reservation("Florian", "PALABOST", "florian@palabost.fr");
         seance2.cancelReservation(reservation2);
+
+        Reservation reservation3 = new Reservation("Eric", "CLAPTON", "ericlapton@gmail.com");
         seance3.cancelReservation(reservation3);
+
+        Reservation reservation4 = new Reservation("Alper", "EKMEKCI", "alper@alperekmekci.fr");
         seance4.cancelReservation(reservation4);
 
         assertEquals("{film:{titre:Incendies, version:VF, fiche:https://www.imdb.com/title/tt1255953/?ref_=nv_sr_1}, salle:{nom:Salle1, capacite:30}, date:Wed Feb 14 21:00:00 CET 2018, prix:20.0, reservations:[], id:5d2d38e8-890c-3bba-be52-efd31f58eb7e}", seance1.toString());

@@ -6,14 +6,19 @@ import static org.junit.Assert.assertEquals;
 
 /**
  *
+ * ReservationTest .
+ *
  * @author alper
  */
 public class ReservationTest {
 
     // Les trois reservations qu'on va creer
-    private Reservation reservation1 = new Reservation("Alper", "EKMEKCI", "alper@alperekmekci.fr");
-    private Reservation reservation2 = new Reservation("Florian", "PALABOST", "florian@palabost.fr");
-    private Reservation reservation3 = new Reservation("Eric", "CLAPTON", "ericlapton@gmail.com");
+    private Reservation reservation1 = new Reservation("Alper",
+            "EKMEKCI", "alper@alperekmekci.fr");
+    private Reservation reservation2 = new Reservation("Florian",
+            "PALABOST", "florian@palabost.fr");
+    private Reservation reservation3 = new Reservation("Eric",
+            "CLAPTON", "ericlapton@gmail.com");
 
     // reservation4 = reservation1
     private Reservation reservation4 = new Reservation("Alper", "EKMEKCI", "alper@alperekmekci.fr");
@@ -137,7 +142,7 @@ public class ReservationTest {
     }
 
     @Test
-    public void equalsTest() {//not ok
+    public void equalsTest() { // ok
 
         LOGGER.info(reservation1.toString());
         reservation1.setId(1L);
