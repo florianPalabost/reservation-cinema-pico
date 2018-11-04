@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fr.univlyon1.m2tiw.tiw1.metier.uniformisation;
 
 import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaRessourceSeances;
@@ -21,9 +16,11 @@ import java.util.logging.Logger;
 
 /**
  *
+ * ACinemaRessource .
+ *
  * @author florian
  */
-public abstract class ACinemaRessource implements ICinema{
+public abstract class ACinemaRessource implements ICinema {
     public static final String CTX_CINE_RESS = "/app";
     private static final Logger LOGGER = Logger.getLogger(ServeurImpl.class.getName());
     // private final String nom;
@@ -32,14 +29,15 @@ public abstract class ACinemaRessource implements ICinema{
     private List<Seance> seances;
     private ReservationDAO reservationDAO;
     private ProgrammationDAO programmationDAO;
-    private final String methode="";
+    private final String methode = "";
     private CinemaRessourceFilms cineRessFilms;
     private CinemaRessourceSalles cineRessSalles;
     private CinemaRessourceSeances cineRessSeances;
 
     @Override
     public void start() {
-        LOGGER.info("Component CinemaAbs STARTED. Objet d'acces aux données : "+this.programmationDAO.toString());
+        LOGGER.info("Component CinemaAbs STARTED. Objet d'acces aux données : "
+                + this.programmationDAO.toString());
     }
 
     @Override
@@ -49,14 +47,17 @@ public abstract class ACinemaRessource implements ICinema{
 
     /**
      *
-     * @param methode
-     * @param commande
-     * @param parametres
-     * @return
-     * @throws IOException
+     * process .
+     *
+     * @param methode .
+     * @param commande .
+     * @param parametres .
+     * @return Object .
+     * @throws IOException Exception IO
      */
     @Override
-    public Object process(String methode, String commande, Map<String, Object> parametres) throws IOException  {
+    public Object process(String methode, String commande,
+                          Map<String, Object> parametres) throws IOException  {
         // suivant la commande XXXXX appellez le bon CinemaRessourceXXXX
         // SI ON A LE TEMPS : Factoriser ce code ...
         switch (methode) {

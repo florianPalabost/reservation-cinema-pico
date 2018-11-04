@@ -8,7 +8,19 @@ public class AppConfig {
     private ArrayList<Component> serviceComponents;
     private ArrayList<Component> persistenceComponents;
 
-    public AppConfig(String nom, ArrayList<Component> businessComponents, ArrayList<Component> serviceComponents, ArrayList<Component> persistenceComponents) {
+    /**
+     *
+     * AppConfig .
+     *
+     * @param nom .
+     * @param businessComponents .
+     * @param serviceComponents .
+     * @param persistenceComponents .
+     *
+     */
+    public AppConfig(String nom, ArrayList<Component> businessComponents,
+                     ArrayList<Component> serviceComponents,
+                     ArrayList<Component> persistenceComponents) {
         this.name = nom;
         this.businessComponents = businessComponents;
         this.serviceComponents = serviceComponents;
