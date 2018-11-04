@@ -37,12 +37,12 @@ public class JSONSalleDAO implements SalleDAO {
         }
         return salles;
     }
-/*
-    @Override
-    public String toString() {
-        return "{" + salles + '}';
-    }
-*/
+    /*
+        @Override
+        public String toString() {
+            return "{" + salles + '}';
+        }
+    */
 
     
 }

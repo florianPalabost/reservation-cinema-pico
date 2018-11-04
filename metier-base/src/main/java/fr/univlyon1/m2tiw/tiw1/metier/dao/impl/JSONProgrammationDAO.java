@@ -49,12 +49,16 @@ public class JSONProgrammationDAO implements ProgrammationDAO {
 
     /**
      *
-     * @param nom
-     * @param salles
-     * @throws IOException
-     * @throws ParseException
+     * JSONProgrammationDAO .
+     *
+     * @param nom .
+     * @param salles .
+     *
+     * @throws IOException Exception IO
+     * @throws ParseException Exception de parse
      */
-    public JSONProgrammationDAO(String nom,Collection<Salle> salles) throws IOException, ParseException {
+    public JSONProgrammationDAO(String nom,
+                                Collection<Salle> salles) throws IOException, ParseException {
         setSalles(salles);
         load(nom);
     }
@@ -76,8 +80,8 @@ public class JSONProgrammationDAO implements ProgrammationDAO {
     private void load(String nom) throws IOException, ParseException {
         films = new ArrayList<>();
         seances = new HashMap<>();
-        FILMS_JSON = new File(nom+"_films.json");
-        SEANCES_JSON = new File(nom+"_seances.json");
+        FILMS_JSON = new File(nom + "_films.json");
+        SEANCES_JSON = new File(nom + "_seances.json");
         if (FILMS_JSON.exists()) {
             Collection<FilmDTO> filmDTOs = mapper.readValue(FILMS_JSON, list_of_films_type);
             films.addAll(filmDTOs.stream().map(FilmDTO::asFilm).collect(Collectors.toList()));
@@ -170,12 +174,13 @@ public class JSONProgrammationDAO implements ProgrammationDAO {
         seances.remove(seance);
         save();
     }
-/*
-    @Override
-    public String toString() {
-        return "{" + "films=" + films + ", seances=" + seances + ", salles=" + salles + '}';
-    }
-*/
+    /*
+        @Override
+        public String toString() {
+            return "{" + "films=" + films + ", seances=" + seances + ", salles=" + salles + '}';
+        }
+    */
+
     public Collection<Film> getFilms() {
         return films;
     }

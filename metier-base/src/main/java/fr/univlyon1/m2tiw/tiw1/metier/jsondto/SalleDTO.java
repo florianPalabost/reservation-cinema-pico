@@ -9,6 +9,8 @@ public class SalleDTO {
     
     /**
      *
+     * asSalle .
+     *
      * @return Salle
      */
     public Salle asSalle() {

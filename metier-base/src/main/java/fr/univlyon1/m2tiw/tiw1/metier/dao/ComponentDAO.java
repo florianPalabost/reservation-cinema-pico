@@ -5,5 +5,5 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public interface ComponentDAO {
-   public ArrayList<Salle> load() throws IOException; 
+    public ArrayList<Salle> load() throws IOException;
 }
