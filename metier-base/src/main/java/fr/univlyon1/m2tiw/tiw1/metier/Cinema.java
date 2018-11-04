@@ -187,6 +187,7 @@ public class Cinema implements Startable {
      * @param methode .
      * @param commande .
      * @param parametres .
+     * @return reponse souhaitee en fonction de methode, commande et params
      *
      */
     public Object process(String methode,String commande,

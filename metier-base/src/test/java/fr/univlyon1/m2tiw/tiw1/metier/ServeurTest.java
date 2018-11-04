@@ -49,13 +49,13 @@ public class ServeurTest {
         params.put("class","Seance");
         // LOGGER.info(serveur.processRequest("SEANCE","getSeances", params).toString());
         // LOGGER.info("test server cinema:" + server.getCinema());
-        //Cinema c = serveur.getCinema();
+        // Cinema c = serveur.getCinema();
         assertEquals("mon-cinema",serveur.processRequest("CINEMA", "getNom", null));
     }
     
     @Test
     public void testProcessRequestNBXXX() throws IOException { // OK
-        // verifie qu'on recupere les bonnes informations
+        // verifie qu'on recupere les bonnes informations (taille des infos)
         assertEquals("mon-cinema",serveur.processRequest("CINEMA", "getNom", new HashMap<>()));
         assertEquals(7,serveur.processRequest("FILM", "getNbFilms", new HashMap<>()));
         assertEquals(3,serveur.processRequest("SALLE", "getNbSalles", new HashMap<>()));

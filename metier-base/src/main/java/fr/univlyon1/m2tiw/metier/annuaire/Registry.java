@@ -22,7 +22,7 @@ public class Registry implements IRegistry {
      * getReferencedObj .
      *
      * @param refName .
-     * @return object qui fait reference au path
+     * @return object qui en fonction du path
      */
     @Override
     public Object getReferencedObj(String refName) {
@@ -52,7 +52,8 @@ public class Registry implements IRegistry {
         String[] tmpPath = pathRef.split("/");
         Object currentObj = root;
         
-        // Parcours tant qu'on trouve un /
+        // Parcours tant qu'on trouve un / , on a cependant quand meme 
+        // des appels sur des "" ... 
         for (String currPath : tmpPath) {
             if (currentObj != null) {
                 if (i == tmpPath.length) {

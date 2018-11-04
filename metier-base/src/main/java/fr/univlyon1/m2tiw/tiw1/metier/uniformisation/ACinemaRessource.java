@@ -59,7 +59,6 @@ public abstract class ACinemaRessource implements ICinema {
     public Object process(String methode, String commande,
                           Map<String, Object> parametres) throws IOException  {
         // suivant la commande XXXXX appellez le bon CinemaRessourceXXXX
-        // SI ON A LE TEMPS : Factoriser ce code ...
         switch (methode) {
             case "FILM":
                 return cineRessFilms.process(commande, parametres);      

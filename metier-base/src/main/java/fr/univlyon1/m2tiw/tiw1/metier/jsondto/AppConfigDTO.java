@@ -24,6 +24,9 @@ public class AppConfigDTO {
      *
      * asAppConfig .
      *
+     * @return AppConfig object
+     * @throws java.text.ParseException mauvais parsing des donnees
+     * @throws java.io.IOException erreur lecture fichier
      */
     public AppConfig asAppConfig() throws ParseException, IOException {
         ArrayList<Component> businessComps = new ArrayList<>();

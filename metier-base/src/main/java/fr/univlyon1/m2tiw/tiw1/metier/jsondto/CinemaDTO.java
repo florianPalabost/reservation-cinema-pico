@@ -9,12 +9,9 @@ import fr.univlyon1.m2tiw.tiw1.metier.dao.impl.JSONSalleDAO;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 public class CinemaDTO {
     public static final SimpleDateFormat DATE_PARSER =
@@ -31,6 +28,7 @@ public class CinemaDTO {
      * As Cinema .
      *
      *
+     * @param nom nom du cinema (pour fichiers json)
      * @return Cinema
      *
      * @throws java.text.ParseException ParseException
