@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- *
+ * Serveur .
  * @author florian
  */
 public interface Serveur {

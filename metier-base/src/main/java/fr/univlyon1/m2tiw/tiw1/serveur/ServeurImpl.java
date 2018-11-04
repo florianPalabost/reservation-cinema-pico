@@ -44,7 +44,7 @@ public class ServeurImpl implements Serveur {
 
     /**
      * Serveur : Instantie un PicoCotainer et recupere Cinema .
-     * @param registryImpl
+     * @param registryImpl .
      * @throws java.io.IOException IOException
      */
     public ServeurImpl(Registry registryImpl) throws IOException, ClassNotFoundException {
@@ -162,7 +162,9 @@ public class ServeurImpl implements Serveur {
     
     /**
      *
-     * @param methode
+     * processRequest .
+     *
+     * @param methode methode .
      * @param commande methodes add,remove,get,...
      * @param parametres paires nom/valeur des parametres    des requetes
      * @return
