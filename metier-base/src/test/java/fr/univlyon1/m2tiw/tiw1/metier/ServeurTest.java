@@ -12,10 +12,6 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- *
- * @author florian
- */
 public class ServeurTest {
     private Serveur serveur;
     private Registry annuaire;
@@ -75,11 +71,22 @@ public class ServeurTest {
     }
     
     @Test
+    public void testAddAndGetSalle() throws IOException {// OK
+        Salle s = new Salle("Salle 42",42);
+        Map<String,Object> params = new HashMap<>();
+        params.put("nomSalle", s.getNom());
+        params.put("salle",s);
+        serveur.processRequest("SALLE", "addSalle", params);
+        assertEquals(s,serveur.processRequest("SALLE", "getSalle", params));
+    }
+    // TESTS concernant l'annuaire
+    @Test
     public void testGetRegistryNbSalles() throws Exception { //OK
         int nbSalles = ((List<Salle>) annuaire.getReferencedObj("/app/metier/salles")).size();
         assertEquals(3, nbSalles);
     }
 
+    // test concernant la partie app-config
     @Test
     public void testGetAppConfName() {
         assertEquals("mon-cinema", serveur.getAppConf().getName());

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl;
 
 import fr.univlyon1.m2tiw.tiw1.metier.Film;
@@ -19,10 +14,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-/**
- *
- * @author florian
- */
 
 // gestion des seances 
 public class CinemaRessourceSeances extends ACinemaRessource {
