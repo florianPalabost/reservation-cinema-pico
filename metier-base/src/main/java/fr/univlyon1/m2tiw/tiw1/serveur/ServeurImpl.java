@@ -70,13 +70,15 @@ public class ServeurImpl implements Serveur {
             } else {
                 pico.addComponent(Class.forName(component.getClassName()));       
             }
-            registry.setReferencedObj(component.getPath(), pico.getComponent(Class.forName(component.getClassName())));
+            registry.setReferencedObj(component.getPath(),
+                    pico.getComponent(Class.forName(component.getClassName())));
         }
         
         // persistences-components
         for (Component component : appConf.getPersistenceComponents()) {
             pico.addComponent(Class.forName(component.getClassName()));
-            registry.setReferencedObj(component.getPath(), pico.getComponent(Class.forName(component.getClassName())));
+            registry.setReferencedObj(component.getPath(),
+                    pico.getComponent(Class.forName(component.getClassName())));
         }
         
              
@@ -91,7 +93,8 @@ public class ServeurImpl implements Serveur {
         // business-components
         for (Component component : appConf.getBusinessComponents()) {
             pico.addComponent(Class.forName(component.getClassName()));
-            registry.setReferencedObj(component.getPath(), pico.getComponent(Class.forName(component.getClassName())));
+            registry.setReferencedObj(component.getPath(),
+                    pico.getComponent(Class.forName(component.getClassName())));
         }
 
 
@@ -116,18 +119,24 @@ public class ServeurImpl implements Serveur {
         
         
         // Bind cineRessXXX : /app/cineRessXXX 
-        // registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS+"/cinemaRessourceFilms",pico.getComponent(CinemaRessourceFilms.class));
-        // registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS+"/cinemaRessourceSalles",pico.getComponent(CinemaRessourceSalles.class));
-        // registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS+"/cinemaRessourceSeances",pico.getComponent(CinemaRessourceSeances.class));
+        // registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS
+        // + "/cinemaRessourceFilms",pico.getComponent(CinemaRessourceFilms.class));
+        // registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS
+        // + "/cinemaRessourceSalles",pico.getComponent(CinemaRessourceSalles.class));
+        // registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS
+        // + "/cinemaRessourceSeances",pico.getComponent(CinemaRessourceSeances.class));
         
         // Bind salles : /app/metier/salles
-        // registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS+SalleDAO.CTX_METIER+"/salles",pico.getComponent(JSONSalleDAO.class).load());
+        // registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS+SalleDAO.CTX_METIER
+        // + "/salles",pico.getComponent(JSONSalleDAO.class).load());
         
         // Bind progdao et reservDAO : /app/persistence/progdao,ReservDao
-        // registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS+"/persistence/programmationDAO",pico.getComponent(JSONProgrammationDAO.class));
-        // registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS+"/persistence/reservationDAO",pico.getComponent(JPAReservationDAO.class));
+        // registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS
+        // + "/persistence/programmationDAO",pico.getComponent(JSONProgrammationDAO.class));
+        // registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS
+        // + "/persistence/reservationDAO",pico.getComponent(JPAReservationDAO.class));
         
-       //  cinema = pico.getComponent(Cinema.class);
+        // cinema = pico.getComponent(Cinema.class);
         
         // voir si utile de les laisser ?
         pico.addComponent(Integer.class);
@@ -170,15 +179,22 @@ public class ServeurImpl implements Serveur {
      * @return
      */
     @Override
-    public Object processRequest(String methode, String commande, Map<String, Object> parametres) throws IOException {
+    public Object processRequest(String methode, String commande, Map<String,
+            Object> parametres) throws IOException {
         switch (methode) {         
             case "FILM":
-                return ((CinemaRessourceFilms) registry.getReferencedObj("/app/cinemaRessourceFilms")).process(commande,parametres);
+                return ((CinemaRessourceFilms)
+                        registry.getReferencedObj("/app/cinemaRessourceFilms")).process(commande,
+                        parametres);
             case "SALLE":
-                return ((CinemaRessourceSalles) registry.getReferencedObj("/app/cinemaRessourceSalles")).process(commande,parametres);
+                return ((CinemaRessourceSalles)
+                        registry.getReferencedObj("/app/cinemaRessourceSalles")).process(commande,
+                        parametres);
             case "SEANCE":
-                return ((CinemaRessourceSeances) registry.getReferencedObj("/app/cinemaRessourceSeances")).process(commande,parametres);
-             case "CINEMA":
+                return ((CinemaRessourceSeances)
+                        registry.getReferencedObj("/app/cinemaRessourceSeances")).process(commande,
+                        parametres);
+            case "CINEMA":
                 return appConf.getName();
             default:
                 return null;
