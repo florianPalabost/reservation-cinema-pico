@@ -57,7 +57,7 @@ public class SeanceTest {
 
     /**
      *
-     * seances() .
+     * seances()
      *
      */
     @Before

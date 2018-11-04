@@ -23,18 +23,17 @@ public class FilmTest {
 
     @Test
     public void getTitre() {
-
-        LOGGER.info(film1.toString());
+        // LOGGER.info(film1.toString());
         // {titre:Incendies, version:VF, fiche:https://www.imdb.com/title/tt1255953/?ref_=nv_sr_1}
-        LOGGER.info("Titre du premier film est : " + film1.getTitre());
+        // LOGGER.info("Titre du premier film est : " + film1.getTitre());
 
-        LOGGER.info(film2.toString());
+        // LOGGER.info(film2.toString());
         // {titre:Limitless, version:VO, fiche:https://www.imdb.com/title/tt1219289/?ref_=nv_sr_3}
-        LOGGER.info("Titre du deuxieme film est : " + film2.getTitre());
+        // LOGGER.info("Titre du deuxieme film est : " + film2.getTitre());
 
-        LOGGER.info(film3.toString());
+        // LOGGER.info(film3.toString());
         //{titre:Ant-Man and the Wasp, version:VO, fiche:https://www.imdb.com/title/tt5095030/?ref_=nv_sr_3}
-        LOGGER.info("Titre du toisieme film est : " + film3.getTitre());
+        // LOGGER.info("Titre du toisieme film est : " + film3.getTitre());
 
         assertEquals("Incendies", film1.getTitre());
         assertEquals("Limitless", film2.getTitre());
@@ -44,17 +43,17 @@ public class FilmTest {
     @Test
     public void getVersion() {
 
-        LOGGER.info(film1.toString());
+        // LOGGER.info(film1.toString());
         // {titre:Incendies, version:VF, fiche:https://www.imdb.com/title/tt1255953/?ref_=nv_sr_1}
-        LOGGER.info("Titre du premier film est : " + film1.getVersion());
+        // LOGGER.info("Titre du premier film est : " + film1.getVersion());
 
-        LOGGER.info(film2.toString());
+        // LOGGER.info(film2.toString());
         // {titre:Limitless, version:VO, fiche:https://www.imdb.com/title/tt1219289/?ref_=nv_sr_3}
-        LOGGER.info("Titre du deuxieme film est : " + film2.getVersion());
+        // LOGGER.info("Titre du deuxieme film est : " + film2.getVersion());
 
-        LOGGER.info(film3.toString());
+        // LOGGER.info(film3.toString());
         // {titre:Ant-Man and the Wasp, version:VO, fiche:https://www.imdb.com/title/tt5095030/?ref_=nv_sr_3}
-        LOGGER.info("Titre du toisieme film est : " + film3.getVersion());
+        // LOGGER.info("Titre du toisieme film est : " + film3.getVersion());
 
         assertEquals("VF", film1.getVersion());
         assertEquals("VO", film2.getVersion());
@@ -64,17 +63,17 @@ public class FilmTest {
     @Test
     public void getFiche() {
 
-        LOGGER.info(film1.toString());
+        // LOGGER.info(film1.toString());
         // {titre:Incendies, version:VF, fiche:https://www.imdb.com/title/tt1255953/?ref_=nv_sr_1}
-        LOGGER.info("Titre du premier film est : " + film1.getFiche());
+        // LOGGER.info("Titre du premier film est : " + film1.getFiche());
 
-        LOGGER.info(film2.toString());
+        // LOGGER.info(film2.toString());
         // {titre:Limitless, version:VO, fiche:https://www.imdb.com/title/tt1219289/?ref_=nv_sr_3}
-        LOGGER.info("Titre du deuxieme film est : " + film2.getFiche());
+        // LOGGER.info("Titre du deuxieme film est : " + film2.getFiche());
 
-        LOGGER.info(film3.toString());
+        // LOGGER.info(film3.toString());
         // {titre:Ant-Man and the Wasp, version:VO, fiche:https://www.imdb.com/title/tt5095030/?ref_=nv_sr_3}
-        LOGGER.info("Titre du toisieme film est : " + film3.getFiche());
+        // LOGGER.info("Titre du toisieme film est : " + film3.getFiche());
 
         assertEquals("https://www.imdb.com/title/tt1255953/?ref_=nv_sr_1", film1.getFiche());
         assertEquals("https://www.imdb.com/title/tt1219289/?ref_=nv_sr_3", film2.getFiche());
@@ -84,16 +83,16 @@ public class FilmTest {
     @Test
     public void equalsTest() {
 
-        LOGGER.info(film1.toString());
+        // LOGGER.info(film1.toString());
         // Film 1 {titre:Incendies, version:VF, fiche:https://www.imdb.com/title/tt1255953/?ref_=nv_sr_1}
 
-        LOGGER.info(film2.toString());
+        // LOGGER.info(film2.toString());
         // Film 2 {titre:Limitless, version:VO, fiche:https://www.imdb.com/title/tt1219289/?ref_=nv_sr_3}
 
-        LOGGER.info(film3.toString());
+        // LOGGER.info(film3.toString());
         // Film 3 {titre:Ant-Man and the Wasp, version:VO, fiche:https://www.imdb.com/title/tt5095030/?ref_=nv_sr_3}
 
-        LOGGER.info(film4.toString());
+        // LOGGER.info(film4.toString());
         // Film 4 {titre:Incendies, version:VF, fiche:https://www.imdb.com/title/tt1255953/?ref_=nv_sr_1}
 
         assertEquals(true, film1.equals(film1));

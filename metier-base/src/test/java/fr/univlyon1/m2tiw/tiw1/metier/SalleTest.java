@@ -45,9 +45,9 @@ public class SalleTest {
 
     @Test
     public void getNom() throws IOException {
-        LOGGER.info(salles.get(0).getNom());
-        LOGGER.info(salles.get(1).getNom());
-        LOGGER.info(salles.get(2).getNom());
+        // LOGGER.info(salles.get(0).getNom());
+        // LOGGER.info(salles.get(1).getNom());
+        // LOGGER.info(salles.get(2).getNom());
 
         //Il y a 3 salles
         // - {nom:Salle 1, capacite:100},

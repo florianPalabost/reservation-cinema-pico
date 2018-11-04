@@ -1,26 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package fr.univlyon1.m2tiw.tiw1.serveur;
 
-import fr.univlyon1.m2tiw.metier.annuaire.IRegistry;
 import fr.univlyon1.m2tiw.metier.annuaire.Registry;
 import fr.univlyon1.m2tiw.tiw1.config.AppConfig;
 import fr.univlyon1.m2tiw.tiw1.config.Component;
 import fr.univlyon1.m2tiw.tiw1.metier.Cinema;
 import fr.univlyon1.m2tiw.tiw1.metier.Salle;
-import fr.univlyon1.m2tiw.tiw1.metier.dao.impl.JPAReservationDAO;
-import fr.univlyon1.m2tiw.tiw1.metier.dao.impl.JSONCinemaDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.impl.JSONProgrammationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.impl.JSONSalleDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.ProgrammationDAO;
-import fr.univlyon1.m2tiw.tiw1.metier.dao.ReservationDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.SalleDAO;
 import fr.univlyon1.m2tiw.tiw1.metier.dao.impl.JSONAppConfigDAO;
-import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.ACinemaRessource;
 import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaContext;
 import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaContextImpl;
 import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaRessourceFilms;
@@ -29,7 +18,6 @@ import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaRessourceSeances
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.picocontainer.DefaultPicoContainer;
 import org.picocontainer.behaviors.Caching;
@@ -46,6 +34,7 @@ public class ServeurImpl implements Serveur {
      * Serveur : Instantie un PicoCotainer et recupere Cinema .
      * @param registryImpl .
      * @throws java.io.IOException IOException
+     * @throws java.lang.ClassNotFoundException
      */
     public ServeurImpl(Registry registryImpl) throws IOException, ClassNotFoundException {
         // setup conf partie 5
@@ -96,9 +85,7 @@ public class ServeurImpl implements Serveur {
             registry.setReferencedObj(component.getPath(),
                     pico.getComponent(Class.forName(component.getClassName())));
         }
-
-
-        
+      
         // pico.addComponent(JSONSalleDAO.class);
         // pico.addComponent(JPAReservationDAO.class);
         // pico.addComponent(pico.getComponent(JSONSalleDAO.class).load());
@@ -106,8 +93,7 @@ public class ServeurImpl implements Serveur {
         //pico.addComponent(JSONCinemaDAO.class);
         // pico.addComponent("mon-cinema");
         // pico.addComponent(Cinema.class);
-        
-        
+          
         // classes uniformisation 2.2
         // pico.addComponent(CinemaRessourceFilms.class);
         // pico.addComponent(CinemaRessourceSalles.class);
@@ -115,9 +101,6 @@ public class ServeurImpl implements Serveur {
    
         
         // Binding 4.X
-        
-        
-        
         // Bind cineRessXXX : /app/cineRessXXX 
         // registry.setReferencedObj(ACinemaRessource.CTX_CINE_RESS
         // + "/cinemaRessourceFilms",pico.getComponent(CinemaRessourceFilms.class));
@@ -145,14 +128,14 @@ public class ServeurImpl implements Serveur {
         // lancement du cinema
         // cinema.start();
         
-        // start tous les composants de pico qui implementent Startable en meme temps
+        // start tous les composants de pico qui implementent
+        // Startable en meme temps
         pico.start();
     }
     
     /**
-     * 
      * @return une instance du cinema créé
-     * @throws IOException IOException
+     * @throws IOException IOException erreur de lecture fichiers
      * @throws ParseException ParseException
      */
     /*
@@ -166,17 +149,17 @@ public class ServeurImpl implements Serveur {
         LOGGER.info(cinema.toString());
         return cinema;
     }
-    //TODO delete method add & delete salles
    */ 
     
     /**
      *
      * processRequest .
      *
-     * @param methode methode .
+     * @param methode methode FILM,SEANCE,SALLE,CINEMA
      * @param commande methodes add,remove,get,...
-     * @param parametres paires nom/valeur des parametres    des requetes
-     * @return
+     * @param parametres paires nom/valeur des parametres des requetes
+     * @return object suivant requete client
+     * @throws java.io.IOException erreurs de lecture fichier
      */
     @Override
     public Object processRequest(String methode, String commande, Map<String,
@@ -200,9 +183,7 @@ public class ServeurImpl implements Serveur {
                 return null;
         }
     } 
-    
-    
-    
+     
     /*
     // methode service temporaire pour renvoyer une ref vers instance de Cinema
     public Cinema getCinema() {
@@ -211,10 +192,9 @@ public class ServeurImpl implements Serveur {
     
     */
 
+    @Override
     public AppConfig getAppConf() {
         return appConf;
     }
-
-   
     
 }

@@ -1,6 +1,7 @@
 package fr.univlyon1.m2tiw.tiw1.metier;
 
 import fr.univlyon1.m2tiw.metier.annuaire.Registry;
+import fr.univlyon1.m2tiw.tiw1.metier.dao.impl.JSONProgrammationDAO;
 import fr.univlyon1.m2tiw.tiw1.serveur.Serveur;
 import fr.univlyon1.m2tiw.tiw1.serveur.ServeurImpl;
 import java.io.IOException;
@@ -46,7 +47,7 @@ public class ServeurTest {
         
         Map<String,Object> params = new HashMap<>();
         params.put("class","Seance");
-        //LOGGER.info(serveur.processRequest("SEANCE","getSeances", params).toString());
+        // LOGGER.info(serveur.processRequest("SEANCE","getSeances", params).toString());
         // LOGGER.info("test server cinema:" + server.getCinema());
         //Cinema c = serveur.getCinema();
         assertEquals("mon-cinema",serveur.processRequest("CINEMA", "getNom", null));
@@ -87,10 +88,34 @@ public class ServeurTest {
         int nbSalles = ((List<Salle>) annuaire.getReferencedObj("/app/metier/salles")).size();
         assertEquals(3, nbSalles);
     }
-
-    // test concernant la partie app-config
+    
     @Test
-    public void testGetAppConfName() {
+    public void testGetRegistryNbFilms() throws Exception { //OK
+        JSONProgrammationDAO progDAO =
+                (JSONProgrammationDAO) annuaire.getReferencedObj("/app/persistence/programmationDAO");
+        int nbFilms = progDAO.getFilms().size();
+        assertEquals(7, nbFilms);
+    }
+    
+    @Test
+    public void testGetRegistryNbSeances() throws Exception { //OK
+        JSONProgrammationDAO progDAO =
+                (JSONProgrammationDAO) annuaire.getReferencedObj("/app/persistence/programmationDAO");
+        int nbSeances = progDAO.getSeances().size();
+        assertEquals(84, nbSeances);
+    }
+    
+    @Test
+    public void testGetServerWithAnnuaire() throws Exception { //OK
+        Serveur test = null;
+        test = (Serveur) annuaire.getReferencedObj("/server");
+        assertEquals(serveur,test);
+        assertEquals(serveur.getAppConf().getName(),test.getAppConf().getName());
+    }
+
+    // TESTS concernant la partie app-config
+    @Test
+    public void testGetAppConfName() { // OK
         assertEquals("mon-cinema", serveur.getAppConf().getName());
     }
 }
