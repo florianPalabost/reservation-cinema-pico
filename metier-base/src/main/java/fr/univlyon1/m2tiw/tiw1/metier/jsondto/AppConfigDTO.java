@@ -19,7 +19,12 @@ public class AppConfigDTO {
     
     @JsonProperty("persistence-components")
     private ArrayList<ComponentDTO> persistenceComponents;
-    
+
+    /**
+     *
+     * asAppConfig .
+     *
+     */
     public AppConfig asAppConfig() throws ParseException, IOException {
         ArrayList<Component> businessComps = new ArrayList<>();
         ArrayList<Component> serviceComps = new ArrayList<>();

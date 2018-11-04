@@ -51,7 +51,7 @@ public class CinemaDTO {
         
         // voir si il faut pas deplacer/ supp ces deux loop
         
-       /* for (FilmDTO f : films) {
+        /* for (FilmDTO f : films) {
             cinema.addFilm(f.asFilm());
         }
         for (SeanceDTO s : seances) {

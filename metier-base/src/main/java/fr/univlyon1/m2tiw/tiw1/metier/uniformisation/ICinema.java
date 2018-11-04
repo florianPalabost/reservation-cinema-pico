@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fr.univlyon1.m2tiw.tiw1.metier.uniformisation;
 
 import java.io.IOException;
@@ -11,11 +6,14 @@ import org.picocontainer.Startable;
 
 /**
  *
+ * ICinema .
+ *
  * @author florian
  */
 public interface ICinema extends Startable {
   
     // Methode de service
-    public Object process(String methode, String commande, Map<String,Object> parametres) throws IOException ;
+    public Object process(String methode, String commande,
+                          Map<String,Object> parametres) throws IOException;
     
 }

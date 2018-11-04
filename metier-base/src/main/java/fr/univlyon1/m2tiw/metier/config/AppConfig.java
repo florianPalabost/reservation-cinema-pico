@@ -1,4 +1,4 @@
-package fr.univlyon1.m2tiw.tiw1.config;
+package fr.univlyon1.m2tiw.metier.config;
 
 import java.util.ArrayList;
 
@@ -12,23 +12,22 @@ public class AppConfig {
      *
      * AppConfig .
      *
-     * @param name .
+     * @param nom .
      * @param businessComponents .
      * @param serviceComponents .
      * @param persistenceComponents .
      *
      */
-    public AppConfig(String name, ArrayList<Component> businessComponents,
+    public AppConfig(String nom, ArrayList<Component> businessComponents,
                      ArrayList<Component> serviceComponents,
                      ArrayList<Component> persistenceComponents) {
-        this.name = name;
+        this.name = nom;
         this.businessComponents = businessComponents;
         this.serviceComponents = serviceComponents;
         this.persistenceComponents = persistenceComponents;
     }
 
-
-    public String getName() {
+    public String getNom() {
         return name;
     }
 

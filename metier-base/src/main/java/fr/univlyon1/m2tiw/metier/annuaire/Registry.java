@@ -1,14 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fr.univlyon1.m2tiw.metier.annuaire;
 
 import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.CinemaContext;
 import fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl.CinemaContextImpl;
 
 /**
+ *
+ * Registry .
  *
  * @author florian
  */
@@ -22,18 +19,19 @@ public class Registry implements IRegistry {
     
     /**
      *
-     * @param refName
+     * getReferencedObj .
+     *
+     * @param refName .
      * @return
      */
     @Override
-    public Object getReferencedObj(String refName){
+    public Object getReferencedObj(String refName) {
         Object currObj = root;
-        for (String currentPath : refName.split("/")){
-            if(currObj != null){
+        for (String currentPath : refName.split("/")) {
+            if (currObj != null) {
                 currObj = ((CinemaContext)currObj).getDAO(currentPath);   
-            }
-            else {
-                return null ;
+            } else {
+                return null;
             }
         }
         return currObj;
@@ -41,15 +39,18 @@ public class Registry implements IRegistry {
     
     /**
      *
-     * @param pathRef
-     * @param o
-     * register a reference of an object in the registry
+     * setReferencedObj .
+     * register a reference of an object in the registry .
+     *
+     * @param pathRef .
+     * @param o .
+     *
      */
     @Override
-    public void setReferencedObj(String pathRef, Object o){
-        int i = 1 ;
-        String[] tmpPath = pathRef.split("/") ;
-        Object currentObj = root ;
+    public void setReferencedObj(String pathRef, Object o) {
+        int i = 1;
+        String[] tmpPath = pathRef.split("/");
+        Object currentObj = root;
         
         // Parcours tant qu'on trouve un /
         for (String currPath : tmpPath) {
@@ -57,7 +58,7 @@ public class Registry implements IRegistry {
                 if (i == tmpPath.length) {
                     ((CinemaContext) currentObj).setDAO(currPath, o);
                 } else {
-                    if(((CinemaContext) currentObj).getDAO(currPath) == null) {
+                    if (((CinemaContext) currentObj).getDAO(currPath) == null) {
                         ((CinemaContext) currentObj).setDAO(currPath, new CinemaContextImpl());
                         currentObj = ((CinemaContext) currentObj).getDAO(currPath);
                     } else {

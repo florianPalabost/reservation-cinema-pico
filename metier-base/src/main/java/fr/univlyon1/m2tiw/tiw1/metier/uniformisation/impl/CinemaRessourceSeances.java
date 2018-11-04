@@ -14,7 +14,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-
+/**
+ *
+ * CinemaRessourceSeances .
+ *
+ * @author alper
+ */
 // gestion des seances 
 public class CinemaRessourceSeances extends ACinemaRessource {
     //createSeance(), removeSeance(), getNbSeance()
@@ -29,13 +34,28 @@ public class CinemaRessourceSeances extends ACinemaRessource {
         this.reservationDAO = reservationDAO;
         setSeances(this.progDAO.getSeances().values());
     }*/
+
+    /**
+     *
+     * CinemaRessourceSeances .
+     *
+     * @param cineContext
+     *
+     */
     public CinemaRessourceSeances(CinemaContext cineContext) {
         this.progDAO = (ProgrammationDAO) cineContext.getDAO(ProgrammationDAO.CONTEXT);
         this.reservationDAO = (ReservationDAO) cineContext.getDAO(ReservationDAO.CONTEXT);
         setSeances(this.progDAO.getSeances().values());
     }
-    
-     public void setSeances(Collection<Seance> seances) {
+
+    /**
+     *
+     * setSeances .
+     *
+     * @param seances
+     *
+     */
+    public void setSeances(Collection<Seance> seances) {
         this.seances = seances;
         for (Seance s : seances) {
             s.setReservationDAO(reservationDAO);
@@ -57,12 +77,24 @@ public class CinemaRessourceSeances extends ACinemaRessource {
     private int getNbSeances() {
         return seances.size();
     }
-    
-    public Object process(String commande, Map<String,Object> parametres) throws IOException{
-        switch(commande){
+
+    /**
+     *
+     * process .
+     *
+     * @param commande .
+     * @param parametres .
+     *
+     * @return Object .
+     *
+     * @throws IOException Exception IO
+     */
+    public Object process(String commande, Map<String,Object> parametres) throws IOException {
+        switch (commande) {
             case "createSeance":
                 // A TESTER 
-                createSeance((Salle)parametres.get("salle"),(Film) parametres.get("film"),(Date)parametres.get("date"),(Float) parametres.get("prix"));
+                createSeance((Salle)parametres.get("salle"),(Film) parametres.get("film"),
+                        (Date)parametres.get("date"),(Float) parametres.get("prix"));
                 return null;
                 
             case "removeSeance":
@@ -76,18 +108,18 @@ public class CinemaRessourceSeances extends ACinemaRessource {
                 setSeances((Collection<Seance>) parametres.get("seances"));
                 return null;
                 
-             default:
+            default:
                 return null;
-       }
+        }
     }
     
     @Override
     public void start() {
-        LOGGER.info("Component "+ this.getClass() +" started");
+        LOGGER.info("Component " + this.getClass() + " started");
     }
     
     @Override
-    public void stop(){
-        LOGGER.info("Component "+ this.getClass() +" stopped");
+    public void stop() {
+        LOGGER.info("Component " + this.getClass() + " stopped");
     }
 }

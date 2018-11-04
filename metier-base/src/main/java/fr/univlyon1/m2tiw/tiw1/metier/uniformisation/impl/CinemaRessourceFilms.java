@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fr.univlyon1.m2tiw.tiw1.metier.uniformisation.impl;
 
 import fr.univlyon1.m2tiw.tiw1.metier.Film;
@@ -17,6 +12,8 @@ import java.util.logging.Logger;
 
 /**
  *
+ * CinemaRessourceFilms .
+ *
  * @author florian
  */
 
@@ -26,11 +23,11 @@ public class CinemaRessourceFilms extends ACinemaRessource {
     private static final Logger LOGGER = Logger.getLogger(CinemaRessourceSalles.class.getName());
     private HashMap<String, Film> films = new HashMap<>();
     private final ProgrammationDAO progDAO;
-/*
-    public CinemaRessourceFilms(ProgrammationDAO progDAO) throws IOException {
-        this.progDAO = progDAO;
-        setFilms(progDAO.getFilms());
-    }*/
+    /*
+        public CinemaRessourceFilms(ProgrammationDAO progDAO) throws IOException {
+            this.progDAO = progDAO;
+            setFilms(progDAO.getFilms());
+        }*/
     
     public CinemaRessourceFilms(CinemaContext cineContext) throws IOException {
         this.progDAO = (ProgrammationDAO) cineContext.getDAO(ProgrammationDAO.CONTEXT);
@@ -64,9 +61,20 @@ public class CinemaRessourceFilms extends ACinemaRessource {
     public int getNbFilms() {
         return films.size();
     }
-    
-    public Object process(String commande, Map<String,Object> parametres) throws IOException{
-        switch(commande){
+
+    /**
+     *
+     * process .
+     *
+     * @param commande .
+     * @param parametres .
+     *
+     * @return Object .
+     *
+     * @throws IOException Exception IO
+     */
+    public Object process(String commande, Map<String,Object> parametres) throws IOException {
+        switch (commande) {
             case "getFilms":
                 return getFilms();
                 
@@ -84,18 +92,18 @@ public class CinemaRessourceFilms extends ACinemaRessource {
             case "getNbFilms":
                 return getNbFilms();
                 
-             default:
+            default:
                 return null;
-       }
+        }
     }
     
     @Override
     public void start() {
-        LOGGER.info("Component "+ this.getClass() +" started");
+        LOGGER.info("Component " + this.getClass() + " started");
     }
     
     @Override
-    public void stop(){
-        LOGGER.info("Component "+ this.getClass() +" stopped");
+    public void stop() {
+        LOGGER.info("Component " + this.getClass() + " stopped");
     }
 }

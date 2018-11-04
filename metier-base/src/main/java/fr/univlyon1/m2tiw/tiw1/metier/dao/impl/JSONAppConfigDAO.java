@@ -11,7 +11,7 @@ import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class JSONAppConfigDAO implements AppConfigDAO{
+public class JSONAppConfigDAO implements AppConfigDAO {
 
     private static final URL RESOURCE = 
             JSONAppConfigDAO.class.getResource("/conf/config.json");

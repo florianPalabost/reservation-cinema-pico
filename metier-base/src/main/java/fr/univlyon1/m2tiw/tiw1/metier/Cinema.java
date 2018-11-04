@@ -30,15 +30,16 @@ public class Cinema implements Startable {
      * Constructeur de Cinema avec nom.
      *
      * @param nom .
-     * @param cineRessFilms
-     * @param cineRessSalles
-     * @param cineRessSeances
+     * @param cineRessFilms .
+     * @param cineRessSalles .
+     * @param cineRessSeances .
      *
      * @throws java.io.IOException IOException
      * @throws java.text.ParseException ParseException
      *
      */
-    public Cinema(String nom, CinemaRessourceFilms cineRessFilms, CinemaRessourceSalles cineRessSalles,
+    public Cinema(String nom, CinemaRessourceFilms cineRessFilms,
+                  CinemaRessourceSalles cineRessSalles,
             CinemaRessourceSeances cineRessSeances) throws IOException, ParseException {
         this.nom = nom;
         this.cineRessFilms = cineRessFilms;
@@ -178,11 +179,21 @@ public class Cinema implements Startable {
         return films.get(film);
     }
     */
-    
-    public Object process(String methode,String commande, Map<String,Object> parametres) throws IOException, Exception{
-       switch (methode) {
+
+    /**
+     *
+     * process .
+     *
+     * @param methode .
+     * @param commande .
+     * @param parametres .
+     *
+     */
+    public Object process(String methode,String commande,
+                          Map<String,Object> parametres) throws IOException, Exception {
+        switch (methode) {
             case "CINEMA":
-               return getNom();
+                return getNom();
             case "FILM":
                 return cineRessFilms.process(commande, parametres);      
             case "SALLE":
@@ -198,7 +209,7 @@ public class Cinema implements Startable {
   
 
     /**
-     * start the cinema
+     * start the cinema .
      */
     @Override
     public void start() {
@@ -206,14 +217,16 @@ public class Cinema implements Startable {
         //cineRessFilms.start();
         //cineRessSalles.start();
         //cineRessSeances.start();
-        //LOGGER.info("Component Cinema STARTED. Objet d'acces aux données : "+this.getClass());
-        //LOGGER.info("Component Cinema STARTED. Objet d'acces aux données : "+this.programmationDAO.toString());
+        //LOGGER.info("Component Cinema STARTED. Objet d'acces aux données : " + this.getClass());
+        /*LOGGER.info("Component Cinema STARTED. Objet d'acces aux données : "
+        + this.programmationDAO.toString()); */
         //LOGGER.info(this.toString());
-        // throw new UnsupportedOperationException("PB Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // throw new UnsupportedOperationException("PB Not supported yet.");
+        // To change body of generated methods, choose Tools | Templates.
     }
 
     /**
-     * stop the cinema instance
+     * stop the cinema instance .
      */
     @Override
     public void stop() {
@@ -221,7 +234,8 @@ public class Cinema implements Startable {
         //cineRessFilms.stop();
         //cineRessSalles.stop();
         //cineRessSeances.stop();
-        // throw new UnsupportedOperationException("PB Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // throw new UnsupportedOperationException("PB Not supported yet.");
+        // To change body of generated methods, choose Tools | Templates.
     }
     
 }
