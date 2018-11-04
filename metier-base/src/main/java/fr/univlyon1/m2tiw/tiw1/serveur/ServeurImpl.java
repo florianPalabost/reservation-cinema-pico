@@ -134,24 +134,6 @@ public class ServeurImpl implements Serveur {
     }
     
     /**
-     * @return une instance du cinema créé
-     * @throws IOException IOException erreur de lecture fichiers
-     * @throws ParseException ParseException
-     */
-    /*
-    public Cinema createCinema() throws IOException, ParseException {
-        List<Salle> salles = new JSONSalleDAO().load();
-        JSONProgrammationDAO progDAO = new JSONProgrammationDAO("mon-cinema",salles);
-        JPAReservationDAO reservDAO = new JPAReservationDAO();
-        cinema = new JSONCinemaDAO().load("Mon Cinema",salles,progDAO,reservDAO);
-        
-        LOGGER.info("SERVEUR CREATE CINEMA");
-        LOGGER.info(cinema.toString());
-        return cinema;
-    }
-   */ 
-    
-    /**
      *
      * processRequest .
      *

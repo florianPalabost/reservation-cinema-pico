@@ -14,7 +14,7 @@ import java.util.Objects;
 @NamedQueries({
         @NamedQuery(name = "getBySeance", query =
                 "SELECT r FROM Reservation r WHERE r.seanceId = ?")
-})
+    })
 public class Reservation {
     @Id
     @GeneratedValue

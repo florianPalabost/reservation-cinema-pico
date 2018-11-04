@@ -22,7 +22,7 @@ public class Registry implements IRegistry {
      * getReferencedObj .
      *
      * @param refName .
-     * @return
+     * @return object qui fait reference au path
      */
     @Override
     public Object getReferencedObj(String refName) {

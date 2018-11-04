@@ -6,8 +6,9 @@ TP2: Conteneurs d'objets et inversion de contrôle
 
 **Objectifs :**
 
-- Mettre en pratique différents patterns (IoC, Contexte, Annuaire, Object pool...) 
-afin de mieux comprendre le fonctionnement d'un framework. 
+- Mettre en pratique différents design patterns (IoC, Contexte, Annuaire, Object pool...) 
+
+- Mieux comprendre le fonctionnement d'un framework. 
 
 - Mettre en place un outil configurable et capable de gérer le cycle de vie de ses composants.
 
@@ -43,16 +44,15 @@ afin de mieux comprendre le fonctionnement d'un framework.
 
 On a eu deux grands problèmes dans ce projet :
 
-    1) Quand on supprime mon-cinema_film/seance.json on arrive pas à les reformer.
-    Cela nous a pris énormément de temps.
+    1) Quand on supprime mon-cinema_film/seance.json nous ne pouvons pas les reformer.
+    Le débug nous a pris énormément de temps et n'a pas abouti.
     
     2) Manque de temps à cause des autres projets.
     
-Malgré ces problèmes, nous avons avancé dans le projet.
+Malgré ces problèmes, nous avons préféré avancer dans le projet.
 
 ### Conclusion
 
-Ce projet nous a permis de découvrir et de revoir certains patterns mais aussi la mise en place d'un Container.  De plus, il nous a permis d’appliquer nos connaissances en web et bases de données. 
+Ce projet nous a permis de découvrir et de revoir certains patterns mais aussi, de mettre en place un Container (pico Container).  De plus, il nous a permis d’appliquer nos connaissances en web et bases de données. 
 
-On a effectué plusieurs tests tout au long du développement. On a travaillé pour bien repondre à une grande partie de l’ensemble des demandes posées par l'énoncé en respectant l'ensemble de ces règles. On a essayé de fournir un code évolutif et bien commenté.
-
+On a effectué plusieurs tests tout au long du développement. Nous avons répondu à une grande partie de l'énoncé. On a essayé de fournir un code évolutif et bien commenté.
