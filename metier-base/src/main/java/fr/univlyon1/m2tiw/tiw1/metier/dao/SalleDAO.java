@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface SalleDAO {
     public static final String CTX_METIER = "/metier";
-    public static final String CONTEXT = "salle";
+    public static final String CONTEXT = "salles";
 
     public List<Salle> load() throws IOException;
 

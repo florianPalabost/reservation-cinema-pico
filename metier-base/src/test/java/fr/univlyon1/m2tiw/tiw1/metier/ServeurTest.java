@@ -22,7 +22,7 @@ public class ServeurTest {
     private static final Logger LOGGER = Logger.getLogger(ServeurTest.class.getName());
     
     @Before
-    public void initServeur() throws IOException {
+    public void initServeur() throws Exception {
         annuaire = new Registry();
         serveur = new ServeurImpl(annuaire);
     }
@@ -56,7 +56,7 @@ public class ServeurTest {
     }
     
     @Test
-    public void testProcessRequestNBXXX(){ // OK
+    public void testProcessRequestNBXXX() throws IOException{ // OK
         // verifie qu'on recupere les bonnes informations
         assertEquals("mon-cinema",serveur.processRequest("CINEMA", "getNom", new HashMap<>()));
         assertEquals(7,serveur.processRequest("FILM", "getNbFilms", new HashMap<>()));
@@ -65,7 +65,7 @@ public class ServeurTest {
     }
     
     @Test
-    public void testAddAndGetFilm() {// OK
+    public void testAddAndGetFilm() throws IOException {// OK
         Film f = new Film("Toto","VF","https://toto.fr");
         Map<String,Object> params = new HashMap<>();
         params.put("titre", "Toto - VF");
@@ -75,10 +75,14 @@ public class ServeurTest {
     }
     
     @Test
-    public void getRegistryNbSalles() throws Exception { //OK
+    public void testGetRegistryNbSalles() throws Exception { //OK
         int nbSalles = ((List<Salle>) annuaire.getReferencedObj("/app/metier/salles")).size();
         assertEquals(3, nbSalles);
     }
 
+    @Test
+    public void testGetAppConfName() {
+        assertEquals("mon-cinema", serveur.getAppConf().getName());
+    }
 }
 

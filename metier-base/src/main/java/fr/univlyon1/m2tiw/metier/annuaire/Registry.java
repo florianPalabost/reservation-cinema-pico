@@ -29,7 +29,7 @@ public class Registry implements IRegistry {
     public Object getReferencedObj(String refName){
         Object currObj = root;
         for (String currentPath : refName.split("/")){
-            if(currObj != null || currObj != ""){
+            if(currObj != null){
                 currObj = ((CinemaContext)currObj).getDAO(currentPath);   
             }
             else {

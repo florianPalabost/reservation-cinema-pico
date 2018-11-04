@@ -28,7 +28,7 @@ public class CinemaTest {
     private Registry annuaire;
     
     @Before
-    public void initServeur() throws IOException {
+    public void initServeur() throws IOException, ClassNotFoundException {
         annuaire = new Registry();
         serveur = new ServeurImpl(annuaire);
     }
@@ -72,12 +72,12 @@ public class CinemaTest {
 
     // ----------- CinemaRessourceFilms -----------
     @Test
-    public void getFilms() {
+    public void getFilms() throws IOException {
         assertEquals("[{titre:Mission Impossible - Fallout, version:VO, fiche:https://www.imdb.com/title/tt4912910/?ref_=inth_ov_tt}, {titre:Toto, version:VF, fiche:https://toto.fr}, {titre:BlacKkKlansman, version:VO, fiche:https://www.imdb.com/title/tt7349662/?ref_=inth_ov_tt}, {titre:Burning, version:VO, fiche:https://www.imdb.com/title/tt7282468/?ref_=shtt_ov_tt}, {titre:Mission Impossible - Fallout, version:VF, fiche:https://www.imdb.com/title/tt4912910/?ref_=inth_ov_tt}, {titre:Operation Finale, version:VF, fiche:https://www.imdb.com/title/tt5208252/?ref_=inth_ov_tt}, {titre:Le poirier sauvage, version:VF, fiche:https://www.imdb.com/title/tt6628102/?ref_=shtt_ov_tt}]", serveur.processRequest("FILM","getFilms", null).toString());
     }
 
     @Test
-    public void getFilm() {
+    public void getFilm() throws IOException {
         HashMap params = new HashMap();
         params.put("titre", "Operation Finale - VF");
         assertEquals("{titre:Operation Finale, version:VF, fiche:https://www.imdb.com/title/tt5208252/?ref_=inth_ov_tt}", serveur.processRequest("FILM","getFilm", params).toString());
@@ -103,25 +103,25 @@ public class CinemaTest {
     }*/
 
     @Test
-    public void getNbFilms() {
+    public void getNbFilms() throws IOException {
         assertEquals(7, serveur.processRequest("FILM","getNbFilms", null));
     }
 
     // ----------- CinemaRessourceSalles -----------
     @Test
-    public void getSalles() {
+    public void getSalles() throws IOException {
         assertEquals("[{nom:Salle 3, capacite:50}, {nom:Salle 2, capacite:70}, {nom:Salle 1, capacite:100}]",serveur.processRequest("SALLE","getSalles",null).toString());
     }
 
     @Test
-    public void getSalle() {
+    public void getSalle() throws IOException {
         HashMap params = new HashMap();
         params.put("nomSalle", "Salle 2");
         assertEquals("{nom:Salle 2, capacite:70}",serveur.processRequest("SALLE","getSalle", params).toString());
     }
 
     @Test
-    public void addSalle() {
+    public void addSalle() throws IOException {
         Salle salle4 = new Salle("Salle 4", 100);
         HashMap params = new HashMap();
         params.put("salle", salle4);
@@ -130,7 +130,7 @@ public class CinemaTest {
     }
 
     @Test
-    public void removeSalle()  { // ok
+    public void removeSalle() throws IOException  { // ok
         Salle salle4 = new Salle("Salle 4", 55);
         HashMap params = new HashMap();
         params.put("salle", salle4);
@@ -142,14 +142,14 @@ public class CinemaTest {
     }
 
     @Test
-    public void getNbSalles() {
+    public void getNbSalles() throws IOException {
         assertEquals(3,serveur.processRequest("SALLE","getNbSalles",null));
     }
 
 
     // ----------- CinemaRessourceSeances -----------
     @Test
-    public void createSeance() throws ParseException { // A VERIFIER
+    public void createSeance() throws ParseException, IOException { // A VERIFIER
 
         //serveur = new ServeurImpl();
 
@@ -226,13 +226,13 @@ public class CinemaTest {
     }*/
 
     @Test
-    public void getNBSeances() { // OK
+    public void getNBSeances() throws IOException { // OK
 
         assertEquals(84, serveur.processRequest("SEANCE", "getNbSeances", null));
     }
 
     @Test
-    public void setSeances() throws ParseException { // OK
+    public void setSeances() throws ParseException, IOException { // OK
 
         // Films
         Film harryP = new Film("Harry Potter and the Prisoner of Azkaban", "VO", "https://www.imdb.com/title/tt0304141/?ref_=nv_sr_6");
