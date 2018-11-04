@@ -175,9 +175,11 @@ public class ServeurImpl implements Serveur {
             case "FILM":
                 return ((CinemaRessourceFilms) registry.getReferencedObj("/app/cinemaRessourceFilms")).process(commande,parametres);
             case "SALLE":
-                return ((CinemaRessourceSalles) registry.getReferencedObj("/app/cinemaRessourceSalle")).process(commande,parametres);
+                return ((CinemaRessourceSalles) registry.getReferencedObj("/app/cinemaRessourceSalles")).process(commande,parametres);
             case "SEANCE":
-                return ((CinemaRessourceSeances) registry.getReferencedObj("/app/cinemaRessourceSeance")).process(commande,parametres);
+                return ((CinemaRessourceSeances) registry.getReferencedObj("/app/cinemaRessourceSeances")).process(commande,parametres);
+             case "CINEMA":
+                return appConf.getName();
             default:
                 return null;
         }
