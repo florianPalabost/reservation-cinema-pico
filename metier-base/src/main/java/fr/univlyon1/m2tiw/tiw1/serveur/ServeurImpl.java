@@ -34,7 +34,7 @@ public class ServeurImpl implements Serveur {
      * Serveur : Instantie un PicoCotainer et recupere Cinema .
      * @param registryImpl .
      * @throws java.io.IOException IOException
-     * @throws java.lang.ClassNotFoundException
+     * @throws java.lang.ClassNotFoundException ClassNotFoundException
      */
     public ServeurImpl(Registry registryImpl) throws IOException, ClassNotFoundException {
         // setup conf partie 5
