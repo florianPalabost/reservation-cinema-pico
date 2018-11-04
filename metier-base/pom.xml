@@ -28,12 +28,6 @@
             <version>2.9.6</version>
         </dependency>
         <dependency>
-            <groupId>fr.univlyon1.tiw.tiw1</groupId>
-            <artifactId>metier-base</artifactId>
-            <version>2018</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
         </dependency>
