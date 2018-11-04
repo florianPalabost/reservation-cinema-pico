@@ -45,19 +45,19 @@ public class CinemaTest {
                 "/sample-data/mon-cinema.json"), CinemaWrapper.class);
         assertEquals(84, wrapper.cinema.seances.size());
     }
-/*
-    @Test
-    public void testReservation() throws IOException, SeanceCompleteException, ParseException {
-        // List<Salle> sallles = new JSONSalleDAO().load();
-        // JSONProgrammationDAO progDAO = new JSONProgrammationDAO(sallles);
-        // Cinema c =  new JSONCinemaDAO().load(sallles,progDAO);
-        serveur = new ServeurImpl();
-        Cinema c = serveur.createCinema();
-        Seance s = c.getSeances().get(1);
-        Reservation r = s.createReservation("titi","machin", "titi.machin@nowhere.net");
-        s.cancelReservation(r);
-    }
-*/
+    /*
+        @Test
+        public void testReservation() throws IOException, SeanceCompleteException, ParseException {
+            // List<Salle> sallles = new JSONSalleDAO().load();
+            // JSONProgrammationDAO progDAO = new JSONProgrammationDAO(sallles);
+            // Cinema c =  new JSONCinemaDAO().load(sallles,progDAO);
+            serveur = new ServeurImpl();
+            Cinema c = serveur.createCinema();
+            Seance s = c.getSeances().get(1);
+            Reservation r = s.createReservation("titi","machin", "titi.machin@nowhere.net");
+            s.cancelReservation(r);
+        }
+    */
 
     @Test
     public void testProcess() throws IOException {
@@ -65,9 +65,9 @@ public class CinemaTest {
         HashMap params = new HashMap();
         params.put("titre", "Operation Finale - VF");
         LOGGER.info("--------process REQUEST TEST------------");
-        LOGGER.info("map params(): "+params.toString());
-        LOGGER.info("getFilms(): "+serveur.processRequest("FILM","getFilms", null).toString());
-        LOGGER.info("getFilm(): "+serveur.processRequest("FILM","getFilm", params).toString());
+        LOGGER.info("map params(): " + params.toString());
+        LOGGER.info("getFilms(): " + serveur.processRequest("FILM","getFilms", null).toString());
+        LOGGER.info("getFilm(): " + serveur.processRequest("FILM","getFilm", params).toString());
     }
 
     // ----------- CinemaRessourceFilms -----------
@@ -110,14 +110,18 @@ public class CinemaTest {
     // ----------- CinemaRessourceSalles -----------
     @Test
     public void getSalles() throws IOException {
-        assertEquals("[{nom:Salle 3, capacite:50}, {nom:Salle 2, capacite:70}, {nom:Salle 1, capacite:100}]",serveur.processRequest("SALLE","getSalles",null).toString());
+        assertEquals("[{nom:Salle 3, capacite:50}, "
+                + "{nom:Salle 2, capacite:70}, "
+                + "{nom:Salle 1, capacite:100}]",
+                serveur.processRequest("SALLE","getSalles",null).toString());
     }
 
     @Test
     public void getSalle() throws IOException {
         HashMap params = new HashMap();
         params.put("nomSalle", "Salle 2");
-        assertEquals("{nom:Salle 2, capacite:70}",serveur.processRequest("SALLE","getSalle", params).toString());
+        assertEquals("{nom:Salle 2, capacite:70}",
+                serveur.processRequest("SALLE","getSalle", params).toString());
     }
 
     @Test
@@ -126,7 +130,11 @@ public class CinemaTest {
         HashMap params = new HashMap();
         params.put("salle", salle4);
         serveur.processRequest("SALLE", "addSalle", params);
-        assertEquals("[{nom:Salle 4, capacite:100}, {nom:Salle 3, capacite:50}, {nom:Salle 2, capacite:70}, {nom:Salle 1, capacite:100}]",serveur.processRequest("SALLE","getSalles", null).toString());
+        assertEquals("[{nom:Salle 4, capacite:100}, "
+                + "{nom:Salle 3, capacite:50}, "
+                + "{nom:Salle 2, capacite:70}, "
+                + "{nom:Salle 1, capacite:100}]",
+                serveur.processRequest("SALLE","getSalles", null).toString());
     }
 
     @Test
@@ -136,7 +144,7 @@ public class CinemaTest {
         params.put("salle", salle4);
         serveur.processRequest("SALLE", "addSalle", params);
         assertEquals(4,serveur.processRequest("SALLE","getNbSalles", null));
-         params.put("nomSalle", salle4.getNom());
+        params.put("nomSalle", salle4.getNom());
         serveur.processRequest("SALLE", "removeSalle", params);
         assertEquals(3,serveur.processRequest("SALLE","getNbSalles", null));
     }
@@ -162,15 +170,17 @@ public class CinemaTest {
         // Date
         String d = "2018-08-11 20:00:00 CET";
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss zzz");
-        Date dateSeance = format.parse(d);
-
-        // Prix
-        Float prix = 31.00f;
 
         // Au debut getNbSeances = 84
         assertEquals(84, serveur.processRequest("SEANCE", "getNbSeances", null));
 
         HashMap params = new HashMap();
+
+        // Attribution de la date
+        Date dateSeance = format.parse(d);
+
+        // Prix
+        Float prix = 31.00f;
 
         params.put("salle", (Object)salle);
         params.put("film", (Object)film);
@@ -186,7 +196,8 @@ public class CinemaTest {
     }
 
     /*@Test
-    public void removeSeance() throws ParseException { // OK (Il efface une seance, c'est pour cela il est en commentaire)
+    public void removeSeance() throws ParseException {
+    // OK (Il efface une seance, c'est pour cela il est en commentaire)
 
         //serveur = new ServeurImpl();
 
@@ -260,10 +271,12 @@ public class CinemaTest {
         LOGGER.info("maSeanceCreer2 : " + maSeanceCreer2);
 
         // Creation de la nouvelle collection
-        Collection<Seance> colSeances = new ArrayList<Seance>() {{
-            add(maSeanceCreer1);
-            add(maSeanceCreer2);
-        }};
+        Collection<Seance> colSeances = new ArrayList<Seance>() {
+            {
+                add(maSeanceCreer1);
+                add(maSeanceCreer2);
+            }
+        };
 
         LOGGER.info("COLSEANCE : " + colSeances);
 

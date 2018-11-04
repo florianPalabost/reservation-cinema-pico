@@ -12,6 +12,8 @@ import org.junit.Test;
 
 /**
  *
+ * Salle Test .
+ *
  * @author florian
  */
 public class SalleTest {
@@ -52,8 +54,8 @@ public class SalleTest {
         // - {nom:Salle 2, capacite:70},
         // - {nom:Salle 3, capacite:50}
         int i = 1;
-        while(i <= salles.size()) {
-            assertEquals("Salle " +i , salles.get(i - 1).getNom());
+        while (i <= salles.size()) {
+            assertEquals("Salle " + i, salles.get(i - 1).getNom());
             i++;
         }
     }
@@ -65,7 +67,7 @@ public class SalleTest {
         // - {nom:Salle 2, capacite:70},
         // - {nom:Salle 3, capacite:50}
         assertEquals(100, salles.get(0).getCapacite());
-        assertEquals(70 , salles.get(1).getCapacite());
+        assertEquals(70, salles.get(1).getCapacite());
         assertEquals(50, salles.get(2).getCapacite());
     }
 }

@@ -40,8 +40,9 @@ public class ServeurTest {
     @Test
     public void testInitPicoContainer() throws IOException {
         LOGGER.info("--------testInitPicoContainer------------");
-        LOGGER.info("CLASS SERVEUR : "+serveur.getClass());
-        LOGGER.info("PROCESS REQUEST GETFILMS : "+serveur.processRequest("FILM", "getFilms", null));
+        LOGGER.info("CLASS SERVEUR : " + serveur.getClass());
+        LOGGER.info("PROCESS REQUEST GETFILMS : "
+                + serveur.processRequest("FILM", "getFilms", null));
         
         Map<String,Object> params = new HashMap<>();
         params.put("class","Seance");
@@ -52,7 +53,7 @@ public class ServeurTest {
     }
     
     @Test
-    public void testProcessRequestNBXXX() throws IOException{ // OK
+    public void testProcessRequestNBXXX() throws IOException { // OK
         // verifie qu'on recupere les bonnes informations
         assertEquals("mon-cinema",serveur.processRequest("CINEMA", "getNom", new HashMap<>()));
         assertEquals(7,serveur.processRequest("FILM", "getNbFilms", new HashMap<>()));
@@ -61,7 +62,7 @@ public class ServeurTest {
     }
     
     @Test
-    public void testAddAndGetFilm() throws IOException {// OK
+    public void testAddAndGetFilm() throws IOException { // OK
         Film f = new Film("Toto","VF","https://toto.fr");
         Map<String,Object> params = new HashMap<>();
         params.put("titre", "Toto - VF");
@@ -71,7 +72,7 @@ public class ServeurTest {
     }
     
     @Test
-    public void testAddAndGetSalle() throws IOException {// OK
+    public void testAddAndGetSalle() throws IOException { // OK
         Salle s = new Salle("Salle 42",42);
         Map<String,Object> params = new HashMap<>();
         params.put("nomSalle", s.getNom());
@@ -79,6 +80,7 @@ public class ServeurTest {
         serveur.processRequest("SALLE", "addSalle", params);
         assertEquals(s,serveur.processRequest("SALLE", "getSalle", params));
     }
+
     // TESTS concernant l'annuaire
     @Test
     public void testGetRegistryNbSalles() throws Exception { //OK
